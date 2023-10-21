@@ -24,7 +24,7 @@ const linkLomba = {
   },
   ml: {
     registrasi: "https://forms.gle/Y7GhS1Mi2TGzgb7YA",
-    konfirmasi: "https://forms.gle/Fi1LbkpQEpjz3KDP6",
+    konfirmasi: "https://forms.gle/Ce5HHE9mqiykciGj6",
 	guidebook: "https://uns.id/GuideBookLombaMobileLegends"
   },
   futsal: {
