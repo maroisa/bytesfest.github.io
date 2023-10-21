@@ -23,7 +23,7 @@ const linkLomba = {
 	guidebook: "https://drive.google.com/file/d/1sbxfU0q0l_7VS5RZVn1TviBJSXx_pEjV/view?usp=drive_link"
   },
   ml: {
-    registrasi: "https://forms.gle/qT1afNhAqnyHugbw5",
+    registrasi: "https://forms.gle/Y7GhS1Mi2TGzgb7YA",
     konfirmasi: "https://forms.gle/Fi1LbkpQEpjz3KDP6",
 	guidebook: "https://uns.id/GuideBookLombaMobileLegends"
   },
