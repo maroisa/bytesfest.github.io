@@ -20,17 +20,17 @@ const linkLomba = {
   poster: {
     registrasi: "https://forms.gle/17rZG6V1YNbUYFtD9",
     konfirmasi: "https://forms.gle/ktLMiHBYs1CaUGqX6",
-	guidebook: "https://drive.google.com/file/d/1hT69SMhvCqzhNHUilPYPFbeJwIU83O65/view?usp=drive_link"
+	guidebook: "https://drive.google.com/file/d/1AAtGeQJGLkhbeJ3NlxKUfDKXFwCMYV1Z/view?usp=drive_link"
   },
   ml: {
     registrasi: "https://forms.gle/Y7GhS1Mi2TGzgb7YA",
     konfirmasi: "https://forms.gle/Ce5HHE9mqiykciGj6",
-	guidebook: "https://uns.id/GuideBookLombaMobileLegends"
+	guidebook: "https://drive.google.com/file/d/1Bxx_gSybn70hEomi1GaZ9Crk-Ssztg19/view?usp=drive_link"
   },
   futsal: {
-    registrasi: "https://forms.gle/FTVQCFXPBQKQU2FF8",
+    registrasi: "https://forms.gle/ttxGzJhCqoPWuZTv7",
     konfirmasi: "https://forms.gle/v9FzMJGVJ3u777n99",
-	guidebook: "#"
+	guidebook: "https://drive.google.com/file/d/1dOYOm9IhVeJFBBq1zmLRIqTJGirxJ5ze/view?usp=drive_link"
   },
   
 };
