@@ -30,7 +30,7 @@ const linkLomba = {
   futsal: {
     registrasi: "https://forms.gle/BBkr34Z8HdESkBnf8",
     konfirmasi: "https://forms.gle/v9FzMJGVJ3u777n99",
-	guidebook: "https://drive.google.com/file/d/1C1UgBSdC9fQPC8oKMprt4srHXMdlhKNQ/view?usp=sharing"
+	guidebook: "https://drive.google.com/file/d/1YWjP3V0yN-oDJuY-FUWYMiiVqJTFPyic/view?usp=drive_link"
   },
   
 };
