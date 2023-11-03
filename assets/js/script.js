@@ -25,7 +25,7 @@ const linkLomba = {
   ml: {
     registrasi: "https://forms.gle/Y7GhS1Mi2TGzgb7YA",
     konfirmasi: "https://forms.gle/Ce5HHE9mqiykciGj6",
-	guidebook: "https://drive.google.com/file/d/1Bxx_gSybn70hEomi1GaZ9Crk-Ssztg19/view?usp=drive_link"
+	guidebook: "https://drive.google.com/file/d/1tNBFyVN2Sr7jRNLkwjACRmRyHPCtZ47T/view?usp=drive_link"
   },
   futsal: {
     registrasi: "https://forms.gle/BBkr34Z8HdESkBnf8",
