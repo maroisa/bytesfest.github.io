@@ -34,8 +34,8 @@ const linkLomba = {
 };
 
 const linkSubmission = {
-  Poster: "https://forms.gle/RK4tCXdGuhuqiUHw9",
-  DesainWeb: "https://forms.gle/yFYgPRyyRuBAGqyy8",
+  poster: "https://forms.gle/RK4tCXdGuhuqiUHw9",
+  desainWeb: "https://forms.gle/yFYgPRyyRuBAGqyy8",
 };
 
 window.onscroll = function () {
@@ -251,10 +251,10 @@ function submissionLomba() {
   event.preventDefault();
   document
     .getElementById("btnSubmissionPoster")
-    .setAttribute("href", linkSubmission.Poster);
+    .setAttribute("href", linkSubmission.poster);
   document
-    .getElementById("btnSubmission")
-    .setAttribute("href", linkSubmission.DesainWeb);
+    .getElementById("btnSubmissionDesainWeb")
+    .setAttribute("href", linkSubmission.desainWeb);
   modalSubmission.classList.toggle("hidden");
   setTimeout(() => {
     modalSubmission.classList.toggle("opacity-0");
