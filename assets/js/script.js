@@ -11,31 +11,31 @@ const countDownSecond = document.getElementById("countDownSecond");
 
 const linkLomba = {
   web: {
-    registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSdWc_JHOPzmnIUEacKaEK_l0Vkw4j1Hy_eMFIpUwK_r9DTVow/viewform",
-    konfirmasi: "https://api.whatsapp.com/send?phone=6289519694775&text=*~%20Konfirmasi%20Pembayaran%20Lomba%20Desain%20Web%20%7C%20Bytefest%202024%20~*%0A%0ANama%20%3A%20%0AAsal%20Sekolah%2FUniversitas%2FInstansi%20%3A%20%0ABayar%20Via%20(Dana%2FSeaBank)%20%3A%0A%0A_(Sertakan%20bukti%20transaksi%20pembayaran)_",
-	guidebook: "https://drive.google.com/file/d/1yQOFwr6ptQqnJ5HdLNKDzXAffs65ttq8/view"
+    registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSdWc_JHOPzmnIUEacKaEK_l0Vkw4j1Hy_eMFIpUwK_r9DTVow/viewform?usp=sf_link",
+    konfirmasi: "https://wa.link/4c2j2s",
+	guidebook: "https://uns.id/GuidebookDesweb"
   },
   poster: {
     registrasi: "https://docs.google.com/forms/d/e/1FAIpQLScA_7TAQhJbWoqjqhqjJ9J0QffCGRxUBYvWJ0XcLnNeoputNw/viewform",
-    konfirmasi: "https://api.whatsapp.com/send?phone=6281233329103&text=*Konfirmasi%20Pembayaran%20Lomba%20Poster%202024*%0A%0A%0ANama%3A%20%0AAsal%20Sekolah%3A%20%0ABayar%20via%3A%20(rekening%2Fnomor)%0ABukti%20Pembayaran%20%3A%0A%0A%0ATerima%20kasih%20%F0%9F%98%8A%F0%9F%98%8E",
-	guidebook: "https://drive.google.com/file/d/1yVT8j1xjLef-r1HN_Iu_AeXOPz_pe_iH/view"
+    konfirmasi: "https://wa.link/m25f2u",
+	guidebook: "https://uns.id/GuidebookPoster"
   },
   ml: {
-    registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSdirt3DWzO3VRjKBbVHslrfuo_Fae-N43ej_aONtTYghwZ1sA/viewform",
+    registrasi: "https://forms.gle/aV3aXkwNaenCXpb5A",
     konfirmasi: "https://forms.gle/Ce5HHE9mqiykciGj6",
-	guidebook: "https://drive.google.com/file/d/1z3rA9QSkjFXaCY-bZiXAWkCXzsCeH0II/view"
+	guidebook: "https://uns.id/GuidebookMobileLegend"
   },
   futsal: {
     registrasi: "https://docs.google.com/forms/d/1k-4EXf101HpOab8kxf2tTcCjv413QH5Wq-krAclGDkc/viewform?edit_requested=true",
-    konfirmasi: "https://api.whatsapp.com/send/?phone=6282221782003&text=%0A%0A+++++++++++++++++++%2A%2AKONFIRMASI+PENDAFTARAN+LOMBA+FUTSAL+BYTESFEST+2024%2A%2A++++++++++++++++++%0A%0AHalo+Panitia+Bytesfest%2C%0A%0ADengan+pesan+ini%2C+kami+ingin+mengonfirmasi+pendaftaran+tim+futsal+sekolah+kami+untuk+acara+lomba+futsal+Bytesfest+2024.+Berikut+adalah+informasi+tim+kami%3A%0A%0A%2ANama+Sekolah%2A+%3A+%5Bisi+nama+sekolah%5D%0A%2ANama+Penanggung+Jawab%2FOfficial%2A+%3A+%5Bisi+nama+penanggung+jawab%5D%0A%2ANomor+Penanggung+Jawab%2FOfficial%2A+%3A+%5Bisi+nomor+penanggung+jawab%5D%0A%0ATerima+kasih+atas+perhatiannya.+Kami+menunggu+konfirmasi+selanjutnya+dari+pihak+panitia.%0A%0ABest+Regards%2C%0ATim+Futsal+%5Bisi+nama+sekolah%5D&type=phone_number&app_absent=0",
-	guidebook: "https://drive.google.com/file/d/1yNaPjn7_KGG5SZ9OskSB5L5HspRL2ckS/view"
+    konfirmasi: "https://bit.ly/4c0pHsj",
+	guidebook: "https://uns.id/GuidebookFutsal"
   },
   
 };
 
 const linkSubmission = {
-  poster: "https://docs.google.com/forms/d/e/1FAIpQLSeGDJ37u5TS3OMmLh5Hald4FXhkxSw3D6fOsIF5pGDQU3JFIg/viewform",
-  desweb: "https://docs.google.com/forms/d/e/1FAIpQLSfb0PX4iRhddHZ51QxHVU2yvazYb4G7tOg9bMl89yFX8_sMXA/viewform",
+  Poster: "https://forms.gle/RK4tCXdGuhuqiUHw9",
+  DesainWeb: "https://forms.gle/yFYgPRyyRuBAGqyy8",
 };
 
 window.onscroll = function () {
@@ -253,7 +253,7 @@ function submissionLomba() {
     .getElementById("btnSubmissionPoster")
     .setAttribute("href", linkSubmission.Poster);
   document
-    .getElementById("btnSubmissionDesainWeb")
+    .getElementById("btnSubmission")
     .setAttribute("href", linkSubmission.DesainWeb);
   modalSubmission.classList.toggle("hidden");
   setTimeout(() => {
