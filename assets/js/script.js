@@ -35,7 +35,7 @@ const linkLomba = {
 
 const linkSubmission = {
   poster: "https://forms.gle/RK4tCXdGuhuqiUHw9",
-  desainWeb: "https://forms.gle/BMgYe6HvAxZziMGo9",
+  desainWeb: "https://forms.gle/DqNGqZbCmWnAjm2f7",
 };
 
 window.onscroll = function () {
