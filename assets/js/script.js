@@ -11,32 +11,32 @@ const countDownSecond = document.getElementById("countDownSecond");
 
 const linkLomba = {
   web: {
-    registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSdWc_JHOPzmnIUEacKaEK_l0Vkw4j1Hy_eMFIpUwK_r9DTVow/viewform?usp=sf_link",
-    konfirmasi: "https://wa.link/4c2j2s",
-	guidebook: "https://uns.id/GuidebookDesweb"
+    registrasi: "http://uns.id/RegistrasiDesWebBytesfest2025",
+    konfirmasi: "https://wa.me/6282323821220",
+	guidebook: "https://drive.google.com/file/d/1XFpT2cXJIapAmd7fwKlZqJ9GC65oFEGd/view?usp=drive_link"
   },
   poster: {
-    registrasi: "https://docs.google.com/forms/d/e/1FAIpQLScA_7TAQhJbWoqjqhqjJ9J0QffCGRxUBYvWJ0XcLnNeoputNw/viewform",
-    konfirmasi: "https://wa.link/m25f2u",
-	guidebook: "https://uns.id/GuidebookPoster"
-  },
-  ml: {
-    registrasi: "https://forms.gle/aV3aXkwNaenCXpb5A",
-    konfirmasi: "https://bit.ly/KonfirmasiLombaMobileLegends2024",
-	guidebook: "https://drive.google.com/file/d/1XhfR344QbYPGedvW_OQ4TcTrIT69GYIi/view?usp=drivesdk"
+    registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSeZuG1oTBJlRnzYrB_J0swf1O49o1sAN2q7ThHD-c0HbN5rQw/viewform?usp=dialog",
+    konfirmasi: "http://uns.id/KonfirmasiLombaPosterBF25",
+	guidebook: "https://drive.google.com/file/d/10GPAaCz2fwf4_J7KSNBFYmReRrYpii_N/view?usp=drive_link"
   },
   futsal: {
+    registrasi: "https://bit.ly/RegistrasiBytesfest2025",
+    konfirmasi: "https://wa.me/6285935669277",
+	guidebook: "https://drive.google.com/file/d/1-nfS4HQvLakez_yBUVNIELdG-zYOf2hI/view?usp=drive_link"
+  },
+  esai: {
     registrasi: "https://docs.google.com/forms/d/1k-4EXf101HpOab8kxf2tTcCjv413QH5Wq-krAclGDkc/viewform?edit_requested=true",
-    konfirmasi: "https://bit.ly/4c0pHsj",
-	guidebook: "https://uns.id/GuidebookFutsal"
+    konfirmasi: "https://wa.me/6285645571951",
+	guidebook: "https://drive.google.com/file/d/1Ze8v62ejE5ZPt91X8fk7Ekav2Z9ANZ7j/view?usp=drive_link"
   },
   
 };
 
-const linkSubmission = {
-  poster: "https://forms.gle/RK4tCXdGuhuqiUHw9",
-  desainWeb: "https://forms.gle/DqNGqZbCmWnAjm2f7",
-};
+// const linkSubmission = {
+//   poster: "https://forms.gle/RK4tCXdGuhuqiUHw9",
+//   desainWeb: "https://forms.gle/DqNGqZbCmWnAjm2f7",
+// };
 
 window.onscroll = function () {
   scrollFunction();
@@ -119,7 +119,7 @@ hamburgerMenu.addEventListener("click", function () {
   }, 100);
 });
 
-const countDownDate = new Date("Juli 30, 2024 00:00:00").getTime();
+const countDownDate = new Date("Juni 19, 2025 00:00:00").getTime();
 const x = setInterval(function () {
   const now = new Date().getTime();
   const distance = countDownDate - now;
