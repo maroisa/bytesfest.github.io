@@ -13,7 +13,7 @@ const linkLomba = {
   web: {
     registrasi: "http://uns.id/RegistrasiDesWebBytesfest2025",
     konfirmasi: "https://wa.me/6282323821220",
-	guidebook: "https://drive.google.com/file/d/1XFpT2cXJIapAmd7fwKlZqJ9GC65oFEGd/view?usp=drive_link"
+	guidebook: "https://drive.google.com/file/d/1elxFgGDdFiNxhS7J9JCeg_o111eLKqH9/view?usp=drive_link"
   },
   poster: {
     registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSeZuG1oTBJlRnzYrB_J0swf1O49o1sAN2q7ThHD-c0HbN5rQw/viewform?usp=dialog",
