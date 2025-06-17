@@ -18,17 +18,17 @@ const linkLomba = {
   poster: {
     registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSeZuG1oTBJlRnzYrB_J0swf1O49o1sAN2q7ThHD-c0HbN5rQw/viewform?usp=dialog",
     konfirmasi: "http://uns.id/KonfirmasiLombaPosterBF25",
-	guidebook: "https://drive.google.com/file/d/10GPAaCz2fwf4_J7KSNBFYmReRrYpii_N/view?usp=drive_link"
+	guidebook: "https://drive.google.com/file/d/1Fz637enEN5nH5d5MrpJvz9yszgmgwjh2/view?usp=drive_link"
   },
   futsal: {
     registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSc_MgnuimB436WTkV13a5s4LZZRFf0l0VN8BBMVE9TzVrq9tw/viewform",
     konfirmasi: "https://wa.me/6285935669277",
-	guidebook: "https://drive.google.com/file/d/1-nfS4HQvLakez_yBUVNIELdG-zYOf2hI/view?usp=drive_link"
+	guidebook: "https://drive.google.com/file/d/1rVaPbDVu9CwY3rO9TnYO_9kcymsLyOAH/view?usp=drive_link"
   },
   esai: {
-    registrasi: "https://docs.google.com/forms/d/1k-4EXf101HpOab8kxf2tTcCjv413QH5Wq-krAclGDkc/viewform?edit_requested=true",
+    registrasi: "http://uns.id/RegistrasiEsaiBytesfest2025",
     konfirmasi: "https://wa.me/6285645571951",
-	guidebook: "https://drive.google.com/file/d/1Ze8v62ejE5ZPt91X8fk7Ekav2Z9ANZ7j/view?usp=drive_link"
+	guidebook: "https://drive.google.com/file/d/1Jgx2Ah1qokNb-aDRRdzttJIAIso9-0Cd/view?usp=drive_link"
   },
   
 };
