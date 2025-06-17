@@ -119,7 +119,7 @@ hamburgerMenu.addEventListener("click", function () {
   }, 100);
 });
 
-const countDownDate = new Date("Juni 19, 2025 00:00:00").getTime();
+const countDownDate = new Date("Juni 19, 2025 08:00:00").getTime();
 const x = setInterval(function () {
   const now = new Date().getTime();
   const distance = countDownDate - now;
