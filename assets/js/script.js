@@ -21,7 +21,7 @@ const linkLomba = {
 	guidebook: "https://drive.google.com/file/d/10GPAaCz2fwf4_J7KSNBFYmReRrYpii_N/view?usp=drive_link"
   },
   futsal: {
-    registrasi: "https://bit.ly/RegistrasiBytesfest2025",
+    registrasi: "https://docs.google.com/forms/d/e/1FAIpQLSc_MgnuimB436WTkV13a5s4LZZRFf0l0VN8BBMVE9TzVrq9tw/viewform",
     konfirmasi: "https://wa.me/6285935669277",
 	guidebook: "https://drive.google.com/file/d/1-nfS4HQvLakez_yBUVNIELdG-zYOf2hI/view?usp=drive_link"
   },
