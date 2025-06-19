@@ -18,8 +18,8 @@
         </p>
         <!-- call-to-action  -->
         <div class="flex w-full justify-center gap-3 md:gap-8">
-          <a href="/#competition" class="group relative overflow-hidden rounded-sm bg-blue-100 px-10 py-3 font-semibold tracking-wide text-blue-900 transition-all duration-300 md:px-16 md:py-4">
-            <p class="transition-transform duration-300 group-hover:-translate-x-2 md:group-hover:group-hover:-translate-x-5">
+          <a href="/#competition" class="group relative overflow-hidden rounded-sm px-10 py-3 font-semibold tracking-wide bg-blue-100 text-blue-900 transition-all duration-300 md:px-16 md:py-4">
+            <p class="transition-transform duration-300 group-hover:-translate-x-5">
               Daftar
             </p>
             <div class="absolute top-0 right-0 flex h-full w-8 translate-x-full items-center justify-center bg-white transition-all duration-300 group-hover:translate-x-0 md:w-12">

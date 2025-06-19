@@ -1,5 +1,6 @@
 <script>
-    import TopnavItem from "./TopnavItem.svelte";
+    import TopnavHamburger from "./TopnavHamburger.svelte";
+import TopnavItem from "./TopnavItem.svelte";
 
 </script>
 <nav class="navigation absolute left-0 h-20 w-full text-white sm:h-24">
@@ -14,13 +15,7 @@
       </div>
       <div class="flex h-full items-center lg:static lg:w-auto lg:basis-5/12">
         <!-- hamburger-menu -->
-        <button class="relative z-10 p-2 lg:hidden bg-sky-800" aria-label="open hamburger menu">
-          <div class="m-auto flex h-6 w-6 flex-col justify-around md:h-7 md:w-7">
-            <p class="block h-[2px] w-full bg-white transition-all duration-300 hamburger-line-1"></p>
-            <p class="block h-[2px] w-full bg-white transition-all duration-300 hamburger-line-2"></p>
-            <p class="block h-[2px] w-full bg-white transition-all duration-300 hamburger-line-3"></p>
-          </div>
-        </button>
+        <TopnavHamburger />
         <!-- menu -->
         <div class="absolute top-20 left-0 z-5 w-full justify-center shadow-2xl transition duration-300 lg:static lg:block lg:h-full lg:w-full lg:opacity-100 lg:shadow-none hidden opacity-0">
           <ul class="flex h-64 w-10/12 flex-col items-center justify-evenly border-[.5px] border-neutral-300 bg-neutral-800 text-sm font-medium tracking-wider lg:h-full lg:flex-row lg:items-center lg:justify-around lg:border-none lg:bg-transparent lg:backdrop-blur-none">
