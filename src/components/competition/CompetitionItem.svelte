@@ -1,12 +1,12 @@
 <script>
-  let { title, guidebook, children } = $props()
+  let { title, guidebook, image, children } = $props()
 
 </script>
 
 <div class="carousel-item w-full lg:aspect-21/9">
   <div class="shadow-sm relative">
     <div class="relative w-full h-1/3 lg:h-full text-center">
-      <img class="object-cover w-full h-full" src="/img/lomba desain web 2025.jpg" alt="Esai">
+      <img class="object-cover w-full h-full" src={image} alt="Esai">
       <h3 class="absolute transform-[translateY(-50%)] top-1/2 lg:transform-none lg:top-1/8 w-full font-semibold text-4xl text-shadow-lg/90">{title}</h3>
     </div>
     <div class="lg:absolute p-4 top-10 left-0 w-full lg:h-full content-center bg-neutral-800 lg:bg-transparent">

@@ -18,11 +18,11 @@
         </p>
         <!-- call-to-action  -->
         <div class="flex w-full justify-center gap-3 md:gap-8">
-          <a href="#competition" class="group relative overflow-hidden rounded-sm bg-blue-100 px-10 py-3 font-semibold tracking-wide text-blue-900 transition-all duration-300 md:px-16 md:py-4">
+          <a href="/#competition" class="group relative overflow-hidden rounded-sm bg-blue-100 px-10 py-3 font-semibold tracking-wide text-blue-900 transition-all duration-300 md:px-16 md:py-4">
             <p class="transition-transform duration-300 group-hover:-translate-x-2 md:group-hover:group-hover:-translate-x-5">
               Daftar
             </p>
-            <div class="absolute top-0 right-0 flex h-full w-8 translate-x-full items-center justify-center bg-neutral-0 transition-all duration-300 group-hover:translate-x-0 md:w-12">
+            <div class="absolute top-0 right-0 flex h-full w-8 translate-x-full items-center justify-center bg-white transition-all duration-300 group-hover:translate-x-0 md:w-12">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-text w-5 md:w-6" viewBox="0 0 16 16">
                 <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"></path>
                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"></path>
@@ -36,8 +36,6 @@
           </a>
         </div>
       </div>
-
-      <!-- frosty -->
       <div class="absolute -bottom-4 left-1/2 mx-auto h-20 w-full -translate-x-1/2 rounded-sm border-[0.5px] border-white/40 bg-neutral-900/80 px-5 opacity-75 sm:h-24 sm:w-[480px] md:w-[520px] lg:-bottom-5 lg:h-28 lg:w-[400px] lg:px-0 text-white">
         <p class="absolute left-0 w-full -translate-y-8 text-center text-xs tracking-wide">
           Pendaftaran dibuka dalam :

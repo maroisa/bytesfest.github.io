@@ -1,4 +1,4 @@
-<div class="py-32 bg-neutral-950 flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-32 p-4">
+<div class="py-32 bg-neutral-950 flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-32 p-4" id="about">
     <img class="w-32 lg:w-72 lg:h-96 object-contain" src="/img/logo-main.png" alt="">
     <div class="sm:px-10 md:px-16 max-w-2xl flex-1">
         <h3 class="mb-1 text-center text-xl font-semibold tracking-wide text-white sm:text-left sm:text-2xl md:text-3xl lg:text-4xl">

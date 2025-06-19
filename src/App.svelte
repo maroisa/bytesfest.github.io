@@ -6,7 +6,7 @@
     import Front from "./components/Front.svelte";
     import Mascot from "./components/Mascot.svelte";
     import Timeline from "./components/timeline/Timeline.svelte";
-    import Topnav from "./components/Topnav.svelte";
+    import Topnav from "./components/topnav/Topnav.svelte";
 
     
 </script>

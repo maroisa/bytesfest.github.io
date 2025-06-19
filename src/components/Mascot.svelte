@@ -1,4 +1,4 @@
-<div id="frosty" class="relative py-24 mb-0" style="background: linear-gradient(to right, #000000, #1893DE);">
+<div id="nova" class="relative py-24 mb-0" style="background: linear-gradient(to right, #000000, #1893DE);">
     <!-- container -->
   <div class="mx-auto px-5 lg:w-[1200px] lg:px-0">
     <div class="flex w-full flex-col lg:flex-row-reverse">
