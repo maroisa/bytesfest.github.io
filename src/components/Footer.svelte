@@ -1,4 +1,4 @@
-<footer class="bg-black bg-gradient-to-b to-sky-500">
+<footer class="bg-neutral-950 bg-gradient-to-b to-sky-500">
   <div class="container mx-auto w-full">
     <div class="grid w-full grid-flow-col grid-cols-1 grid-rows-3 lg:grid-cols-12 lg:grid-rows-1 lg:gap-4">
       <div class="my-6 mt-4 lg:col-span-3 lg:mb-0">

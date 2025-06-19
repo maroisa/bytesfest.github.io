@@ -1,5 +1,9 @@
 <script>
   import CompetitionItem from "./CompetitionItem.svelte";
+  import CompetitionDaftar from "./CompetitionDaftar.svelte";
+
+  let daftarActive = $state(false)
+  
 </script>
 
 <div class="bg-neutral-950 pb-20" id="competition">
@@ -48,3 +52,4 @@
     </div>
   </div>
 </div>
+<CompetitionDaftar {daftarActive} />

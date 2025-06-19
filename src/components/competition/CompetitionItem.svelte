@@ -10,7 +10,7 @@
       <h3 class="absolute transform-[translateY(-50%)] top-1/2 lg:transform-none lg:top-1/8 w-full font-semibold text-4xl text-shadow-lg/90">{title}</h3>
     </div>
     <div class="lg:absolute p-4 top-10 left-0 w-full lg:h-full content-center bg-neutral-800 lg:bg-transparent">
-      <p class="text-shadow-lg/90 max-w-lg m-auto">{@render children?.()}</p>
+      <p class="text-shadow-lg/90 max-w-lg m-auto text-xs lg:text-base">{@render children?.()}</p>
     </div>
     <div class="bg-neutral-700 h-20 p-2 flex justify-center items-center gap-8 w-full">
       <button onclick={() => {}} class="group relative box-border overflow-hidden rounded-sm bg-white  px-8 py-2 font-semibold text-sky-900 transition-all duration-300 md:px-10 md:py-3">

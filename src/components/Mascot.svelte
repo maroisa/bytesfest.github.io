@@ -23,7 +23,7 @@
             <div class="h-[3px] w-16 bg-blue-500"></div>
           </div>
           <div>
-            <p class="mb-5 text-base leading-relaxed text-neutral-50 md:leading-loose">
+            <p class="mb-5 text-sm lg:text-base text-neutral-50 text-shadow-lg/60 leading-relaxed md:leading-loose">
               Nova, seekor rakun futuristik yang siap menjelajah dan membawa semangat inovasi. Nova melambangkan Orbit
               of Growth—sebuah perjalanan tanpa henti menuju kemajuan, di mana setiap langkah membuka peluang baru
               untuk berkembang dan beradaptasi dengan perubahan. Dengan desain yang modern dan penuh warna, Nova
@@ -65,7 +65,7 @@
               <div class="h-[3px] w-1/3 bg-blue-500 my-4 "></div>
             </div>
             <div>
-              <p class="mb-5 text-left md:!text-center lg:text-xl leading-relaxed text-neutral-50 md:leading-loose lg:px-20">
+              <p class="mb-5 text-left md:!text-center text-sm lg:text-xl text-shadow-lg/60 leading-relaxed text-white md:leading-loose lg:px-20">
                 Tema "Orbit of Growth, Space of Innovation and Impact" dalam acara perlombaan BYTESFEST menggambarkan
                 perjalanan dinamis menuju pengembangan diri, inovasi, dan kontribusi nyata. Dalam kompetisi ini—mulai
                 dari futsal, desain website, desain poster, hingga Esai—peserta diajak untuk tidak hanya
