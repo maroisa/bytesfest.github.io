@@ -1,5 +1,9 @@
 <script>
-  let { title, guidebook, image, children } = $props()
+    import { getContext } from "svelte";
+
+  let { title, image, children } = $props()
+
+  const daftarActive = getContext("daftarActive")
 
 </script>
 
@@ -13,8 +17,8 @@
       <p class="text-shadow-lg/90 max-w-lg m-auto text-xs lg:text-base">{@render children?.()}</p>
     </div>
     <div class="bg-neutral-700 h-20 p-2 flex justify-center items-center gap-8 w-full">
-      <button onclick={() => {}} class="group relative box-border overflow-hidden rounded-sm bg-white  px-8 py-2 font-semibold text-sky-900 transition-all duration-300 md:px-10 md:py-3">
-        <p class="relative z-30 transition-all duration-300 group-hover:text-white">
+      <button onclick={() => daftarActive.toggle()} class="group relative box-border overflow-hidden rounded-sm bg-white  px-8 py-2 font-semibold text-sky-900 transition-all duration-300 md:px-10 md:py-3 cursor-pointer">
+        <p class="relative z-5 transition-all duration-300 group-hover:text-white">
           Daftar
         </p>
         <span class="absolute top-0 left-0 block h-full w-0 bg-sky-500 shadow-[inset_0_0_0_1px_#fff] transition-all duration-300 group-hover:w-full"></span>

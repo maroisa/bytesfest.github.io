@@ -1,11 +1,13 @@
 <script>
-    let {daftarActive} = $props()
+    import { getContext } from "svelte";
+
+    const daftarActive = getContext("daftarActive")
 </script>
 
-<div hidden={!daftarActive} class="fixed w-screen h-screen left-0 top-0 z-5 bg-gray-500/20 backdrop-blur-md flex justify-center items-center">
+<div hidden={!daftarActive.get()} class="fixed w-screen h-screen left-0 top-0 z-5 bg-gray-500/20 backdrop-blur-md flex justify-center items-center">
     <div class="max-w-sm">
         <div class="bg-sky-100 p-4 rounded-t-lg text-neutral-700 flex flex-col">
-            <button class="self-end active:bg-sky-200 p-2">
+            <button onclick={daftarActive.toggle} class="self-end hover:opacity-60 active:opacity-40">
                 <img class="" src="/img/icons/icons8-close-24.png" alt="Close button">
             </button>
             <div class="h-20 relative flex justify-center">
