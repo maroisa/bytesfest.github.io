@@ -35,7 +35,7 @@ const linkLomba = {
 
 const linkSubmission = {
   poster: "http://uns.id/PengumpulanLombaPosterBF2025",
-  desainWeb: "",
+  desainWeb: "http://uns.id/PengumpulanDesWeb25",
   esai: "http://uns.id/PengumpulanEsaiBF2025"
 };
 
