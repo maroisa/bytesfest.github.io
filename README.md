@@ -32,11 +32,27 @@ bytesfestYYYY
 ## ✅ Aturan Penggunaan
 - Selalu gunakan **branch sesuai tahun berjalan**
 - Jangan menggabungkan (merge) ke `master`
-- Update, bugfix, dan fitur hanya dikerjakan di branch tahun terkait
+- Update, bugfix, dan fitur **hanya** dikerjakan di branch tahun terkait
 
 Contoh:
 - Tahun 2026 → gunakan **`bytesfest2026`**
 - Tahun 2027 → akan dibuat **`bytesfest2027`**
+
+---
+
+## 🌐 Pengaturan GitHub Pages (WAJIB Saat Branch Baru Dibuat)
+
+Setiap kali membuat **branch tahunan baru**, lakukan pengaturan **GitHub Pages** sebagai berikut:
+
+1. Buka **Repository → Settings → Pages**
+2. Pada bagian **Source**:
+   - Branch: **branch bytesfest terbaru** (contoh: `bytesfest2026`)
+   - Folder: `/ (root)` atau `/docs` (sesuai struktur project)
+3. Klik **Save**
+4. Pastikan website berhasil build dan publish tanpa error
+
+⚠️ **GitHub Pages HARUS selalu menunjuk ke branch bytesfest terbaru**,  
+bukan ke `master`.
 
 ---
 
@@ -47,4 +63,4 @@ Jika ragu memilih branch atau membutuhkan branch baru:
 ---
 
 ⚠️ **Peringatan:**  
-Perubahan pada branch yang salah dapat menyebabkan konflik atau kesalahan deployment.
+Perubahan pada branch yang salah dapat menyebabkan konflik, kegagalan build, atau kesalahan deployment.
