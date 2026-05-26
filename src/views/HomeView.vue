@@ -8,6 +8,29 @@ import Countdown from '@/components/Countdown.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Mouse tracking for interactive orbs
+const mouseX = ref(0)
+const mouseY = ref(0)
+const orbPositions = ref([
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 }
+])
+
+const handleMouseMove = (e: MouseEvent) => {
+  mouseX.value = (e.clientX / window.innerWidth - 0.5) * 2
+  mouseY.value = (e.clientY / window.innerHeight - 0.5) * 2
+  
+  // Update orb positions based on mouse
+  orbPositions.value = [
+    { x: mouseX.value * 30, y: mouseY.value * 30 },
+    { x: mouseX.value * -25, y: mouseY.value * 25 },
+    { x: mouseX.value * 20, y: mouseY.value * -35 },
+    { x: mouseX.value * -35, y: mouseY.value * -20 }
+  ]
+}
+
 // Calculate a dynamic target date for the countdown so that it always shows around 45 days in the future for demo purposes, or a fixed date.
 const countdownTarget = '2026-06-30T16:34:00.000Z'
 
@@ -17,6 +40,9 @@ const categorySection = ref<HTMLElement | null>(null)
 const timelineSection = ref<HTMLElement | null>(null)
 
 onMounted(() => {
+  // Add mouse move listener
+  window.addEventListener('mousemove', handleMouseMove)
+
   // Hero Entrance Animations (using fromTo to prevent opacity locking bugs)
   gsap.fromTo('.hero-fade', 
     { opacity: 0, y: 30 },
@@ -175,7 +201,34 @@ const sponsors = [
 </script>
 
 <template>
-  <div class="pt-28 font-sans">
+  <div class="pt-28 font-sans relative overflow-hidden" @mousemove="handleMouseMove">
+    <!-- Dynamic Background -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <!-- Interactive gradient orbs -->
+      <div 
+        class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brand-blue/25 blur-[150px] animate-float-1 cursor-pointer transition-all duration-500 hover:bg-brand-blue/35 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[0].x}px, ${orbPositions[0].y}px)` }"
+        @click="orbPositions[0] = { x: 0, y: 0 }"
+      ></div>
+      <div 
+        class="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-brand-teal/20 blur-[130px] animate-float-2 cursor-pointer transition-all duration-500 hover:bg-brand-teal/30 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[1].x}px, ${orbPositions[1].y}px)` }"
+        @click="orbPositions[1] = { x: 0, y: 0 }"
+      ></div>
+      <div 
+        class="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full bg-brand-blue-light/15 blur-[100px] animate-float-3 cursor-pointer transition-all duration-500 hover:bg-brand-blue-light/25 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[2].x}px, ${orbPositions[2].y}px)` }"
+        @click="orbPositions[2] = { x: 0, y: 0 }"
+      ></div>
+      <div 
+        class="absolute bottom-[-5%] right-[15%] w-[550px] h-[550px] rounded-full bg-brand-teal-light/18 blur-[140px] animate-float-4 cursor-pointer transition-all duration-500 hover:bg-brand-teal-light/28 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[3].x}px, ${orbPositions[3].y}px)` }"
+        @click="orbPositions[3] = { x: 0, y: 0 }"
+      ></div>
+      
+      <!-- Grid pattern overlay -->
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMCAwTDQwIDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwNWVhNCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+    </div>
     <!-- Hero Section -->
     <section class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
       <div ref="heroTitle" class="flex flex-col gap-6 max-w-4xl">
@@ -427,6 +480,71 @@ const sponsors = [
   }
   100% {
     transform: translateX(0%);
+  }
+}
+
+/* Float Animations for Dynamic Background */
+.animate-float-1 {
+  animation: float1 20s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float2 25s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float3 18s ease-in-out infinite;
+}
+
+.animate-float-4 {
+  animation: float4 22s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(1.05);
+  }
+  66% {
+    transform: translate(20px, -40px) scale(0.95);
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(25px, 40px) scale(1.08);
+  }
+  66% {
+    transform: translate(-35px, -25px) scale(0.92);
+  }
+}
+
+@keyframes float4 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-30px, -35px) scale(1.1);
+  }
+  66% {
+    transform: translate(45px, 25px) scale(0.9);
   }
 }
 </style>
