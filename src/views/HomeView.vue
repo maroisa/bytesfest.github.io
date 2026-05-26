@@ -9,8 +9,7 @@ import Countdown from '@/components/Countdown.vue'
 gsap.registerPlugin(ScrollTrigger)
 
 // Calculate a dynamic target date for the countdown so that it always shows around 45 days in the future for demo purposes, or a fixed date.
-// Let's use a fixed date in 2026, say September 15th, 2026.
-const countdownTarget = '2026-09-15T09:00:00'
+const countdownTarget = '2026-06-30T16:34:00.000Z'
 
 const heroTitle = ref<HTMLElement | null>(null)
 const targetSection = ref<HTMLElement | null>(null)
@@ -139,33 +138,39 @@ const targetAudience = [
 
 const timelineItems = [
   {
-    date: '1 Okt - 30 Nov 2025',
+    date: '5 Juni - 30 Juni',
     title: 'Pendaftaran Gelombang 1',
     description: 'Pembukaan registrasi awal kompetisi',
-    highlight: false
+    highlight: true
   },
   {
-    date: '1 Des 2025 - 15 Jan 2026',
+    date: '16 Juni - 8 Juli',
     title: 'Pendaftaran Gelombang 2',
     description: 'Pembukaan registrasi gelombang kedua',
     highlight: false
   },
   {
-    date: '1 Feb 2026',
+    date: '15 Juli - 20 Juli',
     title: 'Pengumuman Finalis',
     description: 'Pengumuman finalis terpilih yang lolos seleksi',
     highlight: false
   },
   {
-    date: '20 - 22 Feb 2026',
+    date: '23 Juli - 24 Juli',
+    title: 'Hackathon Day',
+    description: '48 jam kompetisi hackathon secara offline',
+    highlight: false
+  },
+  {
+    date: '25 Juli',
     title: 'Main Event & Awarding',
-    description: 'Tahap penjurian final, presentasi, dan pengumuman pemenang',
-    highlight: true
+    description: 'Awarding pemenang',
+    highlight: false
   }
 ]
 
 const sponsors = [
-  'TECHCORP', 'CLOUDSYS', 'DEVSPACE', 'NETGLOBAL', 'TECHCORP', 'CLOUDSYS', 'DEVSPACE'
+  'LOREM', 'IPSUM', 'DOLOR', 'SIT', 'AMET'
 ]
 </script>
 
@@ -284,10 +289,20 @@ const sponsors = [
 
       <!-- Horizontal Timeline (Desktop) -->
       <div class="relative hidden lg:block pt-16 pb-20">
-        <!-- Connecting Line -->
-        <div class="absolute top-1/2 left-4 right-4 h-0.5 bg-brand-blue/15 -translate-y-2"></div>
+        <!-- Connecting Line (Centered with the dots and responsive to N items) -->
+        <div 
+          class="absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
+          :style="{ 
+            top: '114px', 
+            left: (50 / timelineItems.length) + '%', 
+            right: (50 / timelineItems.length) + '%' 
+          }"
+        ></div>
         
-        <div class="grid grid-cols-4 gap-6">
+        <div 
+          class="grid gap-6"
+          :style="{ gridTemplateColumns: `repeat(${timelineItems.length}, minmax(0, 1fr))` }"
+        >
           <div 
             v-for="(item, idx) in timelineItems" 
             :key="idx"
@@ -300,7 +315,7 @@ const sponsors = [
 
             <!-- Dot on the line -->
             <div 
-              class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-125 mb-6"
+              class="relative w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-125 mb-6"
               :class="item.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
             >
               <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
@@ -308,7 +323,7 @@ const sponsors = [
 
             <!-- Title & Description inside rounded card -->
             <div 
-              class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm max-w-xs transition-all duration-300 group-hover:shadow-md"
+              class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs transition-all duration-300 group-hover:shadow-md"
               :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-md': item.highlight }"
             >
               <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">
@@ -323,7 +338,7 @@ const sponsors = [
       </div>
 
       <!-- Vertical Timeline (Mobile) -->
-      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-3.5 before:w-0.5 before:bg-brand-blue/15">
+      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full">
         <div 
           v-for="(item, idx) in timelineItems" 
           :key="idx"
@@ -331,7 +346,7 @@ const sponsors = [
         >
           <!-- Dot -->
           <div 
-            class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm flex items-center justify-center"
+            class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm flex items-center justify-center z-10"
             :class="item.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
           >
             <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
@@ -342,7 +357,7 @@ const sponsors = [
           </span>
           
           <div 
-            class="p-4 rounded-xl border border-brand-blue/10 bg-white"
+            class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full"
             :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-sm': item.highlight }"
           >
             <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">

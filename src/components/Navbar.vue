@@ -54,13 +54,13 @@ const competitions = [
     :class="isScrolled ? 'p-4' : 'p-0'"
   >
     <nav 
-      class="w-full backdrop-blur-md transition-all duration-500 ease-in-out flex items-center justify-between border"
+      class="w-full backdrop-blur-md transition-all duration-500 ease-in-out flex items-center justify-between border relative"
       :class="isScrolled 
         ? 'max-w-6xl rounded-[32px] border-brand-blue/20 px-6 py-2.5 shadow-[0_12px_40px_0_rgba(0,94,164,0.15)] bg-white/80' 
         : 'max-w-[100%] rounded-none border-b-brand-blue/10 border-t-transparent border-x-transparent px-8 py-4 shadow-none bg-white/90'"
     >
       <!-- Logo -->
-      <RouterLink to="/" class="flex items-center gap-3 group" @click="closeAll">
+      <RouterLink to="/" class="flex items-center gap-3 group md:flex-1 md:justify-start" @click="closeAll">
         <img 
           :src="logoBytesfest" 
           alt="BYTESFEST 2026 Logo" 
@@ -72,7 +72,7 @@ const competitions = [
       </RouterLink>
 
       <!-- Desktop Navigation Menu -->
-      <div class="hidden md:flex items-center gap-8 font-sans font-medium text-sm">
+      <div class="hidden md:flex items-center justify-center gap-8 font-sans font-medium text-sm md:flex-1">
         <!-- Dropdown: Kompetisi -->
         <div class="relative">
           <button 
@@ -120,7 +120,7 @@ const competitions = [
       </div>
 
       <!-- Action Button -->
-      <div class="hidden md:block">
+      <div class="hidden md:flex md:flex-1 md:justify-end">
         <RouterLink 
           to="/daftar" 
           class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-brand-blue text-white font-rexlia text-sm tracking-wider hover:bg-brand-blue-light hover:shadow-lg hover:shadow-brand-blue/20 hover:-translate-y-0.5 transition-all duration-300"
