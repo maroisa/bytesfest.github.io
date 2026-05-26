@@ -78,7 +78,7 @@ const foxelDetails = [
           Tentang BYTESFEST
         </h3>
         <p class="text-brand-navy text-base md:text-lg leading-relaxed max-w-5xl">
-          <strong>BYTESFEST (Brawijaya Technology Student Festival) 2026</strong> adalah manifestasi dari inovasi tanpa batas. Kami mengumpulkan pikiran-pikiran paling tajam dari seluruh Nusantara dalam satu arena kompetitif. Ini bukan sekadar kompetisi, melainkan sebuah platform di mana kode menjadi karya, dan algoritma memecahkan masalah nyata.
+          <strong>BYTESFEST (BUNCH OF YOUTH TECHNOTRACTION AND INFORMATICS FESTIVAL) 2026</strong> adalah program tahunan berskala nasional yang diselenggarakan oleh Himpunan Mahasiswa Program Studi Pendidikan Teknik Informatika dan Komputer (HMP MIKROPTIK), Fakultas Keguruan dan Ilmu Pendidikan, Universitas Sebelas Maret. Mengusung tema “Byte the Future: Architecting SDG Solutions Through Digital Innovation” kegiatan ini dirancang sebagai wadah strategis bagi pelajar SMA/SMK, mahasiswa, hingga masyarakat umum untuk menerapkan pengetahuan dan keterampilan mereka dalam suasana yang kreatif, kolaboratif, dan kompetitif.
         </p>
       </div>
     </section>
@@ -95,7 +95,7 @@ const foxelDetails = [
           </div>
           
           <h3 class="font-rexlia text-2xl sm:text-3xl text-brand-navy tracking-wide font-bold">
-            Architecture SDGs Solutions
+            Architecting SDGs Solutions
           </h3>
           
           <p class="text-brand-grey text-sm md:text-base leading-relaxed text-justify">
@@ -146,7 +146,7 @@ const foxelDetails = [
           
           <div class="flex flex-col gap-4 text-brand-grey text-sm md:text-base leading-relaxed text-justify">
             <p>
-              Rubah dipilih sebagai maskot BytesFest karena melambangkan kecerdasan, kelincahan, dan kemampuan beradaptasi. Rubah dikenal mampu menghadapi berbagai situasi dengan strategi dan kreativitas, yang tidak hanya mengandalkan kekuatan. Hal ini mencerminkan semangat generasi muda di dunia teknologi yang dituntut untuk berpikir inovatif, cepat beradaptasi, dan berani menciptakan solusi baru di era digital.
+              Rubah dipilih sebagai maskot BYTESFEST karena melambangkan kecerdasan, kelincahan, dan kemampuan beradaptasi. Rubah dikenal mampu menghadapi berbagai situasi dengan strategi dan kreativitas, yang tidak hanya mengandalkan kekuatan. Hal ini mencerminkan semangat generasi muda di dunia teknologi yang dituntut untuk berpikir inovatif, cepat beradaptasi, dan berani menciptakan solusi baru di era digital.
             </p>
             <p>
               Nama <strong>FOXEL</strong> berasal dari gabungan kata <strong>FOX</strong> (Rubah) dan <strong>EL</strong> terinspirasi dari kata <em>pixel</em> (unit terkecil yang menyusun sebuah gambar digital). FOXEL melambangkan bahwa setiap individu, sekecil apapun perannya tetap memiliki kontribusi penting dalam membangun inovasi dan masa depan teknologi.
