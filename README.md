@@ -1,66 +1,54 @@
+# website-bytesfest-2026
 
-# ⚠️ Informasi Branch Repository
+This template should help get you started developing with Vue 3 in Vite.
 
-## Status Branch `master`
-Branch **`master` TIDAK DIGUNAKAN** dan **TIDAK AKTIF** untuk pengembangan maupun deployment.
+## Recommended IDE Setup
 
-Branch ini hanya berfungsi sebagai:
-- Placeholder
-- Arsip
-- Referensi umum repository
+[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-❌ **Jangan melakukan commit, merge, atau deployment dari branch `master`.**
+## Recommended Browser Setup
 
----
+- Chromium-based browsers (Chrome, Edge, Brave, etc.):
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
+- Firefox:
+  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
 
-## ✅ Branch Aktif (Per Tahun)
+## Type Support for `.vue` Imports in TS
 
-Pengembangan proyek dilakukan menggunakan **branch tahunan**, dengan format:
-bytesfestYYYY
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-### Daftar Branch:
-- [`bytesfest2022`](https://github.com/bytesfest/bytesfest.github.io/tree/bytesfest2022)
-- [`bytesfest2023`](https://github.com/bytesfest/bytesfest.github.io/tree/bytesfest2023)
-- [`bytesfest2024`](https://github.com/bytesfest/bytesfest.github.io/tree/bytesfest2024)
-- [`bytesfest2025`](https://github.com/bytesfest/bytesfest.github.io/tree/bytesfest2025)
-- [`bytesfest2026`](https://github.com/bytesfest/bytesfest.github.io/tree/bytesfest2026)
+## Customize configuration
 
-📌 **Setiap tahun akan bertambah satu branch baru** dengan pola yang sama.
+See [Vite Configuration Reference](https://vite.dev/config/).
 
----
+## Project Setup
 
-## ✅ Aturan Penggunaan
-- Selalu gunakan **branch sesuai tahun berjalan**
-- Jangan menggabungkan (merge) ke `master`
-- Update, bugfix, dan fitur **hanya** dikerjakan di branch tahun terkait
+```sh
+bun install
+```
 
-Contoh:
-- Tahun 2026 → gunakan **`bytesfest2026`**
-- Tahun 2027 → akan dibuat **`bytesfest2027`**
+### Compile and Hot-Reload for Development
 
----
+```sh
+bun dev
+```
 
-## 🌐 Pengaturan GitHub Pages (WAJIB Saat Branch Baru Dibuat)
+### Type-Check, Compile and Minify for Production
 
-Setiap kali membuat **branch tahunan baru**, lakukan pengaturan **GitHub Pages** sebagai berikut:
+```sh
+bun run build
+```
 
-1. Buka **Repository → Settings → Pages**
-2. Pada bagian **Source**:
-   - Branch: **branch bytesfest terbaru** (contoh: `bytesfest2026`)
-   - Folder: `/ (root)` atau `/docs` (sesuai struktur project)
-3. Klik **Save**
-4. Pastikan website berhasil build dan publish tanpa error
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-⚠️ **GitHub Pages HARUS selalu menunjuk ke branch bytesfest terbaru**,  
-bukan ke `master`.
+```sh
+bun test:unit
+```
 
----
+### Lint with [ESLint](https://eslint.org/)
 
-## ❓ Pertanyaan
-Jika ragu memilih branch atau membutuhkan branch baru:
-- Hubungi maintainer repository
-
----
-
-⚠️ **Peringatan:**  
-Perubahan pada branch yang salah dapat menyebabkan konflik, kegagalan build, atau kesalahan deployment.
+```sh
+bun lint
+```

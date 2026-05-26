@@ -1,0 +1,48 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  // Scroll behavior to scroll back to top on route change
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+    },
+    {
+      path: '/tentang',
+      name: 'tentang',
+      component: () => import('../views/TentangView.vue'),
+    },
+    {
+      path: '/kompetisi/:id',
+      name: 'kompetisi-detail',
+      component: () => import('../views/KompetisiDetailView.vue'),
+    },
+    {
+      path: '/faq',
+      name: 'faq',
+      component: () => import('../views/FAQView.vue'),
+    },
+    {
+      path: '/daftar',
+      name: 'daftar',
+      component: () => import('../views/DaftarView.vue'),
+    },
+    // Fallback redirect to home if route not found
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
+    }
+  ],
+})
+
+export default router
