@@ -58,7 +58,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="pt-28 font-meiland min-h-screen">
+  <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
+    <!-- Ambient Blobs -->
+    <div class="absolute -z-10 top-[5%] left-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-lime-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <div class="absolute -z-10 top-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-purple-400/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <div class="absolute -z-10 bottom-[10%] left-[25%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-brand-blue-light/26 blur-[120px] sm:blur-[150px] pointer-events-none"></div>
+
     <!-- Header Section -->
     <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-5">
       <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl text-brand-navy tracking-wider uppercase leading-tight daftar-fade">

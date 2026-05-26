@@ -60,7 +60,11 @@ const foxelDetails = [
 </script>
 
 <template>
-  <div class="pt-28 font-meiland min-h-screen">
+  <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
+    <!-- Ambient Blobs -->
+    <div class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <div class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+
     <!-- Hero Title -->
     <section class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-4">
       <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl tracking-wide tentang-fade select-none">

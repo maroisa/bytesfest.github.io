@@ -180,7 +180,7 @@ const sponsors = [
     <section class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
       <div ref="heroTitle" class="flex flex-col gap-6 max-w-4xl">
         <h1 class="font-rexlia text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none hero-fade">
-          <span class="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">BYTESFEST</span>
+          <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal-light bg-clip-text text-transparent">BYTESFEST</span>
           <br>
           <span class="text-brand-navy">2026</span>
         </h1>

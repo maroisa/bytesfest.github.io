@@ -126,7 +126,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="pt-28 font-sans min-h-screen">
+  <div class="pt-28 font-sans min-h-screen relative overflow-hidden">
+    <!-- Ambient Blobs -->
+    <div class="absolute -z-10 top-[10%] right-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <div class="absolute -z-10 bottom-[15%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+
     <!-- Header Section -->
     <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
       <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-pale-teal/30 border border-brand-teal/20 rounded-full text-brand-teal text-xs font-bold tracking-wider uppercase faq-fade">

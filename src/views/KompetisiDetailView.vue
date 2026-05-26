@@ -170,7 +170,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="pt-28 font-meiland min-h-screen">
+  <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
+    <!-- Ambient Blobs (Dynamic Colors matching the competition track) -->
+    <div 
+      class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full blur-[100px] sm:blur-[130px] pointer-events-none transition-all duration-500"
+      :class="{
+        'bg-brand-blue-light/28': compId === 'hackathon' || compId === 'creative-web',
+        'bg-brand-teal-light/28': compId === 'essay',
+        'bg-purple-500/28': compId === 'sdgs-visual-campaign'
+      }"
+    ></div>
+    <div 
+      class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full blur-[100px] sm:blur-[130px] pointer-events-none transition-all duration-500"
+      :class="{
+        'bg-brand-teal-light/28': compId === 'hackathon' || compId === 'creative-web',
+        'bg-brand-blue-light/28': compId === 'essay',
+        'bg-pink-500/28': compId === 'sdgs-visual-campaign'
+      }"
+    ></div>
+
     <!-- Hero / Header Section -->
     <section class="max-w-6xl mx-auto px-6 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
