@@ -34,82 +34,84 @@ const compData = computed(() => {
   const data: Record<string, any> = {
     'hackathon': {
       title: 'HACKATHON COMPETITION',
-      description: 'Selesaikan masalah nyata dengan solusi teknologi dalam waktu 48 jam. Uji batas kemampuan pemrograman dan kerja tim Anda untuk menyelesaikan masalah dunia nyata dengan bimbingan mentor berpengalaman.',
+      description: 'Lomba Hackathon BYTESFEST 2026 adalah kompetisi berbasis tim di mana peserta dari kalangan mahasiswa dan siswa SMA/SMK/sederajat ditantang untuk merancang dan membangun solusi inovatif atas permasalahan nyata di Solo Raya dengan mengusung tema "Dari Layar ke Lapangan: Kode untuk Perubahan, Inovasi untuk Semua". Setiap tim beranggotakan 2 hingga 4 orang dan memilih satu dari empat sub-tema berbasis SDGs, yaitu Zero Hunger, Good Health and Well-Being, Quality Education, dan Decent Work and Economic Growth.',
       icon: 'Code',
       color: 'from-brand-blue to-brand-blue-light',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
-      countdownTarget: '2026-09-01T23:59:59',
+      countdownTarget: '2026-06-30T16:34:00.000Z',
       guideBookLink: '#',
       criteria: [
         { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: 'GraduationCap' },
-        { title: 'Tim 3 Orang', desc: 'Setiap tim terdiri dari maksimal 3 anggota yang berasal dari institusi pendidikan yang sama.', icon: 'Users' },
-        { title: 'Solusi Solutif', desc: 'Karya harus menjawab permasalahan nyata dan belum pernah diikutsertakan dalam kompetisi lain.', icon: 'Shield' }
+        { title: 'Siswa SMA/SMK/Sederajat Aktif', desc: 'Terbuka untuk siswa aktif tingkat SMA/SMK/Sederajat dari seluruh sekolah di Indonesia.', icon: 'GraduationCap' },
+        { title: 'Tim 2-4 Orang', desc: 'Setiap tim terdiri dari 2 sampai 4 orang.', icon: 'Users' },
+        { title: 'Orisinalitas', desc: 'Karya harus orisinil dan belum pernah diikutsertakan dalam kompetisi lain.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Registrasi tim dan pengisian berkas persyaratan administrasi.' },
-        { date: '10 Sep - 15 Sep', title: 'Babak Penyisihan', desc: 'Pengumpulan proposal ide rancangan solusi digital.' },
-        { date: '20 September', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 tim terbaik yang lolos ke babak grand final.' },
-        { date: '28 - 29 Sep', title: 'Grand Final & Pitching', desc: 'Hackathon offline 48 jam dan presentasi karya di depan juri.' }
+        { date: '5 Juni - 30 Juni', title: 'Pendaftaran', desc: 'Registrasi tim dan pengisian berkas persyaratan administrasi.' },
+        { date: '1 Juli - 9 Juli', title: 'Babak Penyisihan', desc: 'Pengumpulan proposal ide rancangan solusi digital.' },
+        { date: '10 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 12 tim terbaik yang lolos ke babak grand final.' },
+        { date: '23 Juli - 24 Juli', title: 'Grand Final & Pitching', desc: 'Hackathon offline 48 jam dan presentasi karya di depan juri.' }
       ]
     },
     'essay': {
       title: 'ESSAY COMPETITION',
-      description: 'Tuangkan pemikiran kritis dan gagasan visioner Anda tentang masa depan teknologi dalam tulisan akademis yang terstruktur. Tunjukkan kemampuan analitis dan artikulasi tulisan terbaik Anda.',
+      description: 'Essay Competition nasional yang diadakan dalam rangka BYTESFEST 2026, tema "Smart Innovation: Optimasi Strategi Digital Generasi Muda dalam mewujudkan Masa Depan Berkelanjutan" diangkat sebagai bentuk ajakan bagi pelajar dan mahasiswa untuk berkontribusi melalui gagasan kritis dan solutif dalam menghadapi tantangan era digital. Essay Competition ini menjadi wadah bagi generasi muda untuk mengeksplorasi peran teknologi, kreativitas, dan inovasi digital dalam menciptakan perubahan positif yang sejalan dengan Tujuan Pembangunan Berkelanjutan, khususnya di bidang pendidikan, sosial, budaya, dan lingkungan.',
       icon: 'FileText',
       color: 'from-brand-teal to-brand-teal-light',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
-      countdownTarget: '2026-09-05T23:59:59',
+      countdownTarget: '2026-07-07T16:34:00.000Z',
       guideBookLink: '#',
       criteria: [
-        { title: 'Siswa & Mahasiswa', desc: 'Terbuka untuk siswa SMA/SMK sederajat dan mahasiswa aktif D3/D4/S1 seluruh Indonesia.', icon: 'GraduationCap' },
-        { title: 'Individu / Tim 2 Orang', desc: 'Peserta dapat mengikuti lomba secara individu maupun tim maksimal 2 orang.', icon: 'Users' },
+        { title: 'Mahasiswa aktif', desc: 'Terbuka untuk mahasiswa aktif D3/D4/S1 seluruh Indonesia.', icon: 'GraduationCap' },
+        { title: 'Tim 2-3 Orang', desc: 'Setiap tim terdiri dari maksimal 3 orang.', icon: 'Users' },
         { title: 'Karya Orisinal', desc: 'Esai harus merupakan karya orisinal, bebas plagiasi, dan belum pernah dipublikasikan.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Pengisian data pendaftaran dan pembayaran biaya administrasi.' },
-        { date: '10 Sep - 15 Sep', title: 'Pengumpulan Karya', desc: 'Batas akhir pengunggahan naskah esai lengkap.' },
-        { date: '20 September', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 besar esai terbaik yang masuk final.' },
-        { date: '28 September', title: 'Presentasi Final', desc: 'Presentasi esai di hadapan dewan juri secara daring/luring.' }
+        { date: '5 Juni - 7 Juli', title: 'Pendaftaran', desc: 'Pengisian data pendaftaran dan pembayaran biaya administrasi.' },
+        { date: '5 Juli - 9 Juli', title: 'Pengumpulan Karya', desc: 'Batas akhir pengunggahan naskah esai lengkap.' },
+        { date: '15 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 besar esai terbaik yang masuk final.' },
+        { date: '18 Juli', title: 'Presentasi Final', desc: 'Presentasi esai di hadapan dewan juri secara daring/luring.' }
       ]
     },
     'creative-web': {
       title: 'CREATIVE WEB COMPETITION',
-      description: 'Bangun solusi inovatif dalam 48 jam. Kompetisi pengembangan web tingkat nasional ini menantang mahasiswa untuk menciptakan aplikasi berdampak nyata dengan teknologi terkini. Tunjukkan kemampuan teknis dan kreativitas tim Anda.',
+      description: 'Pada SDG’s Creative Web Competition yang diselenggarakan oleh BYTESFEST 2026, tema yang diangkat adalah “Branding for Impact: Designing Landing Pages for SDG Digital Solutions”. Dengan karya yang estetis, responsif,  informatif, dan fungsional, peserta diharapkan dapat menunjukkan bahwa desain web tidak hanya berkaitan dengan aspek visual, tetapi juga tentang kemampuan sebuah platform digital mampu membangun kesadaran, memperkuat branding, serta mendorong aksi nyata dalam mendukung isu keberlanjutan di bidang lingkungan, sosial, ekonomi lokal, budaya, maupun gaya hidup berkelanjutan.',
       icon: 'Globe',
       color: 'from-brand-blue via-[#00a8cc] to-brand-teal-light',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
-      countdownTarget: '2026-09-10T23:59:59',
+      countdownTarget: '2026-07-07T16:34:00.000Z',
       guideBookLink: '#',
       criteria: [
-        { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk seluruh mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: 'GraduationCap' },
-        { title: 'Tim 3 Orang', desc: 'Setiap tim terdiri dari maksimal 3 anggota yang berasal dari institusi pendidikan yang sama.', icon: 'Users' },
+        { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: 'GraduationCap' },
+        { title: 'Siswa SMA/SMK/Sederajat Aktif', desc: 'Terbuka untuk siswa aktif tingkat SMA/SMK/Sederajat dari seluruh sekolah di Indonesia.', icon: 'GraduationCap' },
+        { title: 'Tim 2-3 Orang', desc: 'Setiap tim terdiri dari 3 orang.', icon: 'Users' },
         { title: 'Karya Orisinal', desc: 'Solusi yang dikembangkan harus merupakan karya orisinal tim dan belum pernah menjuarai kompetisi lain.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Registrasi tim dan pengumpulan berkas awal secara daring.' },
-        { date: '10 Sep - 15 Sep', title: 'Babak Penyisihan', desc: 'Seleksi proposal ide dan penentuan finalis.' },
-        { date: '20 September', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 tim terbaik yang maju ke babak final.' },
-        { date: '28 - 29 Sep', title: 'Grand Final', desc: 'Live coding 48 jam dan presentasi di venue utama.' }
+        { date: '5 Juni - 7 Juli', title: 'Pendaftaran', desc: 'Registrasi tim dan pengumpulan berkas awal secara daring.' },
+        { date: '8 Juli - 15 Juli', title: 'Babak Penyisihan', desc: 'Seleksi proposal ide dan penentuan finalis.' },
+        { date: '16 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 tim terbaik yang maju ke babak final.' },
+        { date: '18 Juli', title: 'Grand Final', desc: 'Live coding 48 jam dan presentasi di venue utama.' }
       ]
     },
     'sdgs-visual-campaign': {
       title: 'SDGs VISUAL CAMPAIGN',
-      description: 'Kampanyekan tujuan pembangunan berkelanjutan (SDGs) melalui karya visual yang kreatif, inspiratif, dan persuasif. Berkontribusi nyata menyuarakan isu-isu global melalui infografis atau videografis yang estetis.',
+      description: 'Sustainable Development Goals Visual Campaign Competition (SDG’s VCC) merupakan kompetisi kreatif berskala nasional yang diselenggarakan secara daring bagi siswa SLTA dan Mahasiswa S1 Sederajat di seluruh Indonesia. Mengangkat tema "Byte the Future: Harmonizing Intelligence, Virtual Space, and Equity", peserta diminta untuk merancang poster yang tidak hanya unggul secara estetika, tetapi juga mampu menyampaikan pesan solutif dan informatif mengenai peran inovasi digital dalam menjawab berbagai tantangan global di masa depan.',
       icon: 'Megaphone',
       color: 'from-purple-600 to-pink-500',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
-      countdownTarget: '2026-09-08T23:59:59',
+      countdownTarget: '2026-07-08T16:34:00.000Z',
       guideBookLink: '#',
       criteria: [
-        { title: 'Siswa & Mahasiswa', desc: 'Terbuka untuk siswa SMA/SMK sederajat, mahasiswa aktif, dan umum usia 15-25 tahun.', icon: 'GraduationCap' },
-        { title: 'Individu / Tim 2 Orang', desc: 'Peserta dapat mendaftar secara perorangan maupun tim maksimal 2 orang.', icon: 'Users' },
+        { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: 'GraduationCap' },
+        { title: 'Siswa SMA/SMK/Sederajat Aktif', desc: 'Terbuka untuk siswa aktif tingkat SMA/SMK/Sederajat dari seluruh sekolah di Indonesia.', icon: 'GraduationCap' },
         { title: 'Karya Orisinal', desc: 'Karya harus orisinal, bebas hak cipta pihak ketiga, dan tidak mengandung unsur SARA.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Pendaftaran online dan pengisian data karya kampanye.' },
-        { date: '10 Sep - 15 Sep', title: 'Pengumpulan Karya', desc: 'Batas akhir pengumpulan file visual campaign.' },
-        { date: '20 September', title: 'Babak Kurasi', desc: 'Proses penilaian karya oleh dewan juri ahli.' },
-        { date: '29 September', title: 'Awarding Night', desc: 'Pengumuman juara utama pada malam puncak acara BYTESFEST.' }
+        { date: '5 Juni - 8 Juli', title: 'Pendaftaran', desc: 'Pendaftaran online dan pengisian data karya kampanye.' },
+        { date: '8 Juni - 15 Juli', title: 'Pengumpulan Karya', desc: 'Batas akhir pengumpulan file visual campaign.' },
+        { date: '15 Juli - 20 Juli', title: 'Babak Kurasi', desc: 'Voting Juara Favorit.' },
+        { date: '21 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman Finalis.' }
       ]
     }
   }
