@@ -37,10 +37,11 @@ const router = createRouter({
       name: 'daftar',
       component: () => import('../views/DaftarView.vue'),
     },
-    // Fallback redirect to home if route not found
+    // 404 Not Found page
     {
       path: '/:pathMatch(.*)*',
-      redirect: '/'
+      name: 'not-found',
+      component: () => import('../views/NotFoundView.vue')
     }
   ],
 })

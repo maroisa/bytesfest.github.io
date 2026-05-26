@@ -12,7 +12,7 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
           BYTESFEST <span class="text-brand-blue-light font-bold">2026</span>
         </h3>
         <p class="text-brand-grey text-sm md:text-base max-w-md leading-relaxed">
-          Tingkatkan inovasi, bangun masa depan. BYTESFEST adalah wadah bagi talenta muda yang berani bermimpi dan menciptakan karya nyata lewat teknologi, serta mendorong batas inovasi di era digital.
+          Program tahunan berskala nasional oleh HMP MIKROPTIK UNS. Wadah bagi pelajar, mahasiswa, dan masyarakat untuk menerapkan pengetahuan dan keterampilan teknologi dalam suasana kreatif, kolaboratif, dan kompetitif.
         </p>
       </div>
 
@@ -36,9 +36,8 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
             rel="noopener noreferrer"
             class="w-11 h-11 rounded-full border border-brand-blue/20 bg-white flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white hover:border-brand-blue hover:-translate-y-1 transition-all duration-300 shadow-sm"
           >
-            <!-- Custom TikTok/Music SVG -->
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.63 4.18 1.13 1.22 2.69 1.94 4.31 2.05v3.86a8.91 8.91 0 0 1-5.1-1.74 8.791 8.791 0 0 1-.79-.69v7.7c.06 4.9-3.9 8.95-8.8 8.95a8.877 8.877 0 0 1-8.87-8.87c-.07-4.22 2.87-7.98 6.94-8.8a8.873 8.873 0 0 1 5.91 1.76V0h.01Z" />
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
             </svg>
           </a>
           <a 
@@ -82,7 +81,6 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
     <!-- Bottom Copyright -->
     <div class="max-w-6xl mx-auto mt-12 pt-6 border-t border-brand-blue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-grey/70">
       <p>&copy; 2026 BYTESFEST. All rights reserved.</p>
-      <p>Dibuat dengan dedikasi oleh Panitia BYTESFEST 2026</p>
     </div>
   </footer>
 </template>
