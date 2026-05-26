@@ -53,7 +53,7 @@ const compData = computed(() => {
       ]
     },
     'essay': {
-      title: 'LOMBA ESAI NASIONAL',
+      title: 'ESSAY COMPETITION',
       description: 'Tuangkan pemikiran kritis dan gagasan visioner Anda tentang masa depan teknologi dalam tulisan akademis yang terstruktur. Tunjukkan kemampuan analitis dan artikulasi tulisan terbaik Anda.',
       icon: 'FileText',
       color: 'from-brand-teal to-brand-teal-light',
@@ -163,9 +163,7 @@ const initAnimations = () => {
 }
 
 onMounted(() => {
-  setTimeout(() => {
-    initAnimations()
-  }, 300)
+  initAnimations()
 })
 </script>
 
@@ -217,7 +215,7 @@ onMounted(() => {
         </div>
 
         <!-- Countdown Panel (5 cols) -->
-        <div class="lg:col-span-5 detail-fade">
+        <div class="lg:col-span-5 detail-fade lg:pl-8">
           <Countdown :targetDate="compData.countdownTarget" :title="compData.countdownTitle" />
         </div>
       </div>

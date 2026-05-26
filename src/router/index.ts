@@ -45,4 +45,10 @@ const router = createRouter({
   ],
 })
 
+// Reset scroll natively before each navigation hook to avoid GSAP content flash/jank
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0)
+  next()
+})
+
 export default router

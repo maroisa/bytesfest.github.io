@@ -18,76 +18,74 @@ const categorySection = ref<HTMLElement | null>(null)
 const timelineSection = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  setTimeout(() => {
-    // Hero Entrance Animations (using fromTo to prevent opacity locking bugs)
-    gsap.fromTo('.hero-fade', 
-      { opacity: 0, y: 30 },
+  // Hero Entrance Animations (using fromTo to prevent opacity locking bugs)
+  gsap.fromTo('.hero-fade', 
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }
+  )
+
+  // Target Peserta Scroll Animations (using fromTo to resolve scroll-reset opacity bugs)
+  if (targetSection.value) {
+    gsap.fromTo('.target-card', 
+      { opacity: 0, x: 50 },
       {
+        scrollTrigger: {
+          trigger: targetSection.value,
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+      }
+    )
+  }
+
+  // Kategori Kompetisi Scroll Animations (using fromTo to resolve hidden category cards bug)
+  if (categorySection.value) {
+    gsap.fromTo('.category-card', 
+      { opacity: 0, y: 50 },
+      {
+        scrollTrigger: {
+          trigger: categorySection.value,
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        },
         opacity: 1,
         y: 0,
-        duration: 1,
-        stagger: 0.2,
+        duration: 0.8,
+        stagger: 0.15,
         ease: 'power3.out'
       }
     )
+  }
 
-    // Target Peserta Scroll Animations (using fromTo to resolve scroll-reset opacity bugs)
-    if (targetSection.value) {
-      gsap.fromTo('.target-card', 
-        { opacity: 0, x: 50 },
-        {
-          scrollTrigger: {
-            trigger: targetSection.value,
-            start: 'top 95%',
-            toggleActions: 'play none none none'
-          },
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power2.out'
-        }
-      )
-    }
-
-    // Kategori Kompetisi Scroll Animations (using fromTo to resolve hidden category cards bug)
-    if (categorySection.value) {
-      gsap.fromTo('.category-card', 
-        { opacity: 0, y: 50 },
-        {
-          scrollTrigger: {
-            trigger: categorySection.value,
-            start: 'top 95%',
-            toggleActions: 'play none none none'
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power3.out'
-        }
-      )
-    }
-
-    // Timeline Scroll Animations
-    if (timelineSection.value) {
-      gsap.fromTo('.timeline-item', 
-        { opacity: 0, scale: 0.9 },
-        {
-          scrollTrigger: {
-            trigger: timelineSection.value,
-            start: 'top 95%',
-            toggleActions: 'play none none none'
-          },
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: 'back.out(1.7)'
-        }
-      )
-    }
-  }, 300)
+  // Timeline Scroll Animations
+  if (timelineSection.value) {
+    gsap.fromTo('.timeline-item', 
+      { opacity: 0, scale: 0.9 },
+      {
+        scrollTrigger: {
+          trigger: timelineSection.value,
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: 'back.out(1.7)'
+      }
+    )
+  }
 })
 
 const categories = [

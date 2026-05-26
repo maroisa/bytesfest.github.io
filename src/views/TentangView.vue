@@ -8,48 +8,46 @@ import mascot2 from '@/assets/mascot_bytesfest_2.webp'
 gsap.registerPlugin(ScrollTrigger)
 
 onMounted(() => {
-  setTimeout(() => {
-    gsap.fromTo('.tentang-fade', 
-      { opacity: 0, y: 35 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out'
-      }
-    )
+  gsap.fromTo('.tentang-fade', 
+    { opacity: 0, y: 35 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }
+  )
 
-    gsap.fromTo('.section-scroll-1', 
-      { opacity: 0, y: 40 },
-      {
-        scrollTrigger: {
-          trigger: '.section-scroll-1',
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        },
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out'
-      }
-    )
+  gsap.fromTo('.section-scroll-1', 
+    { opacity: 0, y: 40 },
+    {
+      scrollTrigger: {
+        trigger: '.section-scroll-1',
+        start: 'top 95%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out'
+    }
+  )
 
-    gsap.fromTo('.section-scroll-2', 
-      { opacity: 0, y: 40 },
-      {
-        scrollTrigger: {
-          trigger: '.section-scroll-2',
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        },
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out'
-      }
-    )
-  }, 300)
+  gsap.fromTo('.section-scroll-2', 
+    { opacity: 0, y: 40 },
+    {
+      scrollTrigger: {
+        trigger: '.section-scroll-2',
+        start: 'top 95%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out'
+    }
+  )
 })
 
 const foxelDetails = [
@@ -65,11 +63,11 @@ const foxelDetails = [
   <div class="pt-28 font-meiland min-h-screen">
     <!-- Hero Title -->
     <section class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-4">
-      <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl text-brand-blue tracking-wide tentang-fade select-none">
-        BYTE THE FUTURE:
+      <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl tracking-wide tentang-fade select-none">
+        <span class="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">BYTE THE FUTURE:</span>
       </h1>
-      <h2 class="font-meiland text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-brand-blue-light font-bold italic tentang-fade max-w-4xl leading-tight">
-        Architecting SDGs Solutions Through Digital Innovations
+      <h2 class="font-meiland text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold italic tentang-fade max-w-4xl leading-tight">
+        <span class="bg-gradient-to-r from-brand-blue-light to-brand-teal bg-clip-text text-transparent">Architecting SDGs Solutions Through Digital Innovations</span>
       </h2>
     </section>
 

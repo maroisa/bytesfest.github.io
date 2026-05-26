@@ -42,7 +42,7 @@ onUnmounted(() => {
 
 const competitions = [
   { name: 'Hackathon', path: '/kompetisi/hackathon' },
-  { name: 'Lomba Esai', path: '/kompetisi/essay' },
+  { name: 'Essay Competition', path: '/kompetisi/essay' },
   { name: 'Creative Web', path: '/kompetisi/creative-web' },
   { name: 'SDGs Visual Campaign', path: '/kompetisi/sdgs-visual-campaign' }
 ]
