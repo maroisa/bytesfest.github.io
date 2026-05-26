@@ -5,40 +5,35 @@ import { gsap } from 'gsap'
 
 // State for search query and selected category
 const searchQuery = ref('')
-const selectedCategory = ref('Semua')
+const selectedCategory = ref('Hackathon')
 
 // Accordion open state (contains indices of open FAQs)
 const openIndices = ref<number[]>([])
 
-// FAQ categories
-const categories = ['Semua', 'Umum', 'Hackathon', 'Esai', 'Creative Web', 'SDGs Visual Campaign']
+// FAQ categories (Exactly the 4 requested competition tracks)
+const categories = [
+  'Hackathon',
+  'Essay Competition',
+  'Creative Web Competition',
+  'SDGS Visual Campaign Competition'
+]
 
-// FAQ Data
+// FAQ Data mapped strictly to the 4 categories
 const faqs = [
   {
-    category: 'Umum',
-    question: 'Apa itu BYTESFEST 2026?',
-    answer: 'BYTESFEST (Brawijaya Technology Student Festival) 2026 adalah ajang kompetisi teknologi tingkat nasional yang diselenggarakan untuk mengumpulkan gagasan dan inovasi terbaik dari siswa dan mahasiswa di seluruh Indonesia untuk menjawab tantangan SDGs melalui inovasi digital.'
+    category: 'Hackathon',
+    question: 'Apa itu BYTESFEST 2026 dan bagaimana sistem lombanya?',
+    answer: 'BYTESFEST (Brawijaya Technology Student Festival) 2026 adalah ajang kompetisi teknologi tingkat nasional. Kategori Hackathon menantang mahasiswa memecahkan masalah nyata SDGs dengan solusi digital inovatif dalam waktu 48 jam pengerjaan.'
   },
   {
-    category: 'Umum',
-    question: 'Siapa saja yang bisa mengikuti kompetisi di BYTESFEST 2026?',
-    answer: 'Tergantung kategori lomba. Kategori Hackathon dan Creative Web terbuka untuk mahasiswa aktif tingkat D3/D4/S1. Kategori Lomba Esai Nasional dan SDGs Visual Campaign terbuka untuk siswa SMA/SMK/Sederajat serta mahasiswa aktif D3/D4/S1 di seluruh Indonesia.'
-  },
-  {
-    category: 'Umum',
-    question: 'Apakah pendaftaran BYTESFEST 2026 dipungut biaya?',
-    answer: 'Biaya pendaftaran bervariasi untuk masing-masing kategori kompetisi dan gelombang pendaftaran (Gelombang 1 dan Gelombang 2). Rincian biaya administrasi selengkapnya dapat Anda lihat langsung pada Buku Panduan masing-masing kompetisi.'
-  },
-  {
-    category: 'Umum',
-    question: 'Apakah kompetisi diselenggarakan secara daring (online) atau luring (offline)?',
-    answer: 'Babak penyisihan untuk seluruh cabang kompetisi dilaksanakan secara daring (online). Untuk babak Grand Final, kategori Hackathon dan Creative Web akan diselenggarakan secara luring (offline) di Universitas Brawijaya, Malang. Sedangkan kategori Esai dan SDGs Visual Campaign akan diselenggarakan secara hybrid/daring.'
+    category: 'Hackathon',
+    question: 'Apakah pendaftaran Hackathon BYTESFEST 2026 dipungut biaya?',
+    answer: 'Biaya pendaftaran bervariasi tergantung gelombang pendaftaran (Gelombang 1 dan Gelombang 2). Rincian biaya administrasi selengkapnya dapat Anda lihat langsung pada Buku Panduan resmi Hackathon.'
   },
   {
     category: 'Hackathon',
     question: 'Berapa jumlah anggota dalam satu tim Hackathon?',
-    answer: 'Setiap tim terdiri dari maksimal 3 orang mahasiswa aktif yang berasal dari perguruan tinggi (institusi) yang sama.'
+    answer: 'Setiap tim terdiri dari maksimal 3 orang mahasiswa aktif tingkat D3/D4/S1 yang berasal dari perguruan tinggi (institusi) yang sama.'
   },
   {
     category: 'Hackathon',
@@ -46,33 +41,43 @@ const faqs = [
     answer: 'Ya, anggota tim sangat diperbolehkan berasal dari jurusan atau program studi yang berbeda, asalkan masih dalam satu perguruan tinggi yang sama.'
   },
   {
-    category: 'Esai',
+    category: 'Essay Competition',
+    question: 'Siapa saja yang bisa mengikuti Essay Competition?',
+    answer: 'Kategori Essay Competition terbuka untuk siswa SMA/SMK/Sederajat serta mahasiswa aktif tingkat D3/D4/S1 di seluruh Indonesia.'
+  },
+  {
+    category: 'Essay Competition',
     question: 'Apakah ada batasan jumlah halaman untuk naskah esai?',
-    answer: 'Ya, naskah esai memiliki batasan panjang halaman tertentu (biasanya antara 5 sampai 10 halaman) di luar halaman judul, lembar orisinalitas, dan lampiran pendukung. Detail teknis format penulisan dapat Anda periksa di Buku Panduan Esai.'
+    answer: 'Ya, naskah esai memiliki batasan panjang halaman antara 5 sampai 10 halaman di luar halaman judul, lembar orisinalitas, dan lampiran pendukung. Detail teknis format penulisan dapat Anda periksa di Buku Panduan Esai.'
   },
   {
-    category: 'Esai',
+    category: 'Essay Competition',
     question: 'Apakah diperbolehkan mengirimkan lebih dari satu naskah esai?',
-    answer: 'Tentu saja. Setiap tim atau individu diperbolehkan mengirimkan maksimal 2 karya esai yang berbeda, dengan ketentuan ketua tim harus berbeda jika mendaftar dalam bentuk kelompok.'
+    answer: 'Setiap tim atau individu diperbolehkan mengirimkan maksimal 2 karya esai yang berbeda, dengan ketentuan ketua tim harus berbeda jika mendaftar dalam bentuk kelompok.'
   },
   {
-    category: 'Creative Web',
-    question: 'Teknologi apa saja yang diperbolehkan dalam kompetisi Creative Web?',
-    answer: 'Peserta dibebaskan menggunakan framework frontend maupun backend apa pun (misalnya VueJS, ReactJS, Next.js, Svelte, Laravel, dll.) asalkan aplikasi web dideploy ke hosting publik sehingga dapat diakses dengan lancar oleh dewan juri selama masa penilaian.'
+    category: 'Creative Web Competition',
+    question: 'Apakah kompetisi Creative Web Competition diselenggarakan secara daring atau luring?',
+    answer: 'Babak penyisihan dilaksanakan secara daring (online). Untuk babak Grand Final, 10 tim terbaik akan diundang untuk melakukan presentasi karya secara luring (offline) di Universitas Brawijaya, Malang.'
   },
   {
-    category: 'Creative Web',
-    question: 'Apakah tema untuk Creative Web sudah ditentukan?',
+    category: 'Creative Web Competition',
+    question: 'Teknologi apa saja yang diperbolehkan dalam Creative Web Competition?',
+    answer: 'Peserta dibebaskan menggunakan framework frontend maupun backend apa pun (misalnya VueJS, ReactJS, Next.js, Svelte, Laravel, dll.) asalkan aplikasi web dideploy ke hosting publik sehingga dapat diakses dengan lancar oleh juri.'
+  },
+  {
+    category: 'Creative Web Competition',
+    question: 'Apakah tema untuk Creative Web Competition sudah ditentukan?',
     answer: 'Ya, tema Creative Web berkaitan dengan penyediaan solusi digital inovatif untuk mendukung target pembangunan berkelanjutan (SDGs). Detail sub-tema dan kriteria penilaian selengkapnya dapat diakses melalui Buku Panduan Lomba.'
   },
   {
-    category: 'SDGs Visual Campaign',
-    question: 'Format karya apa saja yang diperbolehkan untuk SDGs Visual Campaign?',
+    category: 'SDGS Visual Campaign Competition',
+    question: 'Format karya apa saja yang diperbolehkan untuk SDGS Visual Campaign Competition?',
     answer: 'Karya visual campaign dapat berupa poster/infografis statis atau videografis kreatif. Karya harus memiliki resolusi tinggi, orisinal, serta mengikuti spesifikasi teknis ukuran yang tercantum di Buku Panduan.'
   },
   {
-    category: 'SDGs Visual Campaign',
-    question: 'Bagaimana cara pengumpulan karya visual campaign?',
+    category: 'SDGS Visual Campaign Competition',
+    question: 'Bagaimana cara pengumpulan karya SDGS Visual Campaign Competition?',
     answer: 'Karya diunggah terlebih dahulu melalui link formulir pengumpulan resmi yang disiapkan panitia, lalu dipublikasikan ke media sosial Instagram peserta dengan menandai akun Instagram resmi BYTESFEST 2026.'
   }
 ]
@@ -80,7 +85,7 @@ const faqs = [
 // Filtered FAQs based on search and selected category
 const filteredFaqs = computed(() => {
   return faqs.filter(faq => {
-    const matchesCategory = selectedCategory.value === 'Semua' || faq.category === selectedCategory.value
+    const matchesCategory = faq.category === selectedCategory.value
     const matchesSearch = faq.question.toLowerCase().includes(searchQuery.value.toLowerCase()) || 
                           faq.answer.toLowerCase().includes(searchQuery.value.toLowerCase())
     return matchesCategory && matchesSearch
@@ -121,7 +126,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="pt-28 font-meiland min-h-screen">
+  <div class="pt-28 font-sans min-h-screen">
     <!-- Header Section -->
     <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
       <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-pale-teal/30 border border-brand-teal/20 rounded-full text-brand-teal text-xs font-bold tracking-wider uppercase faq-fade">

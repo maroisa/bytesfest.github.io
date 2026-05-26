@@ -2,11 +2,16 @@
 import { onMounted, onUnmounted } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
 import Lenis from 'lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 
+gsap.registerPlugin(ScrollTrigger)
+
 const router = useRouter()
 let lenisInstance: Lenis | null = null
+let tickerHandler: ((time: number) => void) | null = null
 
 onMounted(() => {
   // Initialize Lenis smooth scroll
@@ -16,21 +21,29 @@ onMounted(() => {
     smoothWheel: true,
   })
 
-  // Frame loop
-  function raf(time: number) {
-    lenisInstance?.raf(time)
-    requestAnimationFrame(raf)
+  // Synchronize ScrollTrigger with Lenis scroll events
+  lenisInstance.on('scroll', ScrollTrigger.update)
+
+  // Use GSAP ticker to drive Lenis's raf loop
+  tickerHandler = (time: number) => {
+    lenisInstance?.raf(time * 1000)
   }
+  gsap.ticker.add(tickerHandler)
+  gsap.ticker.lagSmoothing(0)
 
-  requestAnimationFrame(raf)
-
-  // Listen to route changes to reset scroll position
+  // Listen to route changes to reset scroll position and refresh ScrollTrigger
   router.afterEach(() => {
     lenisInstance?.scrollTo(0, { immediate: true })
+    setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, 100)
   })
 })
 
 onUnmounted(() => {
+  if (tickerHandler) {
+    gsap.ticker.remove(tickerHandler)
+  }
   lenisInstance?.destroy()
   lenisInstance = null
 })

@@ -18,7 +18,7 @@
 @theme {
   /* Font families */
   --font-rexlia: "Rexlia", "Space Grotesk", sans-serif;
-  --font-meiland: "Meiland Gorgeous", "Hanken Grotesk", sans-serif;
+  --font-meiland: "Hanken Grotesk", "Meiland Gorgeous", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
   /* Custom colors */

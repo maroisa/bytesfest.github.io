@@ -18,59 +18,76 @@ const categorySection = ref<HTMLElement | null>(null)
 const timelineSection = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  // Hero Entrance Animations
-  gsap.from('.hero-fade', {
-    opacity: 0,
-    y: 30,
-    duration: 1,
-    stagger: 0.2,
-    ease: 'power3.out'
-  })
+  setTimeout(() => {
+    // Hero Entrance Animations (using fromTo to prevent opacity locking bugs)
+    gsap.fromTo('.hero-fade', 
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power3.out'
+      }
+    )
 
-  // Target Peserta Scroll Animations
-  if (targetSection.value) {
-    gsap.from('.target-card', {
-      scrollTrigger: {
-        trigger: targetSection.value,
-        start: 'top 80%',
-      },
-      opacity: 0,
-      x: 50,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'power2.out'
-    })
-  }
+    // Target Peserta Scroll Animations (using fromTo to resolve scroll-reset opacity bugs)
+    if (targetSection.value) {
+      gsap.fromTo('.target-card', 
+        { opacity: 0, x: 50 },
+        {
+          scrollTrigger: {
+            trigger: targetSection.value,
+            start: 'top 95%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out'
+        }
+      )
+    }
 
-  // Kategori Kompetisi Scroll Animations
-  if (categorySection.value) {
-    gsap.from('.category-card', {
-      scrollTrigger: {
-        trigger: categorySection.value,
-        start: 'top 80%',
-      },
-      opacity: 0,
-      y: 50,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out'
-    })
-  }
+    // Kategori Kompetisi Scroll Animations (using fromTo to resolve hidden category cards bug)
+    if (categorySection.value) {
+      gsap.fromTo('.category-card', 
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: {
+            trigger: categorySection.value,
+            start: 'top 95%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out'
+        }
+      )
+    }
 
-  // Timeline Scroll Animations
-  if (timelineSection.value) {
-    gsap.from('.timeline-item', {
-      scrollTrigger: {
-        trigger: timelineSection.value,
-        start: 'top 80%',
-      },
-      opacity: 0,
-      scale: 0.9,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: 'back.out(1.7)'
-    })
-  }
+    // Timeline Scroll Animations
+    if (timelineSection.value) {
+      gsap.fromTo('.timeline-item', 
+        { opacity: 0, scale: 0.9 },
+        {
+          scrollTrigger: {
+            trigger: timelineSection.value,
+            start: 'top 95%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'back.out(1.7)'
+        }
+      )
+    }
+  }, 300)
 })
 
 const categories = [
@@ -96,7 +113,7 @@ const categories = [
     path: '/kompetisi/creative-web'
   },
   {
-    title: 'SDGS VISUAL CAMPAIGN',
+    title: 'SDGs VISUAL CAMPAIGN',
     description: 'Kampanyekan tujuan pembangunan berkelanjutan melalui karya visual.',
     icon: Megaphone,
     color: 'text-purple-600 bg-purple-50 border-purple-100',
@@ -106,17 +123,17 @@ const categories = [
 
 const targetAudience = [
   {
-    title: 'Mahasiswa Aktif',
+    title: 'Mahasiswa S1/Sederajat',
     description: 'Mahasiswa aktif tingkat D3/D4/S1 seluruh perguruan tinggi di Indonesia.',
     icon: GraduationCap
   },
   {
-    title: 'Siswa SMA/SMK/Sederajat',
+    title: 'Siswa SMK/SMA Sederajat',
     description: 'Siswa aktif tingkat menengah atas/kejuruan se-Indonesia.',
     icon: Calendar
   },
   {
-    title: 'Gap-year SMA/SMK Sederajat (Maks. 1 Tahun)',
+    title: 'Gap Year SMA Maksimal 1 Tahun',
     description: 'Lulusan SMA/SMK sederajat dengan maksimal gap-year 1 tahun.',
     icon: History
   }
@@ -155,7 +172,7 @@ const sponsors = [
 </script>
 
 <template>
-  <div class="pt-28 font-meiland">
+  <div class="pt-28 font-sans">
     <!-- Hero Section -->
     <section class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
       <div ref="heroTitle" class="flex flex-col gap-6 max-w-4xl">
@@ -343,7 +360,7 @@ const sponsors = [
 
     <!-- Sponsor Section -->
     <section class="w-full bg-[#f2f3ff] py-10 overflow-hidden border-y border-[#005ea4]/10 flex flex-col items-center gap-6">
-      <span class="font-meiland text-xs md:text-sm font-semibold italic text-brand-navy/60 tracking-wider">
+      <span class="font-sans text-xs md:text-sm font-semibold italic text-brand-navy/60 tracking-wider">
         SPECIAL THANKS TO OUR SPONSORS
       </span>
       

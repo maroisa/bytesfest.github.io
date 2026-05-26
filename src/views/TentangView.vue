@@ -8,35 +8,48 @@ import mascot2 from '@/assets/mascot_bytesfest_2.webp'
 gsap.registerPlugin(ScrollTrigger)
 
 onMounted(() => {
-  gsap.from('.tentang-fade', {
-    opacity: 0,
-    y: 35,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power3.out'
-  })
+  setTimeout(() => {
+    gsap.fromTo('.tentang-fade', 
+      { opacity: 0, y: 35 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out'
+      }
+    )
 
-  gsap.from('.section-scroll-1', {
-    scrollTrigger: {
-      trigger: '.section-scroll-1',
-      start: 'top 80%',
-    },
-    opacity: 0,
-    y: 40,
-    duration: 1,
-    ease: 'power2.out'
-  })
+    gsap.fromTo('.section-scroll-1', 
+      { opacity: 0, y: 40 },
+      {
+        scrollTrigger: {
+          trigger: '.section-scroll-1',
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out'
+      }
+    )
 
-  gsap.from('.section-scroll-2', {
-    scrollTrigger: {
-      trigger: '.section-scroll-2',
-      start: 'top 80%',
-    },
-    opacity: 0,
-    y: 40,
-    duration: 1,
-    ease: 'power2.out'
-  })
+    gsap.fromTo('.section-scroll-2', 
+      { opacity: 0, y: 40 },
+      {
+        scrollTrigger: {
+          trigger: '.section-scroll-2',
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out'
+      }
+    )
+  }, 300)
 })
 
 const foxelDetails = [

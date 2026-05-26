@@ -13,6 +13,18 @@ const route = useRoute()
 // Hardcoded registration links
 const registrationLink = 'https://linktr.ee/daftarbytesfest2026'
 
+// Map string keys to Lucide component references to avoid Vue 3 computed proxy issues
+const iconMap: Record<string, any> = {
+  GraduationCap,
+  Users,
+  Shield,
+  BookOpen,
+  Code,
+  Megaphone,
+  FileText,
+  Globe
+}
+
 const compId = computed(() => {
   // Read last segment of route path, e.g., 'hackathon'
   return route.path.split('/').pop() || 'creative-web'
@@ -23,15 +35,15 @@ const compData = computed(() => {
     'hackathon': {
       title: 'HACKATHON COMPETITION',
       description: 'Selesaikan masalah nyata dengan solusi teknologi dalam waktu 48 jam. Uji batas kemampuan pemrograman dan kerja tim Anda untuk menyelesaikan masalah dunia nyata dengan bimbingan mentor berpengalaman.',
-      icon: Code,
+      icon: 'Code',
       color: 'from-brand-blue to-brand-blue-light',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
       countdownTarget: '2026-09-01T23:59:59',
       guideBookLink: '#',
       criteria: [
-        { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: GraduationCap },
-        { title: 'Tim 3 Orang', desc: 'Setiap tim terdiri dari maksimal 3 anggota yang berasal dari institusi pendidikan yang sama.', icon: Users },
-        { title: 'Solusi Solutif', desc: 'Karya harus menjawab permasalahan nyata dan belum pernah diikutsertakan dalam kompetisi lain.', icon: Shield }
+        { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: 'GraduationCap' },
+        { title: 'Tim 3 Orang', desc: 'Setiap tim terdiri dari maksimal 3 anggota yang berasal dari institusi pendidikan yang sama.', icon: 'Users' },
+        { title: 'Solusi Solutif', desc: 'Karya harus menjawab permasalahan nyata dan belum pernah diikutsertakan dalam kompetisi lain.', icon: 'Shield' }
       ],
       timeline: [
         { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Registrasi tim dan pengisian berkas persyaratan administrasi.' },
@@ -43,15 +55,15 @@ const compData = computed(() => {
     'essay': {
       title: 'LOMBA ESAI NASIONAL',
       description: 'Tuangkan pemikiran kritis dan gagasan visioner Anda tentang masa depan teknologi dalam tulisan akademis yang terstruktur. Tunjukkan kemampuan analitis dan artikulasi tulisan terbaik Anda.',
-      icon: FileText,
+      icon: 'FileText',
       color: 'from-brand-teal to-brand-teal-light',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
       countdownTarget: '2026-09-05T23:59:59',
       guideBookLink: '#',
       criteria: [
-        { title: 'Siswa & Mahasiswa', desc: 'Terbuka untuk siswa SMA/SMK sederajat dan mahasiswa aktif D3/D4/S1 seluruh Indonesia.', icon: GraduationCap },
-        { title: 'Individu / Tim 2 Orang', desc: 'Peserta dapat mengikuti lomba secara individu maupun tim maksimal 2 orang.', icon: Users },
-        { title: 'Karya Orisinal', desc: 'Esai harus merupakan karya orisinal, bebas plagiasi, dan belum pernah dipublikasikan.', icon: Shield }
+        { title: 'Siswa & Mahasiswa', desc: 'Terbuka untuk siswa SMA/SMK sederajat dan mahasiswa aktif D3/D4/S1 seluruh Indonesia.', icon: 'GraduationCap' },
+        { title: 'Individu / Tim 2 Orang', desc: 'Peserta dapat mengikuti lomba secara individu maupun tim maksimal 2 orang.', icon: 'Users' },
+        { title: 'Karya Orisinal', desc: 'Esai harus merupakan karya orisinal, bebas plagiasi, dan belum pernah dipublikasikan.', icon: 'Shield' }
       ],
       timeline: [
         { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Pengisian data pendaftaran dan pembayaran biaya administrasi.' },
@@ -63,15 +75,15 @@ const compData = computed(() => {
     'creative-web': {
       title: 'CREATIVE WEB COMPETITION',
       description: 'Bangun solusi inovatif dalam 48 jam. Kompetisi pengembangan web tingkat nasional ini menantang mahasiswa untuk menciptakan aplikasi berdampak nyata dengan teknologi terkini. Tunjukkan kemampuan teknis dan kreativitas tim Anda.',
-      icon: Globe,
+      icon: 'Globe',
       color: 'from-brand-blue via-[#00a8cc] to-brand-teal-light',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
       countdownTarget: '2026-09-10T23:59:59',
       guideBookLink: '#',
       criteria: [
-        { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk seluruh mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: GraduationCap },
-        { title: 'Tim 3 Orang', desc: 'Setiap tim terdiri dari maksimal 3 anggota yang berasal dari institusi pendidikan yang sama.', icon: Users },
-        { title: 'Karya Orisinal', desc: 'Solusi yang dikembangkan harus merupakan karya orisinal tim dan belum pernah menjuarai kompetisi lain.', icon: Shield } // Resolved missing icon: added Shield icon
+        { title: 'Mahasiswa Aktif', desc: 'Terbuka untuk seluruh mahasiswa aktif tingkat D3/D4/S1 dari seluruh perguruan tinggi di Indonesia.', icon: 'GraduationCap' },
+        { title: 'Tim 3 Orang', desc: 'Setiap tim terdiri dari maksimal 3 anggota yang berasal dari institusi pendidikan yang sama.', icon: 'Users' },
+        { title: 'Karya Orisinal', desc: 'Solusi yang dikembangkan harus merupakan karya orisinal tim dan belum pernah menjuarai kompetisi lain.', icon: 'Shield' }
       ],
       timeline: [
         { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Registrasi tim dan pengumpulan berkas awal secara daring.' },
@@ -83,15 +95,15 @@ const compData = computed(() => {
     'sdgs-visual-campaign': {
       title: 'SDGs VISUAL CAMPAIGN',
       description: 'Kampanyekan tujuan pembangunan berkelanjutan (SDGs) melalui karya visual yang kreatif, inspiratif, dan persuasif. Berkontribusi nyata menyuarakan isu-isu global melalui infografis atau videografis yang estetis.',
-      icon: Megaphone,
+      icon: 'Megaphone',
       color: 'from-purple-600 to-pink-500',
       countdownTitle: 'Pendaftaran Ditutup Dalam',
       countdownTarget: '2026-09-08T23:59:59',
       guideBookLink: '#',
       criteria: [
-        { title: 'Siswa & Mahasiswa', desc: 'Terbuka untuk siswa SMA/SMK sederajat, mahasiswa aktif, dan umum usia 15-25 tahun.', icon: GraduationCap },
-        { title: 'Individu / Tim 2 Orang', desc: 'Peserta dapat mendaftar secara perorangan maupun tim maksimal 2 orang.', icon: Users },
-        { title: 'Karya Orisinal', desc: 'Karya harus orisinal, bebas hak cipta pihak ketiga, dan tidak mengandung unsur SARA.', icon: Shield }
+        { title: 'Siswa & Mahasiswa', desc: 'Terbuka untuk siswa SMA/SMK sederajat, mahasiswa aktif, dan umum usia 15-25 tahun.', icon: 'GraduationCap' },
+        { title: 'Individu / Tim 2 Orang', desc: 'Peserta dapat mendaftar secara perorangan maupun tim maksimal 2 orang.', icon: 'Users' },
+        { title: 'Karya Orisinal', desc: 'Karya harus orisinal, bebas hak cipta pihak ketiga, dan tidak mengandung unsur SARA.', icon: 'Shield' }
       ],
       timeline: [
         { date: '12 Ags - 5 Sep', title: 'Pendaftaran', desc: 'Pendaftaran online dan pengisian data karya kampanye.' },
@@ -106,41 +118,54 @@ const compData = computed(() => {
 })
 
 const initAnimations = () => {
-  gsap.from('.detail-fade', {
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out'
-  })
+  gsap.fromTo('.detail-fade', 
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    }
+  )
 
-  gsap.from('.criteria-card', {
-    scrollTrigger: {
-      trigger: '.criteria-grid',
-      start: 'top 80%',
-    },
-    opacity: 0,
-    y: 40,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power2.out'
-  })
+  gsap.fromTo('.criteria-card', 
+    { opacity: 0, y: 40 },
+    {
+      scrollTrigger: {
+        trigger: '.criteria-grid',
+        start: 'top 95%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power2.out'
+    }
+  )
 
-  gsap.from('.timeline-step', {
-    scrollTrigger: {
-      trigger: '.timeline-grid',
-      start: 'top 80%',
-    },
-    opacity: 0,
-    scale: 0.95,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out'
-  })
+  gsap.fromTo('.timeline-step', 
+    { opacity: 0, scale: 0.95 },
+    {
+      scrollTrigger: {
+        trigger: '.timeline-grid',
+        start: 'top 95%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out'
+    }
+  )
 }
 
 onMounted(() => {
-  initAnimations()
+  setTimeout(() => {
+    initAnimations()
+  }, 300)
 })
 </script>
 
@@ -213,7 +238,7 @@ onMounted(() => {
           class="criteria-card flex flex-col gap-4 p-6 rounded-3xl border border-brand-blue/10 bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:border-brand-blue/30"
         >
           <div class="w-10 h-10 rounded-xl bg-brand-pale-teal/20 flex items-center justify-center text-brand-blue shrink-0 shadow-sm">
-            <component :is="crit.icon" class="w-5 h-5" />
+            <component :is="iconMap[crit.icon]" class="w-5 h-5" />
           </div>
           <div>
             <h4 class="font-rexlia text-sm text-brand-navy font-bold tracking-wide mb-2">
