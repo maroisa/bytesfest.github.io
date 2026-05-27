@@ -455,7 +455,7 @@ const sponsors = [
             {{ sp }}
           </span>
         </div>
-        <div class="animate-marquee2 absolute top-2 whitespace-nowrap flex gap-16 py-2 select-none">
+        <div class="animate-marquee2 absolute top-0 whitespace-nowrap flex gap-16 py-2 select-none">
           <span 
             v-for="(sp, idx) in sponsors" 
             :key="idx" 

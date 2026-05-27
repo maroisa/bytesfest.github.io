@@ -8,7 +8,8 @@ const isMenuOpen = ref(false)
 const isDropdownOpen = ref(false)
 const isScrolled = ref(false)
 
-const toggleMenu = () => {
+const toggleMenu = (event: Event) => {
+  event.stopPropagation()
   isMenuOpen.value = !isMenuOpen.value
 }
 
