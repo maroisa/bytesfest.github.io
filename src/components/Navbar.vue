@@ -68,7 +68,7 @@ const competitions = [
           class="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
         />
         <span class="font-rexlia text-lg tracking-wider text-brand-navy group-hover:text-brand-blue transition-colors duration-300">
-          BYTESFEST <span class="text-brand-blue-light font-bold">2026</span>
+          BYTESFEST <span class="text-brand-navy font-bold">2026</span>
         </span>
       </RouterLink>
 

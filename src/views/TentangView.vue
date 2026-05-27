@@ -2,8 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import logo from '@/assets/logo_bytesfest.webp'
 import mascot1 from '@/assets/mascot_bytesfest_1.webp'
-import mascot2 from '@/assets/mascot_bytesfest_2.webp'
 import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -133,8 +133,8 @@ const foxelDetails = [
         <div class="lg:col-span-5 flex justify-center">
           <div class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300">
             <img 
-              :src="mascot1" 
-              alt="Mascot BYTESFEST 2026" 
+              :src="logo" 
+              alt="Logo BYTESFEST 2026" 
               class="w-full h-full object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -169,7 +169,7 @@ const foxelDetails = [
         <div class="lg:col-span-5 flex justify-center">
           <div class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300">
             <img 
-              :src="mascot2" 
+              :src="mascot1" 
               alt="FOXEL Mascot" 
               class="w-full h-full object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-500"
             />

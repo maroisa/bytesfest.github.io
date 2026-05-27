@@ -201,8 +201,8 @@ onMounted(() => {
     <!-- Hero / Header Section -->
     <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <!-- Title & description (7 cols) -->
-        <div class="lg:col-span-7 flex flex-col gap-6">
+        <!-- Title & description (6 cols) -->
+        <div class="lg:col-span-6 flex flex-col gap-6">
           <h1 class="font-rexlia text-4xl sm:text-5xl md:text-6xl tracking-wider leading-none select-none detail-fade">
             <span class="bg-gradient-to-r bg-clip-text text-transparent" :class="compData.color">
               {{ compData.title.split(' ')[0] }}
@@ -243,8 +243,8 @@ onMounted(() => {
           </div>
         </div>
 
-        <!-- Countdown Panel (5 cols) -->
-        <div class="lg:col-span-5 detail-fade lg:pl-8">
+        <!-- Countdown Panel (6 cols) -->
+        <div class="lg:col-span-6 detail-fade lg:pl-8">
           <Countdown :targetDate="compData.countdownTarget" :title="compData.countdownTitle" />
         </div>
       </div>
@@ -253,7 +253,7 @@ onMounted(() => {
     <!-- Skeleton for Hero -->
     <section v-else class="max-w-6xl mx-auto px-6 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7 flex flex-col gap-6">
+        <div class="lg:col-span-6 flex flex-col gap-6">
           <SkeletonLoader type="text" height="4rem" />
           <SkeletonLoader type="text" height="2rem" />
           <SkeletonLoader type="text" :count="4" />
@@ -262,7 +262,7 @@ onMounted(() => {
             <SkeletonLoader type="button" />
           </div>
         </div>
-        <div class="lg:col-span-5 lg:pl-8">
+        <div class="lg:col-span-6 lg:pl-8">
           <div class="p-8 rounded-3xl border border-brand-blue/10 bg-white">
             <SkeletonLoader type="text" height="2rem" class="mb-4" />
             <SkeletonLoader type="text" height="4rem" />

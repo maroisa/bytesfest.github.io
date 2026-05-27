@@ -5,13 +5,13 @@ import logoPtik from '@/assets/logo_ptik.webp'
 </script>
 
 <template>
-  <footer class="w-full bg-[#f2f3ff] border-t border-[#005ea4]/10 rounded-t-[40px] px-6 py-12 md:py-16 md:px-12 mt-20 font-meiland">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+  <footer class="w-full bg-[#f2f3ff] border-t border-[#005ea4]/10 rounded-t-[40px] px-8 py-16 md:py-20 md:px-16 mt-20 font-meiland">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
       
       <!-- Brand & Mission (6 columns on desktop) -->
       <div class="col-span-1 md:col-span-6 flex flex-col gap-4">
-        <h3 class="font-rexlia text-xl tracking-wider text-brand-navy">
-          BYTESFEST <span class="text-brand-blue-light font-bold">2026</span>
+        <h3 class="font-rexlia text-xl tracking-wider text-brand-blue-light ">
+          BYTESFEST <span class="text-brand-navy font-bold">2026</span>
         </h3>
         <p class="text-brand-grey text-sm md:text-base max-w-md leading-relaxed">
           Program tahunan berskala nasional oleh HMP MIKROPTIK UNS. Wadah bagi pelajar, mahasiswa, dan masyarakat untuk menerapkan pengetahuan dan keterampilan teknologi dalam suasana kreatif, kolaboratif, dan kompetitif.
@@ -50,20 +50,20 @@ import logoPtik from '@/assets/logo_ptik.webp'
         <h4 class="font-rexlia text-sm tracking-widest text-brand-navy uppercase">
           Hubungi Kami
         </h4>
-        <ul class="flex flex-col gap-3 text-sm text-brand-grey">
+        <ul class="flex flex-col gap-2 text-sm text-brand-grey list-none m-0 p-0">
           <li class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-white border border-brand-blue/10 flex items-center justify-center text-brand-blue">
+            <div class="w-8 h-8 min-w-[2rem] rounded-lg bg-white border border-brand-blue/10 flex items-center justify-center text-brand-blue flex-shrink-0">
               <Mail class="w-4 h-4" />
             </div>
-            <a href="mailto:bytesfesthmpmikroptik@gmail.com" class="hover:text-brand-blue transition-colors duration-300">
+            <a href="mailto:bytesfesthmpmikroptik@gmail.com" class="hover:text-brand-blue transition-colors duration-300 break-all leading-tight">
               bytesfesthmpmikroptik@gmail.com
             </a>
           </li>
           <li class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-white border border-brand-blue/10 flex items-center justify-center text-brand-blue">
+            <div class="w-8 h-8 min-w-[2rem] rounded-lg bg-white border border-brand-blue/10 flex items-center justify-center text-brand-blue flex-shrink-0">
               <Phone class="w-4 h-4" />
             </div>
-            <a href="https://wa.me/6282223533028" class="hover:text-brand-blue transition-colors duration-300">
+            <a href="https://wa.me/6282223533028" class="hover:text-brand-blue transition-colors duration-300 break-all leading-tight">
               +62 822-2353-3028
             </a>
           </li>
@@ -73,7 +73,7 @@ import logoPtik from '@/assets/logo_ptik.webp'
     </div>
 
     <!-- Bottom Copyright -->
-    <div class="max-w-6xl mx-auto mt-12 pt-6 border-t border-brand-blue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-grey/70">
+    <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-brand-blue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-grey/70">
       <div class="flex items-center gap-4">
         <img :src="logoUns" alt="UNS Logo" class="h-10 w-auto object-contain" />
         <img :src="logoPtik" alt="PTIK Logo" class="h-10 w-auto object-contain" />
