@@ -17,20 +17,21 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div class="skeleton-container">
     <!-- Hero Skeleton -->
-    <div v-if="type === 'hero'" class="flex flex-col gap-6 items-center">
-      <div class="skeleton h-20 w-3/4 rounded-lg"></div>
-      <div class="skeleton h-4 w-full rounded"></div>
-      <div class="skeleton h-4 w-2/3 rounded"></div>
-      <!-- Countdown skeleton -->
-      <div class="flex gap-4 mt-4">
-        <div class="skeleton h-24 w-20 rounded-2xl"></div>
-        <div class="skeleton h-24 w-20 rounded-2xl"></div>
-        <div class="skeleton h-24 w-20 rounded-2xl"></div>
-        <div class="skeleton h-24 w-20 rounded-2xl"></div>
+    <div v-if="type === 'hero'" class="flex flex-col gap-8 items-center max-w-4xl">
+      <!-- Title skeleton - two lines to match BYTESFEST and 2026 -->
+      <div class="flex flex-col gap-2 items-center w-full">
+        <div class="skeleton h-16 sm:h-20 w-3/4 sm:w-2/3 rounded-lg"></div>
+        <div class="skeleton h-12 sm:h-16 w-1/3 sm:w-1/4 rounded-lg"></div>
       </div>
-      <div class="flex gap-4 mt-4">
-        <div class="skeleton h-12 w-40 rounded-full"></div>
-        <div class="skeleton h-12 w-40 rounded-full"></div>
+      <!-- Description skeleton -->
+      <div class="skeleton h-5 w-full max-w-2xl rounded"></div>
+      <div class="skeleton h-5 w-2/3 max-w-xl rounded"></div>
+      <!-- Countdown skeleton -->
+      <div class="skeleton h-16 w-64 sm:w-80 rounded-xl mt-2"></div>
+      <!-- Button skeletons -->
+      <div class="flex gap-3 sm:gap-4 mt-2">
+        <div class="skeleton h-11 w-36 sm:w-40 rounded-full"></div>
+        <div class="skeleton h-11 w-40 sm:w-48 rounded-full"></div>
       </div>
     </div>
 

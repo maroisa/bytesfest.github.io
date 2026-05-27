@@ -265,12 +265,7 @@ watch(() => route.params.id, (newId, oldId) => {
           <div class="p-8 rounded-3xl border border-brand-blue/10 bg-white">
             <div class="skeleton h-8 w-3/4 rounded mb-4"></div>
             <!-- Countdown skeleton -->
-            <div class="flex gap-4">
-              <div class="skeleton h-20 w-16 rounded-2xl"></div>
-              <div class="skeleton h-20 w-16 rounded-2xl"></div>
-              <div class="skeleton h-20 w-16 rounded-2xl"></div>
-              <div class="skeleton h-20 w-16 rounded-2xl"></div>
-            </div>
+            <div class="skeleton h-16 w-64 sm:w-80 rounded-xl"></div>
           </div>
         </div>
       </div>
