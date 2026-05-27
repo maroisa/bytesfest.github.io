@@ -3,7 +3,6 @@ import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Code, FileText, Globe, Megaphone, ArrowUpRight, ArrowRight } from 'lucide-vue-next'
 import { gsap } from 'gsap'
-import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 // Loading state
 const isLoading = ref(true)
@@ -147,14 +146,96 @@ onMounted(() => {
 
     <!-- Skeleton -->
     <section v-else class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-5">
-      <SkeletonLoader type="text" height="3rem" />
-      <SkeletonLoader type="text" :count="2" />
+      <div class="skeleton h-14 w-3/4 rounded-lg"></div>
+      <div class="skeleton h-4 w-full rounded mb-2"></div>
+      <div class="skeleton h-4 w-2/3 rounded"></div>
     </section>
 
     <section v-if="isLoading" class="max-w-5xl mx-auto px-6 pb-24">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <SkeletonLoader type="card" v-for="i in 4" :key="i" />
+        <div class="flex flex-col justify-between p-8 rounded-[32px] border border-brand-blue/10 bg-white">
+          <div class="flex items-start justify-between gap-4">
+            <div class="skeleton w-14 h-14 rounded-2xl"></div>
+            <div class="skeleton w-10 h-10 rounded-full"></div>
+          </div>
+          <div class="mt-6 flex flex-col gap-3">
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="skeleton h-3 w-1/2 rounded"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+            <div class="skeleton h-4 w-5/6 rounded"></div>
+          </div>
+          <div class="mt-10 flex gap-3">
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between p-8 rounded-[32px] border border-brand-blue/10 bg-white">
+          <div class="flex items-start justify-between gap-4">
+            <div class="skeleton w-14 h-14 rounded-2xl"></div>
+            <div class="skeleton w-10 h-10 rounded-full"></div>
+          </div>
+          <div class="mt-6 flex flex-col gap-3">
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="skeleton h-3 w-1/2 rounded"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+            <div class="skeleton h-4 w-5/6 rounded"></div>
+          </div>
+          <div class="mt-10 flex gap-3">
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between p-8 rounded-[32px] border border-brand-blue/10 bg-white">
+          <div class="flex items-start justify-between gap-4">
+            <div class="skeleton w-14 h-14 rounded-2xl"></div>
+            <div class="skeleton w-10 h-10 rounded-full"></div>
+          </div>
+          <div class="mt-6 flex flex-col gap-3">
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="skeleton h-3 w-1/2 rounded"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+            <div class="skeleton h-4 w-5/6 rounded"></div>
+          </div>
+          <div class="mt-10 flex gap-3">
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between p-8 rounded-[32px] border border-brand-blue/10 bg-white">
+          <div class="flex items-start justify-between gap-4">
+            <div class="skeleton w-14 h-14 rounded-2xl"></div>
+            <div class="skeleton w-10 h-10 rounded-full"></div>
+          </div>
+          <div class="mt-6 flex flex-col gap-3">
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="skeleton h-3 w-1/2 rounded"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+            <div class="skeleton h-4 w-5/6 rounded"></div>
+          </div>
+          <div class="mt-10 flex gap-3">
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+            <div class="skeleton h-12 w-32 rounded-full"></div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 </template>
+
+<style scoped>
+/* Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+</style>

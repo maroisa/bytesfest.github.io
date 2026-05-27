@@ -5,7 +5,6 @@ import { GraduationCap, Users, Shield, BookOpen, Code, Megaphone, FileText, Glob
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Countdown from '@/components/Countdown.vue'
-import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -180,23 +179,9 @@ onMounted(() => {
 
 <template>
   <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
-    <!-- Ambient Blobs (Dynamic Colors matching the competition track) -->
-    <div 
-      class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full blur-[100px] sm:blur-[130px] pointer-events-none transition-all duration-500"
-      :class="{
-        'bg-brand-blue-light/28': compId === 'hackathon' || compId === 'creative-web',
-        'bg-brand-teal-light/28': compId === 'essay',
-        'bg-purple-500/28': compId === 'sdgs-visual-campaign'
-      }"
-    ></div>
-    <div 
-      class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full blur-[100px] sm:blur-[130px] pointer-events-none transition-all duration-500"
-      :class="{
-        'bg-brand-teal-light/28': compId === 'hackathon' || compId === 'creative-web',
-        'bg-brand-blue-light/28': compId === 'essay',
-        'bg-pink-500/28': compId === 'sdgs-visual-campaign'
-      }"
-    ></div>
+    <!-- Ambient Blobs (Static Colors) -->
+    <div class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <div class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
 
     <!-- Hero / Header Section -->
     <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-12">
@@ -254,18 +239,26 @@ onMounted(() => {
     <section v-else class="max-w-6xl mx-auto px-6 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-6 flex flex-col gap-6">
-          <SkeletonLoader type="text" height="4rem" />
-          <SkeletonLoader type="text" height="2rem" />
-          <SkeletonLoader type="text" :count="4" />
+          <div class="skeleton h-16 w-3/4 rounded-lg"></div>
+          <div class="skeleton h-4 w-full rounded"></div>
+          <div class="skeleton h-4 w-5/6 rounded mb-2"></div>
+          <div class="skeleton h-4 w-4/5 rounded mb-2"></div>
+          <div class="skeleton h-4 w-3/4 rounded"></div>
           <div class="flex gap-4 mt-2">
-            <SkeletonLoader type="button" />
-            <SkeletonLoader type="button" />
+            <div class="skeleton h-12 w-40 rounded-full"></div>
+            <div class="skeleton h-12 w-40 rounded-full"></div>
           </div>
         </div>
         <div class="lg:col-span-6 lg:pl-8">
           <div class="p-8 rounded-3xl border border-brand-blue/10 bg-white">
-            <SkeletonLoader type="text" height="2rem" class="mb-4" />
-            <SkeletonLoader type="text" height="4rem" />
+            <div class="skeleton h-8 w-3/4 rounded mb-4"></div>
+            <!-- Countdown skeleton -->
+            <div class="flex gap-4">
+              <div class="skeleton h-20 w-16 rounded-2xl"></div>
+              <div class="skeleton h-20 w-16 rounded-2xl"></div>
+              <div class="skeleton h-20 w-16 rounded-2xl"></div>
+              <div class="skeleton h-20 w-16 rounded-2xl"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -303,10 +296,27 @@ onMounted(() => {
     <!-- Skeleton for Kriteria -->
     <section v-else class="max-w-6xl mx-auto px-6 py-16">
       <div class="inline-block border-b-4 border-brand-blue pb-1 mb-10">
-        <SkeletonLoader type="text" height="2rem" width="200px" />
+        <div class="skeleton h-8 w-48 rounded"></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <SkeletonLoader type="card" v-for="i in 3" :key="i" />
+        <div class="flex flex-col gap-4 p-6 rounded-3xl border border-brand-blue/10 bg-white">
+          <div class="skeleton w-10 h-10 rounded-xl"></div>
+          <div class="skeleton h-5 w-3/4 rounded"></div>
+          <div class="skeleton h-4 w-full rounded mb-2"></div>
+          <div class="skeleton h-4 w-5/6 rounded"></div>
+        </div>
+        <div class="flex flex-col gap-4 p-6 rounded-3xl border border-brand-blue/10 bg-white">
+          <div class="skeleton w-10 h-10 rounded-xl"></div>
+          <div class="skeleton h-5 w-3/4 rounded"></div>
+          <div class="skeleton h-4 w-full rounded mb-2"></div>
+          <div class="skeleton h-4 w-5/6 rounded"></div>
+        </div>
+        <div class="flex flex-col gap-4 p-6 rounded-3xl border border-brand-blue/10 bg-white">
+          <div class="skeleton w-10 h-10 rounded-xl"></div>
+          <div class="skeleton h-5 w-3/4 rounded"></div>
+          <div class="skeleton h-4 w-full rounded mb-2"></div>
+          <div class="skeleton h-4 w-5/6 rounded"></div>
+        </div>
       </div>
     </section>
 
@@ -350,9 +360,60 @@ onMounted(() => {
     <!-- Skeleton for Timeline -->
     <section v-else class="max-w-6xl mx-auto px-6 py-16">
       <div class="inline-block border-b-4 border-brand-blue pb-1 mb-12">
-        <SkeletonLoader type="text" height="2rem" width="250px" />
+        <div class="skeleton h-8 w-56 rounded"></div>
       </div>
-      <SkeletonLoader type="timeline" :count="4" />
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative before:hidden md:before:block before:absolute before:top-1/2 before:left-8 before:right-8 before:h-0.5 before:bg-brand-blue/10 before:-translate-y-6">
+        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+          <div class="skeleton w-20 h-4 rounded"></div>
+          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
+          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+            <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+          <div class="skeleton w-20 h-4 rounded"></div>
+          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
+          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+            <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+          <div class="skeleton w-20 h-4 rounded"></div>
+          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
+          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+            <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+          <div class="skeleton w-20 h-4 rounded"></div>
+          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
+          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+            <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
+
+<style scoped>
+/* Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+</style>

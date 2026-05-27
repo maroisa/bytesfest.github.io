@@ -4,7 +4,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import logo from '@/assets/logo_bytesfest.webp'
 import mascot1 from '@/assets/mascot_bytesfest_1.webp'
-import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -98,10 +97,16 @@ const foxelDetails = [
 
     <!-- Skeleton for Hero and Tentang -->
     <section v-else class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-6">
-      <SkeletonLoader type="hero" />
+      <div class="flex flex-col gap-4">
+        <div class="skeleton h-12 w-3/4 rounded-lg"></div>
+        <div class="skeleton h-10 w-full rounded-lg"></div>
+      </div>
       <div class="w-full bg-[#f2f3ff] border border-brand-blue/10 rounded-[32px] p-8 md:p-12 shadow-sm">
-        <SkeletonLoader type="text" height="1rem" width="150px" />
-        <SkeletonLoader type="text" :count="4" />
+        <div class="skeleton h-4 w-32 rounded mb-4"></div>
+        <div class="skeleton h-4 w-full rounded mb-2"></div>
+        <div class="skeleton h-4 w-full rounded mb-2"></div>
+        <div class="skeleton h-4 w-5/6 rounded mb-2"></div>
+        <div class="skeleton h-4 w-4/5 rounded"></div>
       </div>
     </section>
 
@@ -146,13 +151,16 @@ const foxelDetails = [
     <section v-else class="max-w-6xl mx-auto px-6 py-16">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
         <div class="lg:col-span-7 flex flex-col gap-6">
-          <SkeletonLoader type="button" />
-          <SkeletonLoader type="text" height="2rem" />
-          <SkeletonLoader type="text" :count="4" />
+          <div class="skeleton h-10 w-40 rounded-full"></div>
+          <div class="skeleton h-8 w-3/4 rounded"></div>
+          <div class="skeleton h-4 w-full rounded mb-2"></div>
+          <div class="skeleton h-4 w-full rounded mb-2"></div>
+          <div class="skeleton h-4 w-5/6 rounded mb-2"></div>
+          <div class="skeleton h-4 w-4/5 rounded"></div>
         </div>
         <div class="lg:col-span-5 flex justify-center">
           <div class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden">
-            <SkeletonLoader type="text" height="100%" width="100%" />
+            <div class="skeleton h-full w-full rounded-2xl"></div>
           </div>
         </div>
       </div>
@@ -213,19 +221,76 @@ const foxelDetails = [
 
     <!-- Skeleton -->
     <section v-else class="max-w-6xl mx-auto px-6 py-16 border-t border-brand-blue/10">
-      <SkeletonLoader type="text" height="2.5rem" class="mb-12" />
+      <div class="skeleton h-10 w-64 rounded mb-12"></div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
         <div class="lg:col-span-5 flex justify-center">
           <div class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden">
-            <SkeletonLoader type="text" height="100%" width="100%" />
+            <div class="skeleton h-full w-full rounded-2xl"></div>
           </div>
         </div>
         <div class="lg:col-span-7 flex flex-col gap-6">
-          <SkeletonLoader type="text" height="2rem" />
-          <SkeletonLoader type="text" :count="4" />
-          <SkeletonLoader type="card" v-for="i in 5" :key="i" />
+          <div class="skeleton h-8 w-32 rounded"></div>
+          <div class="skeleton h-4 w-full rounded mb-2"></div>
+          <div class="skeleton h-4 w-full rounded mb-2"></div>
+          <div class="skeleton h-4 w-5/6 rounded mb-2"></div>
+          <div class="skeleton h-4 w-4/5 rounded"></div>
+          <div class="flex flex-col gap-4 mt-6">
+            <div class="flex items-start gap-4 p-4 rounded-2xl border border-brand-blue/5 bg-white">
+              <div class="skeleton w-10 h-10 rounded-xl shrink-0"></div>
+              <div class="flex-1">
+                <div class="skeleton h-4 w-32 rounded mb-1"></div>
+                <div class="skeleton h-3 w-full rounded"></div>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 rounded-2xl border border-brand-blue/5 bg-white">
+              <div class="skeleton w-10 h-10 rounded-xl shrink-0"></div>
+              <div class="flex-1">
+                <div class="skeleton h-4 w-32 rounded mb-1"></div>
+                <div class="skeleton h-3 w-full rounded"></div>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 rounded-2xl border border-brand-blue/5 bg-white">
+              <div class="skeleton w-10 h-10 rounded-xl shrink-0"></div>
+              <div class="flex-1">
+                <div class="skeleton h-4 w-32 rounded mb-1"></div>
+                <div class="skeleton h-3 w-full rounded"></div>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 rounded-2xl border border-brand-blue/5 bg-white">
+              <div class="skeleton w-10 h-10 rounded-xl shrink-0"></div>
+              <div class="flex-1">
+                <div class="skeleton h-4 w-32 rounded mb-1"></div>
+                <div class="skeleton h-3 w-full rounded"></div>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 rounded-2xl border border-brand-blue/5 bg-white">
+              <div class="skeleton w-10 h-10 rounded-xl shrink-0"></div>
+              <div class="flex-1">
+                <div class="skeleton h-4 w-32 rounded mb-1"></div>
+                <div class="skeleton h-3 w-full rounded"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </div>
 </template>
+
+<style scoped>
+/* Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+</style>

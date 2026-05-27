@@ -17,10 +17,17 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div class="skeleton-container">
     <!-- Hero Skeleton -->
-    <div v-if="type === 'hero'" class="flex flex-col gap-6">
-      <div class="skeleton h-16 w-3/4 rounded-lg"></div>
+    <div v-if="type === 'hero'" class="flex flex-col gap-6 items-center">
+      <div class="skeleton h-20 w-3/4 rounded-lg"></div>
       <div class="skeleton h-4 w-full rounded"></div>
       <div class="skeleton h-4 w-2/3 rounded"></div>
+      <!-- Countdown skeleton -->
+      <div class="flex gap-4 mt-4">
+        <div class="skeleton h-24 w-20 rounded-2xl"></div>
+        <div class="skeleton h-24 w-20 rounded-2xl"></div>
+        <div class="skeleton h-24 w-20 rounded-2xl"></div>
+        <div class="skeleton h-24 w-20 rounded-2xl"></div>
+      </div>
       <div class="flex gap-4 mt-4">
         <div class="skeleton h-12 w-40 rounded-full"></div>
         <div class="skeleton h-12 w-40 rounded-full"></div>

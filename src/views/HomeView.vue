@@ -215,24 +215,30 @@ const sponsors = [
     <div class="absolute inset-0 -z-10 overflow-hidden">
       <!-- Interactive gradient orbs -->
       <div 
-        class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brand-blue/25 blur-[150px] animate-float-1 cursor-pointer transition-all duration-500 hover:bg-brand-blue/35 hover:scale-110"
+        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-blue/45 hover:scale-110"
         :style="{ transform: `translate(${orbPositions[0]?.x ?? 0}px, ${orbPositions[0]?.y ?? 0}px)` }"
         @click="orbPositions[0] = { x: 0, y: 0 }"
       ></div>
       <div 
-        class="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-brand-teal/20 blur-[130px] animate-float-2 cursor-pointer transition-all duration-500 hover:bg-brand-teal/30 hover:scale-110"
+        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-teal/40 hover:scale-110"
         :style="{ transform: `translate(${orbPositions[1]?.x ?? 0}px, ${orbPositions[1]?.y ?? 0}px)` }"
         @click="orbPositions[1] = { x: 0, y: 0 }"
       ></div>
       <div 
-        class="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full bg-brand-blue-light/15 blur-[100px] animate-float-3 cursor-pointer transition-all duration-500 hover:bg-brand-blue-light/25 hover:scale-110"
+        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-blue-light/35 hover:scale-110"
         :style="{ transform: `translate(${orbPositions[2]?.x ?? 0}px, ${orbPositions[2]?.y ?? 0}px)` }"
         @click="orbPositions[2] = { x: 0, y: 0 }"
       ></div>
       <div 
-        class="absolute bottom-[-5%] right-[15%] w-[550px] h-[550px] rounded-full bg-brand-teal-light/18 blur-[140px] animate-float-4 cursor-pointer transition-all duration-500 hover:bg-brand-teal-light/28 hover:scale-110"
+        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-teal-light/38 hover:scale-110"
         :style="{ transform: `translate(${orbPositions[3]?.x ?? 0}px, ${orbPositions[3]?.y ?? 0}px)` }"
         @click="orbPositions[3] = { x: 0, y: 0 }"
+      ></div>
+      <!-- Third blob on left side between target peserta and kategori kompetisi -->
+      <div 
+        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-purple-500/40 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[2]?.x ?? 0}px, ${orbPositions[2]?.y ?? 0}px)` }"
+        @click="orbPositions[2] = { x: 0, y: 0 }"
       ></div>
       
       <!-- Grid pattern overlay -->
@@ -586,6 +592,42 @@ const sponsors = [
   }
   66% {
     transform: translate(45px, 25px) scale(0.9);
+  }
+}
+
+/* Pulse and Rotate Animation */
+.animate-pulse-rotate {
+  animation: pulseRotate 8s ease-in-out infinite;
+}
+
+@keyframes pulseRotate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(5deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(-5deg);
+  }
+}
+
+/* Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 </style>

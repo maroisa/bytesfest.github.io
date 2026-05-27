@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { Search, ChevronDown, HelpCircle, MessageSquare } from 'lucide-vue-next'
 import { gsap } from 'gsap'
-import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 // Loading state
 const isLoading = ref(true)
@@ -10,6 +9,10 @@ const isLoading = ref(true)
 // State for search query and selected category
 const searchQuery = ref('')
 const selectedCategory = ref('Hackathon')
+
+// Pagination state
+const currentPage = ref(1)
+const itemsPerPage = 7
 
 // Accordion open state (contains indices of open FAQs)
 const openIndices = ref<number[]>([])
@@ -235,6 +238,36 @@ const filteredFaqs = computed(() => {
   })
 })
 
+// Paginated FAQs
+const paginatedFaqs = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return filteredFaqs.value.slice(start, end)
+})
+
+// Total pages
+const totalPages = computed(() => Math.ceil(filteredFaqs.value.length / itemsPerPage))
+
+// Set category filter
+const selectCategory = (category: string) => {
+  selectedCategory.value = category
+  openIndices.value = [] // Reset all accordions on category switch
+  currentPage.value = 1 // Reset to page 1 on category switch
+}
+
+// Watch for search changes to reset pagination
+watch(searchQuery, () => {
+  currentPage.value = 1
+})
+
+// Watch for page changes to smooth scroll
+watch(currentPage, () => {
+  const faqList = document.querySelector('.faq-fade')
+  if (faqList) {
+    faqList.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+})
+
 // Toggle individual accordion
 const toggleFaq = (index: number) => {
   const position = openIndices.value.indexOf(index)
@@ -248,12 +281,6 @@ const toggleFaq = (index: number) => {
 // Check if a FAQ is open
 const isOpen = (index: number) => {
   return openIndices.value.includes(index)
-}
-
-// Set category filter
-const selectCategory = (category: string) => {
-  selectedCategory.value = category
-  openIndices.value = [] // Reset all accordions on category switch
 }
 
 onMounted(() => {
@@ -286,8 +313,8 @@ onMounted(() => {
         FAQ
       </div>
       
-      <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl text-brand-navy tracking-wider uppercase leading-tight faq-fade">
-        Ada Pertanyaan?
+      <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl tracking-wider uppercase leading-tight faq-fade">
+        <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal bg-clip-text text-transparent">Ada Pertanyaan?</span>
       </h1>
       
       <p class="text-brand-grey text-base md:text-lg max-w-xl leading-relaxed faq-fade">
@@ -327,7 +354,7 @@ onMounted(() => {
       </div>
 
       <!-- FAQ List -->
-      <div class="flex flex-col gap-4 faq-fade">
+      <div class="flex flex-col gap-4 faq-fade min-h-[800px]">
         <div v-if="filteredFaqs.length === 0" class="text-center py-16 border border-dashed border-brand-blue/20 rounded-3xl bg-white p-8">
           <HelpCircle class="w-12 h-12 text-brand-blue/30 mx-auto mb-3" />
           <p class="font-rexlia text-base text-brand-navy font-bold tracking-wide">Pertanyaan tidak ditemukan</p>
@@ -335,7 +362,7 @@ onMounted(() => {
         </div>
 
         <div 
-          v-for="(faq, index) in filteredFaqs" 
+          v-for="(faq, index) in paginatedFaqs" 
           :key="index"
           class="border border-brand-blue/10 bg-white rounded-2xl hover:border-brand-blue/25 transition-all duration-300 shadow-sm"
         >
@@ -370,23 +397,79 @@ onMounted(() => {
           </transition>
         </div>
       </div>
+
+      <!-- Pagination -->
+      <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-4 faq-fade">
+        <button 
+          @click="currentPage--"
+          :disabled="currentPage === 1"
+          class="px-4 py-2 rounded-full border border-brand-blue/10 bg-white text-brand-navy hover:bg-brand-blue/5 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+        >
+          Prev
+        </button>
+        <button 
+          v-for="page in totalPages" 
+          :key="page"
+          @click="currentPage = page"
+          :class="currentPage === page 
+            ? 'bg-brand-blue text-white border-brand-blue' 
+            : 'bg-white text-brand-navy border-brand-blue/10 hover:bg-brand-blue/5'"
+          class="w-10 h-10 rounded-full border font-rexlia text-sm transition-all duration-300"
+        >
+          {{ page }}
+        </button>
+        <button 
+          @click="currentPage++"
+          :disabled="currentPage === totalPages"
+          class="px-4 py-2 rounded-full border border-brand-blue/10 bg-white text-brand-navy hover:bg-brand-blue/5 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+        >
+          Next
+        </button>
+      </div>
     </section>
 
     <!-- Skeleton -->
     <section v-else class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
-      <SkeletonLoader type="button" />
-      <SkeletonLoader type="text" height="3rem" />
-      <SkeletonLoader type="text" :count="2" />
+      <div class="skeleton h-10 w-32 rounded-full"></div>
+      <div class="skeleton h-14 w-3/4 rounded-lg"></div>
+      <div class="skeleton h-4 w-full rounded mb-2"></div>
+      <div class="skeleton h-4 w-2/3 rounded"></div>
       <div class="w-full max-w-xl relative mt-4">
-        <SkeletonLoader type="text" height="3.5rem" />
+        <div class="skeleton h-14 w-full rounded-full"></div>
       </div>
     </section>
 
     <section v-if="isLoading" class="max-w-4xl mx-auto px-6 pb-24 flex flex-col gap-10">
       <div class="flex flex-wrap items-center justify-center gap-2.5">
-        <SkeletonLoader type="button" v-for="i in 4" :key="i" />
+        <div class="skeleton h-10 w-32 rounded-full" v-for="i in 4" :key="i"></div>
       </div>
-      <SkeletonLoader type="list" :count="5" />
+      <div class="flex flex-col gap-4">
+        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
+          <div class="skeleton h-4 w-full rounded"></div>
+          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+        </div>
+        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
+          <div class="skeleton h-4 w-full rounded"></div>
+          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+        </div>
+        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
+          <div class="skeleton h-4 w-full rounded"></div>
+          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+        </div>
+        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
+          <div class="skeleton h-4 w-full rounded"></div>
+          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+        </div>
+        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
+          <div class="skeleton h-4 w-full rounded"></div>
+          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -396,5 +479,21 @@ onMounted(() => {
 .faq-slide-enter-active,
 .faq-slide-leave-active {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 </style>
