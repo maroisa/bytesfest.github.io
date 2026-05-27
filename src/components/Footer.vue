@@ -55,8 +55,8 @@ import logoPtik from '@/assets/logo_ptik.webp'
             <div class="w-8 h-8 rounded-lg bg-white border border-brand-blue/10 flex items-center justify-center text-brand-blue">
               <Mail class="w-4 h-4" />
             </div>
-            <a href="mailto:info@bytesfest.id" class="hover:text-brand-blue transition-colors duration-300">
-              bytesfest@uns
+            <a href="mailto:bytesfesthmpmikroptik@gmail.com" class="hover:text-brand-blue transition-colors duration-300">
+              bytesfesthmpmikroptik@gmail.com
             </a>
           </li>
           <li class="flex items-center gap-3">
