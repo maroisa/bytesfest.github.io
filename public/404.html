@@ -5,9 +5,10 @@
     <title>Redirecting...</title>
     <script>
       // Single Page Application workaround for GitHub Pages 404
-      // Redirects to index.html so Vue Router can handle the routing
-      sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
-      location.replace('/');
+      // Stores the original path and redirects to index.html so Vue Router can handle the routing
+      const path = location.pathname + location.search + location.hash;
+      sessionStorage.setItem('redirect', path);
+      location.replace('/betfes_daniswara/');
     </script>
   </head>
   <body>
