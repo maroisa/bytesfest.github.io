@@ -248,7 +248,7 @@ const sponsors = [
         </h1>
         
         <p class="text-brand-grey text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed hero-fade">
-          Ajang kompetisi teknologi terbesar tahun 2026. Tunjukkan karya terbaikmu dan jadilah pionir inovasi masa depan.
+          Program tahunan berskala nasional yang diselenggarakan oleh HMP MIKROPTIK FKIP UNS.
         </p>
       </div>
 
