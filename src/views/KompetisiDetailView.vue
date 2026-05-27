@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { GraduationCap, Users, Shield, BookOpen, Code, Megaphone, FileText, Globe } from 'lucide-vue-next'
 import { gsap } from 'gsap'
@@ -167,23 +167,19 @@ const initAnimations = () => {
   )
 }
 
-onMounted(() => {
+onMounted(async () => {
   // Simulate loading
-  setTimeout(() => {
+  setTimeout(async () => {
     isLoading.value = false
+    await nextTick() // wait for Vue to render the real content
+    initAnimations()
   }, 600)
-
-  initAnimations()
 })
 
 // Watch for route changes to reset loading state when navigating between competitions
-watch(() => route.params.id, (newId, oldId) => {
-  if (newId !== oldId) {
-    // isLoading.value = true
-    // setTimeout(() => {
-    //   isLoading.value = false
-    //   initAnimations()
-    // }, 600)
+watch(() => route.path, async (newPath, oldPath) => {
+  if (newPath !== oldPath) {
+    await nextTick()
     initAnimations()
   }
 })
@@ -339,7 +335,7 @@ watch(() => route.params.id, (newId, oldId) => {
       </div>
 
       <!-- Horizontal Timeline (Desktop) -->
-      <div class="relative hidden lg:block pt-16 pb-20 mb-16">
+      <div class="timeline-grid relative hidden lg:block pt-16 pb-20 mb-16">
         <!-- Connecting Line (Centered with the dots and responsive to N items) -->
         <div 
           class="absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
@@ -389,7 +385,7 @@ watch(() => route.params.id, (newId, oldId) => {
       </div>
 
       <!-- Vertical Timeline (Mobile) -->
-      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full mb-16">
+      <div class="timeline-grid lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full mb-16">
         <div 
           v-for="(step, idx) in compData.timeline" 
           :key="idx"
