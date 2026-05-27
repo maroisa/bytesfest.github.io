@@ -49,6 +49,17 @@ const router = createRouter({
 // Reset scroll natively before each navigation hook to avoid GSAP content flash/jank
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0)
+  
+  // Handle GitHub Pages 404 redirect
+  const redirect = sessionStorage.getItem('redirect')
+  if (redirect) {
+    sessionStorage.removeItem('redirect')
+    if (redirect !== to.path) {
+      next(redirect)
+      return
+    }
+  }
+  
   next()
 })
 
