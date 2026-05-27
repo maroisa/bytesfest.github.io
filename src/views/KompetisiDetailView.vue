@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { GraduationCap, Users, Shield, BookOpen, Code, Megaphone, FileText, Globe } from 'lucide-vue-next'
 import { gsap } from 'gsap'
@@ -174,6 +174,17 @@ onMounted(() => {
   }, 600)
 
   initAnimations()
+})
+
+// Watch for route changes to reset loading state when navigating between competitions
+watch(() => route.params.id, (newId, oldId) => {
+  if (newId !== oldId) {
+    isLoading.value = true
+    setTimeout(() => {
+      isLoading.value = false
+      initAnimations()
+    }, 600)
+  }
 })
 </script>
 

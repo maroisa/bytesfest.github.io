@@ -354,7 +354,7 @@ onMounted(() => {
       </div>
 
       <!-- FAQ List -->
-      <div class="flex flex-col gap-4 faq-fade min-h-[800px]">
+      <div class="flex flex-col gap-4 faq-fade">
         <div v-if="filteredFaqs.length === 0" class="text-center py-16 border border-dashed border-brand-blue/20 rounded-3xl bg-white p-8">
           <HelpCircle class="w-12 h-12 text-brand-blue/30 mx-auto mb-3" />
           <p class="font-rexlia text-base text-brand-navy font-bold tracking-wide">Pertanyaan tidak ditemukan</p>
@@ -399,7 +399,7 @@ onMounted(() => {
       </div>
 
       <!-- Pagination -->
-      <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-4 faq-fade">
+      <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-8 faq-fade">
         <button 
           @click="currentPage--"
           :disabled="currentPage === 1"

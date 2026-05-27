@@ -48,7 +48,14 @@ const router = createRouter({
 
 // Reset scroll natively before each navigation hook to avoid GSAP content flash/jank
 router.beforeEach((to, from, next) => {
-  window.scrollTo(0, 0)
+  // Only reset scroll if not navigating between competition detail pages
+  const isCompetitionDetailNav = 
+    from.path.startsWith('/kompetisi/') && 
+    to.path.startsWith('/kompetisi/')
+  
+  if (!isCompetitionDetailNav) {
+    window.scrollTo(0, 0)
+  }
   
   // Handle GitHub Pages 404 redirect
   const redirect = sessionStorage.getItem('redirect')
