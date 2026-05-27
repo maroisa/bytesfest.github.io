@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { Search, ChevronDown, HelpCircle, MessageSquare } from 'lucide-vue-next'
 import { gsap } from 'gsap'
 
@@ -14,7 +14,8 @@ const selectedCategory = ref('Hackathon')
 const currentPage = ref(1)
 const itemsPerPage = 7
 
-// Accordion open state (contains indices of open FAQs)
+// Accordion open state (contains GLOBAL indices of open FAQs)
+// FIX Bug 3: Store global filteredFaqs indices, not paginated indices
 const openIndices = ref<number[]>([])
 
 // FAQ categories (Exactly the 4 requested competition tracks)
@@ -238,11 +239,15 @@ const filteredFaqs = computed(() => {
   })
 })
 
-// Paginated FAQs
+// Paginated FAQs — returns items with their GLOBAL filteredFaqs index attached
+// FIX Bug 3: carry globalIndex so accordion state is keyed to filteredFaqs position, not page position
 const paginatedFaqs = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return filteredFaqs.value.slice(start, end)
+  return filteredFaqs.value.slice(start, end).map((faq, i) => ({
+    ...faq,
+    globalIndex: start + i
+  }))
 })
 
 // Total pages
@@ -252,12 +257,13 @@ const totalPages = computed(() => Math.ceil(filteredFaqs.value.length / itemsPer
 const selectCategory = (category: string) => {
   selectedCategory.value = category
   openIndices.value = [] // Reset all accordions on category switch
-  currentPage.value = 1 // Reset to page 1 on category switch
+  currentPage.value = 1  // Reset to page 1 on category switch
 }
 
-// Watch for search changes to reset pagination
+// Watch for search changes to reset pagination and close all accordions
 watch(searchQuery, () => {
   currentPage.value = 1
+  openIndices.value = []
 })
 
 // Watch for page changes to smooth scroll
@@ -268,35 +274,37 @@ watch(currentPage, () => {
   }
 })
 
-// Toggle individual accordion
-const toggleFaq = (index: number) => {
-  const position = openIndices.value.indexOf(index)
+// Toggle individual accordion by GLOBAL index
+// FIX Bug 3: uses globalIndex from paginatedFaqs, not local loop index
+const toggleFaq = (globalIndex: number) => {
+  const position = openIndices.value.indexOf(globalIndex)
   if (position === -1) {
-    openIndices.value.push(index)
+    openIndices.value.push(globalIndex)
   } else {
     openIndices.value.splice(position, 1)
   }
 }
 
-// Check if a FAQ is open
-const isOpen = (index: number) => {
-  return openIndices.value.includes(index)
+// Check if a FAQ is open by GLOBAL index
+const isOpen = (globalIndex: number) => {
+  return openIndices.value.includes(globalIndex)
 }
 
+// FIX Bug 1: GSAP animation is moved INSIDE the setTimeout + after nextTick
+// so .faq-fade elements actually exist in the DOM when GSAP targets them
 onMounted(() => {
-  // Simulate loading
-  setTimeout(() => {
+  setTimeout(async () => {
     isLoading.value = false
-  }, 600)
+    await nextTick() // wait for Vue to render real content before animating
 
-  // Entrance Animations
-  gsap.from('.faq-fade', {
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out'
-  })
+    gsap.from('.faq-fade', {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    })
+  }, 600)
 })
 </script>
 
@@ -306,7 +314,7 @@ onMounted(() => {
     <div class="absolute -z-10 top-[10%] right-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
     <div class="absolute -z-10 bottom-[15%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
 
-    <!-- Header Section -->
+    <!-- Header Section (real content) -->
     <section v-if="!isLoading" class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
       <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-pale-teal/30 border border-brand-teal/20 rounded-full text-brand-teal text-xs font-bold tracking-wider uppercase faq-fade">
         <MessageSquare class="w-3.5 h-3.5" />
@@ -335,7 +343,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Filters & Content -->
+    <!-- Filters & Content (real content) -->
     <section v-if="!isLoading" class="max-w-4xl mx-auto px-6 pb-24 flex flex-col gap-10">
       
       <!-- Category Chips -->
@@ -361,34 +369,45 @@ onMounted(() => {
           <p class="text-brand-grey text-sm mt-1">Coba gunakan kata kunci pencarian atau kategori filter lainnya.</p>
         </div>
 
+        <!--
+          FIX Bug 3: iterate paginatedFaqs which now carries globalIndex.
+          toggleFaq and isOpen both receive globalIndex instead of the local loop index,
+          so accordion state is stable across page changes.
+        -->
         <div 
-          v-for="(faq, index) in paginatedFaqs" 
-          :key="index"
+          v-for="faq in paginatedFaqs" 
+          :key="faq.globalIndex"
           class="border border-brand-blue/10 bg-white rounded-2xl hover:border-brand-blue/25 transition-all duration-300 shadow-sm"
         >
           <!-- Accordion Header -->
           <button 
-            @click="toggleFaq(index)" 
+            @click="toggleFaq(faq.globalIndex)" 
             class="w-full px-6 py-5 flex items-center justify-between text-left gap-4 font-rexlia text-sm md:text-base text-brand-navy font-bold tracking-wide hover:text-brand-blue transition-colors duration-200 cursor-pointer"
           >
             <span>{{ faq.question }}</span>
             <ChevronDown 
               class="w-5 h-5 shrink-0 text-brand-grey transition-transform duration-300"
-              :class="{ 'rotate-180 text-brand-blue': isOpen(index) }"
+              :class="{ 'rotate-180 text-brand-blue': isOpen(faq.globalIndex) }"
             />
           </button>
 
-          <!-- Accordion Content -->
+          <!--
+            FIX Bug 4: The transition hooks set overflow:hidden during animation
+            so content doesn't bleed outside the collapsing container.
+            enter-from / leave-to opacity added for a smoother fade+slide feel.
+          -->
           <transition 
             name="faq-slide"
-            @before-enter="el => (el as HTMLElement).style.height = '0px'"
-            @enter="el => (el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px'"
-            @before-leave="el => (el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px'"
-            @leave="el => (el as HTMLElement).style.height = '0px'"
+            @before-enter="(el) => { (el as HTMLElement).style.height = '0px'; (el as HTMLElement).style.overflow = 'hidden' }"
+            @enter="(el) => { (el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px' }"
+            @after-enter="(el) => { (el as HTMLElement).style.height = ''; (el as HTMLElement).style.overflow = '' }"
+            @before-leave="(el) => { (el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px'; (el as HTMLElement).style.overflow = 'hidden' }"
+            @leave="(el) => { (el as HTMLElement).style.height = '0px' }"
+            @after-leave="(el) => { (el as HTMLElement).style.height = ''; (el as HTMLElement).style.overflow = '' }"
           >
             <div 
-              v-show="isOpen(index)" 
-              class="overflow-hidden transition-all duration-300 ease-in-out border-t border-brand-blue/5"
+              v-show="isOpen(faq.globalIndex)" 
+              class="border-t border-brand-blue/5"
             >
               <div class="px-6 py-5 text-brand-grey text-xs md:text-sm leading-relaxed text-justify bg-brand-pale-teal/5">
                 {{ faq.answer }}
@@ -428,57 +447,58 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Skeleton -->
-    <section v-else class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
-      <div class="skeleton h-10 w-32 rounded-full"></div>
-      <div class="skeleton h-14 w-3/4 rounded-lg"></div>
-      <div class="skeleton h-4 w-full rounded mb-2"></div>
-      <div class="skeleton h-4 w-2/3 rounded"></div>
-      <div class="w-full max-w-xl relative mt-4">
-        <div class="skeleton h-14 w-full rounded-full"></div>
-      </div>
-    </section>
+    <!--
+      FIX Bug 2: skeleton sections now wrapped in v-else so they only
+      render while isLoading is true, and disappear once real content mounts.
+    -->
+    <template v-else>
+      <!-- Skeleton Header -->
+      <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
+        <div class="skeleton h-10 w-32 rounded-full"></div>
+        <div class="skeleton h-14 w-3/4 rounded-lg"></div>
+        <div class="skeleton h-4 w-full rounded mb-2"></div>
+        <div class="skeleton h-4 w-2/3 rounded"></div>
+        <div class="w-full max-w-xl relative mt-4">
+          <div class="skeleton h-14 w-full rounded-full"></div>
+        </div>
+      </section>
 
-    <section v-if="isLoading" class="max-w-4xl mx-auto px-6 pb-24 flex flex-col gap-10">
-      <div class="flex flex-wrap items-center justify-center gap-2.5">
-        <div class="skeleton h-10 w-32 rounded-full" v-for="i in 4" :key="i"></div>
-      </div>
-      <div class="flex flex-col gap-4">
-        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
-          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
-          <div class="skeleton h-4 w-full rounded"></div>
-          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+      <!-- Skeleton Filters & FAQ List -->
+      <section class="max-w-4xl mx-auto px-6 pb-24 flex flex-col gap-10">
+        <div class="flex flex-wrap items-center justify-center gap-2.5">
+          <div class="skeleton h-10 w-32 rounded-full" v-for="i in 4" :key="i"></div>
         </div>
-        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
-          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
-          <div class="skeleton h-4 w-full rounded"></div>
-          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+        <div class="flex flex-col gap-4">
+          <div 
+            v-for="i in 5" 
+            :key="i"
+            class="p-6 rounded-2xl border border-brand-blue/10 bg-white"
+          >
+            <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
+            <div class="skeleton h-4 w-full rounded"></div>
+            <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
+          </div>
         </div>
-        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
-          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
-          <div class="skeleton h-4 w-full rounded"></div>
-          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
-        </div>
-        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
-          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
-          <div class="skeleton h-4 w-full rounded"></div>
-          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
-        </div>
-        <div class="p-6 rounded-2xl border border-brand-blue/10 bg-white">
-          <div class="skeleton h-5 w-3/4 rounded mb-3"></div>
-          <div class="skeleton h-4 w-full rounded"></div>
-          <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </template>
   </div>
 </template>
 
 <style scoped>
-/* Accordion Slide transition animation */
+/* 
+  FIX Bug 4: faq-slide transition uses height-based JS hooks (in @before-enter etc.)
+  The CSS transition class just needs to declare the timing function.
+  overflow:hidden is handled in the JS hooks to prevent content bleed.
+*/
 .faq-slide-enter-active,
 .faq-slide-leave-active {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.faq-slide-enter-from,
+.faq-slide-leave-to {
+  opacity: 0;
 }
 
 /* Skeleton Animation */

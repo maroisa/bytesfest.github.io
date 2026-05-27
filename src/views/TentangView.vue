@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import logo from '@/assets/logo_bytesfest.webp'
@@ -10,10 +10,11 @@ gsap.registerPlugin(ScrollTrigger)
 // Loading state
 const isLoading = ref(true)
 
-onMounted(() => {
+onMounted(async () => {
   // Simulate loading
-  setTimeout(() => {
+  setTimeout(async () => {
     isLoading.value = false
+    await nextTick() // wait for Vue to render the real content
   }, 600)
 
   gsap.fromTo('.tentang-fade', 

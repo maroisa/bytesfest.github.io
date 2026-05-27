@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
 import { RouterLink } from 'vue-router'
 import { GraduationCap, Calendar, History, Code, FileText, Globe, Megaphone, ArrowRight } from 'lucide-vue-next'
 import { gsap } from 'gsap'
@@ -43,10 +43,11 @@ const targetSection = ref<HTMLElement | null>(null)
 const categorySection = ref<HTMLElement | null>(null)
 const timelineSection = ref<HTMLElement | null>(null)
 
-onMounted(() => {
+onMounted(async () => {
   // Simulate loading
-  setTimeout(() => {
+  setTimeout(async () => {
     isLoading.value = false
+    await nextTick() // wait for Vue to render the real content
   }, 800)
 
   // Add mouse move listener
@@ -286,7 +287,7 @@ const sponsors = [
     </section>
 
     <!-- Target Peserta Section -->
-    <section v-if="!isLoading" re f="targetSection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+    <section v-if="!isLoading" ref="targetSection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
       <div class="w-full border border-brand-blue/15 rounded-[32px] bg-white p-8 md:p-12 flex flex-col md:flex-row gap-10 md:gap-16 items-center shadow-sm">
         <div class="w-full md:w-1/2 flex flex-col gap-4">
           <h2 class="font-rexlia text-3xl md:text-4xl text-brand-navy tracking-wide uppercase leading-tight">
