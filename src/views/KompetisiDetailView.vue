@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { GraduationCap, Users, Shield, BookOpen, Code, Megaphone, FileText, Globe } from 'lucide-vue-next'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Countdown from '@/components/Countdown.vue'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Loading state
+const isLoading = ref(true)
 
 const route = useRoute()
 
@@ -165,6 +169,11 @@ const initAnimations = () => {
 }
 
 onMounted(() => {
+  // Simulate loading
+  setTimeout(() => {
+    isLoading.value = false
+  }, 600)
+
   initAnimations()
 })
 </script>
@@ -190,7 +199,7 @@ onMounted(() => {
     ></div>
 
     <!-- Hero / Header Section -->
-    <section class="max-w-6xl mx-auto px-6 py-12">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <!-- Title & description (7 cols) -->
         <div class="lg:col-span-7 flex flex-col gap-6">
@@ -241,8 +250,29 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- Skeleton for Hero -->
+    <section v-else class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 flex flex-col gap-6">
+          <SkeletonLoader type="text" height="4rem" />
+          <SkeletonLoader type="text" height="2rem" />
+          <SkeletonLoader type="text" :count="4" />
+          <div class="flex gap-4 mt-2">
+            <SkeletonLoader type="button" />
+            <SkeletonLoader type="button" />
+          </div>
+        </div>
+        <div class="lg:col-span-5 lg:pl-8">
+          <div class="p-8 rounded-3xl border border-brand-blue/10 bg-white">
+            <SkeletonLoader type="text" height="2rem" class="mb-4" />
+            <SkeletonLoader type="text" height="4rem" />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Kriteria Umum Section -->
-    <section class="max-w-6xl mx-auto px-6 py-16">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16">
       <div class="inline-block border-b-4 border-brand-blue pb-1 mb-10">
         <h2 class="font-rexlia text-xl md:text-2xl text-brand-navy tracking-wider uppercase font-bold">
           Kriteria Umum
@@ -270,8 +300,18 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- Skeleton for Kriteria -->
+    <section v-else class="max-w-6xl mx-auto px-6 py-16">
+      <div class="inline-block border-b-4 border-brand-blue pb-1 mb-10">
+        <SkeletonLoader type="text" height="2rem" width="200px" />
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <SkeletonLoader type="card" v-for="i in 3" :key="i" />
+      </div>
+    </section>
+
     <!-- Timeline Kompetisi Section -->
-    <section class="max-w-6xl mx-auto px-6 py-16">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16">
       <div class="inline-block border-b-4 border-brand-blue pb-1 mb-12">
         <h2 class="font-rexlia text-xl md:text-2xl text-brand-navy tracking-wider uppercase font-bold">
           Timeline Kompetisi
@@ -305,6 +345,14 @@ onMounted(() => {
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Skeleton for Timeline -->
+    <section v-else class="max-w-6xl mx-auto px-6 py-16">
+      <div class="inline-block border-b-4 border-brand-blue pb-1 mb-12">
+        <SkeletonLoader type="text" height="2rem" width="250px" />
+      </div>
+      <SkeletonLoader type="timeline" :count="4" />
     </section>
   </div>
 </template>

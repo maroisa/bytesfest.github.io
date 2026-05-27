@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Code, FileText, Globe, Megaphone, ArrowUpRight, ArrowRight } from 'lucide-vue-next'
 import { gsap } from 'gsap'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
+
+// Loading state
+const isLoading = ref(true)
 
 // Prepared external link
 const registrationLink = 'https://linktr.ee/daftarbytesfest2026'
@@ -47,6 +51,11 @@ const competitions = [
 ]
 
 onMounted(() => {
+  // Simulate loading
+  setTimeout(() => {
+    isLoading.value = false
+  }, 600)
+
   gsap.from('.daftar-fade', {
     opacity: 0,
     y: 30,
@@ -65,7 +74,7 @@ onMounted(() => {
     <div class="absolute -z-10 bottom-[10%] left-[25%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-brand-blue-light/26 blur-[120px] sm:blur-[150px] pointer-events-none"></div>
 
     <!-- Header Section -->
-    <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-5">
+    <section v-if="!isLoading" class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-5">
       <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl text-brand-navy tracking-wider uppercase leading-tight daftar-fade">
         PILIH KOMPETISI
       </h1>
@@ -76,7 +85,7 @@ onMounted(() => {
     </section>
 
     <!-- Cards Grid -->
-    <section class="max-w-5xl mx-auto px-6 pb-24">
+    <section v-if="!isLoading" class="max-w-5xl mx-auto px-6 pb-24">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 daftar-fade">
         <div 
           v-for="comp in competitions" 
@@ -133,6 +142,18 @@ onMounted(() => {
             </RouterLink>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Skeleton -->
+    <section v-else class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-5">
+      <SkeletonLoader type="text" height="3rem" />
+      <SkeletonLoader type="text" :count="2" />
+    </section>
+
+    <section v-if="isLoading" class="max-w-5xl mx-auto px-6 pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <SkeletonLoader type="card" v-for="i in 4" :key="i" />
       </div>
     </section>
   </div>

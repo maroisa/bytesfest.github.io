@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import mascot1 from '@/assets/mascot_bytesfest_1.webp'
 import mascot2 from '@/assets/mascot_bytesfest_2.webp'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Loading state
+const isLoading = ref(true)
+
 onMounted(() => {
+  // Simulate loading
+  setTimeout(() => {
+    isLoading.value = false
+  }, 600)
+
   gsap.fromTo('.tentang-fade', 
     { opacity: 0, y: 35 },
     {
@@ -66,7 +75,7 @@ const foxelDetails = [
     <div class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
 
     <!-- Hero Title -->
-    <section class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-4">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-4">
       <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl tracking-wide tentang-fade select-none">
         <span class="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">BYTE THE FUTURE:</span>
       </h1>
@@ -76,7 +85,7 @@ const foxelDetails = [
     </section>
 
     <!-- Tentang BYTESFEST Block -->
-    <section class="max-w-6xl mx-auto px-6 py-6 tentang-fade">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-6 tentang-fade">
       <div class="w-full bg-[#f2f3ff] border border-brand-blue/10 rounded-[32px] p-8 md:p-12 shadow-sm">
         <h3 class="font-rexlia text-xs md:text-sm text-brand-blue font-bold tracking-widest uppercase mb-4">
           Tentang BYTESFEST
@@ -87,8 +96,17 @@ const foxelDetails = [
       </div>
     </section>
 
+    <!-- Skeleton for Hero and Tentang -->
+    <section v-else class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-6">
+      <SkeletonLoader type="hero" />
+      <div class="w-full bg-[#f2f3ff] border border-brand-blue/10 rounded-[32px] p-8 md:p-12 shadow-sm">
+        <SkeletonLoader type="text" height="1rem" width="150px" />
+        <SkeletonLoader type="text" :count="4" />
+      </div>
+    </section>
+
     <!-- Tema Utama Section -->
-    <section class="max-w-6xl mx-auto px-6 py-16 section-scroll-1">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16 section-scroll-1">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
         <!-- Text details -->
         <div class="lg:col-span-7 flex flex-col gap-6">
@@ -124,8 +142,24 @@ const foxelDetails = [
       </div>
     </section>
 
+    <!-- Skeleton -->
+    <section v-else class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+        <div class="lg:col-span-7 flex flex-col gap-6">
+          <SkeletonLoader type="button" />
+          <SkeletonLoader type="text" height="2rem" />
+          <SkeletonLoader type="text" :count="4" />
+        </div>
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden">
+            <SkeletonLoader type="text" height="100%" width="100%" />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Maskot Section -->
-    <section class="max-w-6xl mx-auto px-6 py-16 border-t border-brand-blue/10 section-scroll-2">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16 border-t border-brand-blue/10 section-scroll-2">
       <h3 class="font-rexlia text-3xl text-brand-navy font-bold tracking-wide uppercase mb-12">
         Maskot BYTESFEST
       </h3>
@@ -173,6 +207,23 @@ const foxelDetails = [
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skeleton -->
+    <section v-else class="max-w-6xl mx-auto px-6 py-16 border-t border-brand-blue/10">
+      <SkeletonLoader type="text" height="2.5rem" class="mb-12" />
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden">
+            <SkeletonLoader type="text" height="100%" width="100%" />
+          </div>
+        </div>
+        <div class="lg:col-span-7 flex flex-col gap-6">
+          <SkeletonLoader type="text" height="2rem" />
+          <SkeletonLoader type="text" :count="4" />
+          <SkeletonLoader type="card" v-for="i in 5" :key="i" />
         </div>
       </div>
     </section>

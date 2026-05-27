@@ -5,8 +5,12 @@ import { GraduationCap, Calendar, History, Code, FileText, Globe, Megaphone, Arr
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Countdown from '@/components/Countdown.vue'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Loading state
+const isLoading = ref(true)
 
 // Mouse tracking for interactive orbs
 const mouseX = ref(0)
@@ -40,6 +44,11 @@ const categorySection = ref<HTMLElement | null>(null)
 const timelineSection = ref<HTMLElement | null>(null)
 
 onMounted(() => {
+  // Simulate loading
+  setTimeout(() => {
+    isLoading.value = false
+  }, 800)
+
   // Add mouse move listener
   window.addEventListener('mousemove', handleMouseMove)
 
@@ -207,22 +216,22 @@ const sponsors = [
       <!-- Interactive gradient orbs -->
       <div 
         class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brand-blue/25 blur-[150px] animate-float-1 cursor-pointer transition-all duration-500 hover:bg-brand-blue/35 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[0].x}px, ${orbPositions[0].y}px)` }"
+        :style="{ transform: `translate(${orbPositions[0]?.x ?? 0}px, ${orbPositions[0]?.y ?? 0}px)` }"
         @click="orbPositions[0] = { x: 0, y: 0 }"
       ></div>
       <div 
         class="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-brand-teal/20 blur-[130px] animate-float-2 cursor-pointer transition-all duration-500 hover:bg-brand-teal/30 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[1].x}px, ${orbPositions[1].y}px)` }"
+        :style="{ transform: `translate(${orbPositions[1]?.x ?? 0}px, ${orbPositions[1]?.y ?? 0}px)` }"
         @click="orbPositions[1] = { x: 0, y: 0 }"
       ></div>
       <div 
         class="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full bg-brand-blue-light/15 blur-[100px] animate-float-3 cursor-pointer transition-all duration-500 hover:bg-brand-blue-light/25 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[2].x}px, ${orbPositions[2].y}px)` }"
+        :style="{ transform: `translate(${orbPositions[2]?.x ?? 0}px, ${orbPositions[2]?.y ?? 0}px)` }"
         @click="orbPositions[2] = { x: 0, y: 0 }"
       ></div>
       <div 
         class="absolute bottom-[-5%] right-[15%] w-[550px] h-[550px] rounded-full bg-brand-teal-light/18 blur-[140px] animate-float-4 cursor-pointer transition-all duration-500 hover:bg-brand-teal-light/28 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[3].x}px, ${orbPositions[3].y}px)` }"
+        :style="{ transform: `translate(${orbPositions[3]?.x ?? 0}px, ${orbPositions[3]?.y ?? 0}px)` }"
         @click="orbPositions[3] = { x: 0, y: 0 }"
       ></div>
       
@@ -230,7 +239,7 @@ const sponsors = [
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMCAwTDQwIDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwNWVhNCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
     </div>
     <!-- Hero Section -->
-    <section class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
       <div ref="heroTitle" class="flex flex-col gap-6 max-w-4xl">
         <h1 class="font-rexlia text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none hero-fade">
           <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal-light bg-clip-text text-transparent">BYTESFEST</span>
@@ -265,8 +274,13 @@ const sponsors = [
       </div>
     </section>
 
+    <!-- Hero Skeleton -->
+    <section v-else class="max-w-6xl mx-auto px-6 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
+      <SkeletonLoader type="hero" />
+    </section>
+
     <!-- Target Peserta Section -->
-    <section ref="targetSection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
+    <section v-if="!isLoading" re f="targetSection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
       <div class="w-full border border-brand-blue/15 rounded-[32px] bg-white p-8 md:p-12 flex flex-col md:flex-row gap-10 md:gap-16 items-center shadow-sm">
         <div class="w-full md:w-1/2 flex flex-col gap-4">
           <h2 class="font-rexlia text-3xl md:text-4xl text-brand-navy tracking-wide uppercase leading-tight">
@@ -296,7 +310,7 @@ const sponsors = [
     </section>
 
     <!-- Kategori Kompetisi Section -->
-    <section ref="categorySection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16">
+    <section v-if="!isLoading" ref="categorySection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16">
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="font-rexlia text-3xl md:text-4xl text-brand-navy tracking-wide uppercase">
           Kategori Kompetisi
@@ -333,7 +347,7 @@ const sponsors = [
     </section>
 
     <!-- Timeline Section -->
-    <section ref="timelineSection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16">
+    <section v-if="!isLoading" ref="timelineSection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16">
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="font-rexlia text-3xl md:text-4xl text-brand-navy tracking-wide uppercase">
           Timeline Kegiatan
@@ -425,7 +439,7 @@ const sponsors = [
     </section>
 
     <!-- Sponsor Section -->
-    <section class="w-full bg-[#f2f3ff] py-10 overflow-hidden border-y border-[#005ea4]/10 flex flex-col items-center gap-6">
+    <section v-if="!isLoading" class="w-full bg-[#f2f3ff] py-10 overflow-hidden border-y border-[#005ea4]/10 flex flex-col items-center gap-6">
       <span class="font-sans text-xs md:text-sm font-semibold italic text-brand-navy/60 tracking-wider">
         SPECIAL THANKS TO OUR SPONSORS
       </span>
@@ -451,6 +465,33 @@ const sponsors = [
           </span>
         </div>
       </div>
+    </section>
+
+    <!-- Content Skeleton -->
+    <section v-else class="max-w-6xl mx-auto px-6 py-16 flex flex-col gap-16">
+      <div class="w-full border border-brand-blue/15 rounded-[32px] bg-white p-8 md:p-12 flex flex-col md:flex-row gap-10 md:gap-16 items-center shadow-sm">
+        <div class="w-full md:w-1/2 flex flex-col gap-4">
+          <SkeletonLoader type="text" :count="2" height="2.5rem" />
+          <SkeletonLoader type="text" :count="3" />
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col gap-4">
+          <SkeletonLoader type="card" v-for="i in 3" :key="i" />
+        </div>
+      </div>
+      
+      <div class="text-center max-w-2xl mx-auto">
+        <SkeletonLoader type="text" height="2.5rem" />
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <SkeletonLoader type="card" v-for="i in 4" :key="i" />
+      </div>
+      
+      <div class="text-center max-w-2xl mx-auto">
+        <SkeletonLoader type="text" height="2.5rem" />
+      </div>
+      
+      <SkeletonLoader type="timeline" :count="5" />
     </section>
   </div>
 </template>
