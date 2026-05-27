@@ -12,9 +12,31 @@ gsap.registerPlugin(ScrollTrigger)
 // Loading state
 const isLoading = ref(true)
 
+// Mouse tracking for interactive orbs
+const mouseX = ref(0)
+const mouseY = ref(0)
+const orbPositions = ref([
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 }
+])
+
+const handleMouseMove = (e: MouseEvent) => {
+  mouseX.value = (e.clientX / window.innerWidth - 0.5) * 2
+  mouseY.value = (e.clientY / window.innerHeight - 0.5) * 2
+  
+  // Update orb positions based on mouse
+  orbPositions.value = [
+    { x: mouseX.value * 30, y: mouseY.value * 30 },
+    { x: mouseX.value * -25, y: mouseY.value * 25 },
+    { x: mouseX.value * 20, y: mouseY.value * -35 },
+    { x: mouseX.value * -35, y: mouseY.value * -20 }
+  ]
+}
 
 // Calculate a dynamic target date for the countdown so that it always shows around 45 days in the future for demo purposes, or a fixed date.
-const countdownTarget = '2026-07-08T09:42:00.000Z'
+const countdownTarget = '2026-06-30T16:34:00.000Z'
 
 const heroTitle = ref<HTMLElement | null>(null)
 const targetSection = ref<HTMLElement | null>(null)
@@ -22,6 +44,9 @@ const categorySection = ref<HTMLElement | null>(null)
 const timelineSection = ref<HTMLElement | null>(null)
 
 onMounted(async () => {
+  // Add mouse move listener
+  window.addEventListener('mousemove', handleMouseMove)
+
   // Simulate loading
   setTimeout(async () => {
     isLoading.value = false
@@ -186,25 +211,35 @@ const sponsors = [
 </script>
 
 <template>
-  <div class="pt-28 font-sans relative overflow-hidden">
+  <div class="pt-28 font-sans relative overflow-hidden" @mousemove="handleMouseMove">
     <!-- Dynamic Background -->
     <div class="absolute inset-0 -z-10 overflow-hidden">
-      <!-- Dynamic gradient orbs -->
+      <!-- Interactive gradient orbs -->
       <div 
-        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate transition-all duration-500 hover:bg-brand-blue/45 hover:scale-150"
+        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-blue/45 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[0]?.x ?? 0}px, ${orbPositions[0]?.y ?? 0}px)` }"
+        @click="orbPositions[0] = { x: 0, y: 0 }"
       ></div>
       <div 
-        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate transition-all duration-500 hover:bg-brand-teal/40 hover:scale-150"
+        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-teal/40 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[1]?.x ?? 0}px, ${orbPositions[1]?.y ?? 0}px)` }"
+        @click="orbPositions[1] = { x: 0, y: 0 }"
       ></div>
       <div 
-        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate transition-all duration-500 hover:bg-brand-blue-light/35 hover:scale-150"
+        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-blue-light/35 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[2]?.x ?? 0}px, ${orbPositions[2]?.y ?? 0}px)` }"
+        @click="orbPositions[2] = { x: 0, y: 0 }"
       ></div>
       <div 
-        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate transition-all duration-500 hover:bg-brand-teal-light/38 hover:scale-150"
+        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-teal-light/38 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[3]?.x ?? 0}px, ${orbPositions[3]?.y ?? 0}px)` }"
+        @click="orbPositions[3] = { x: 0, y: 0 }"
       ></div>
       <!-- Third blob on left side between target peserta and kategori kompetisi -->
       <div 
-        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate transition-all duration-500 hover:bg-purple-500/40 hover:scale-150"
+        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-purple-500/40 hover:scale-110"
+        :style="{ transform: `translate(${orbPositions[2]?.x ?? 0}px, ${orbPositions[2]?.y ?? 0}px)` }"
+        @click="orbPositions[2] = { x: 0, y: 0 }"
       ></div>
       
       <!-- Grid pattern overlay -->
@@ -213,7 +248,7 @@ const sponsors = [
     <!-- Hero Section -->
     <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
       <div ref="heroTitle" class="flex flex-col gap-6 max-w-4xl">
-        <h1 class="font-rexlia text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none hero-fade">
+        <h1 class="font-rexlia text-[11vw] sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none hero-fade">
           <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal-light bg-clip-text text-transparent">BYTESFEST</span>
           <br>
           <span class="text-brand-navy">2026</span>
