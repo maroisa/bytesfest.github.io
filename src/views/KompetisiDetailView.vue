@@ -50,10 +50,10 @@ const compData = computed(() => {
         { title: 'Orisinalitas', desc: 'Karya harus orisinil dan belum pernah diikutsertakan dalam kompetisi lain.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '5 Juni - 30 Juni', title: 'Pendaftaran', desc: 'Registrasi tim dan pengisian berkas persyaratan administrasi.' },
-        { date: '1 Juli - 9 Juli', title: 'Babak Penyisihan', desc: 'Pengumpulan proposal ide rancangan solusi digital.' },
-        { date: '10 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 12 tim terbaik yang lolos ke babak grand final.' },
-        { date: '23 Juli - 24 Juli', title: 'Grand Final & Pitching', desc: 'Hackathon offline 48 jam dan presentasi karya di depan juri.' }
+        { date: '5 Juni - 30 Juni', title: 'Pendaftaran', desc: 'Registrasi tim dan pengisian berkas persyaratan administrasi.', highlight: true },
+        { date: '1 Juli - 9 Juli', title: 'Babak Penyisihan', desc: 'Pengumpulan proposal ide rancangan solusi digital.', highlight: false },
+        { date: '10 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 12 tim terbaik yang lolos ke babak grand final.', highlight: false },
+        { date: '23 Juli - 24 Juli', title: 'Grand Final & Pitching', desc: 'Hackathon offline 48 jam dan presentasi karya di depan juri.', highlight: false }
       ]
     },
     'essay': {
@@ -70,10 +70,10 @@ const compData = computed(() => {
         { title: 'Karya Orisinal', desc: 'Esai harus merupakan karya orisinal, bebas plagiasi, dan belum pernah dipublikasikan.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '5 Juni - 7 Juli', title: 'Pendaftaran', desc: 'Pengisian data pendaftaran dan pembayaran biaya administrasi.' },
-        { date: '5 Juli - 9 Juli', title: 'Pengumpulan Karya', desc: 'Batas akhir pengunggahan naskah esai lengkap.' },
-        { date: '15 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 besar esai terbaik yang masuk final.' },
-        { date: '18 Juli', title: 'Presentasi Final', desc: 'Presentasi esai di hadapan dewan juri secara daring/luring.' }
+        { date: '5 Juni - 7 Juli', title: 'Pendaftaran', desc: 'Pengisian data pendaftaran dan pembayaran biaya administrasi.', highlight: true },
+        { date: '5 Juli - 9 Juli', title: 'Pengumpulan Karya', desc: 'Batas akhir pengunggahan naskah esai lengkap.', highlight: false },
+        { date: '15 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 besar esai terbaik yang masuk final.', highlight: false },
+        { date: '18 Juli', title: 'Presentasi Final', desc: 'Presentasi esai di hadapan dewan juri secara daring/luring.', highlight: false }
       ]
     },
     'creative-web': {
@@ -91,10 +91,10 @@ const compData = computed(() => {
         { title: 'Karya Orisinal', desc: 'Solusi yang dikembangkan harus merupakan karya orisinal tim dan belum pernah menjuarai kompetisi lain.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '5 Juni - 7 Juli', title: 'Pendaftaran', desc: 'Registrasi tim dan pengumpulan berkas awal secara daring.' },
-        { date: '8 Juli - 15 Juli', title: 'Babak Penyisihan', desc: 'Seleksi proposal ide dan penentuan finalis.' },
-        { date: '16 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 tim terbaik yang maju ke babak final.' },
-        { date: '18 Juli', title: 'Grand Final', desc: 'Live coding 48 jam dan presentasi di venue utama.' }
+        { date: '5 Juni - 7 Juli', title: 'Pendaftaran', desc: 'Registrasi tim dan pengumpulan berkas awal secara daring.', highlight: true },
+        { date: '8 Juli - 15 Juli', title: 'Babak Penyisihan', desc: 'Seleksi proposal ide dan penentuan finalis.', highlight: false },
+        { date: '16 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman 10 tim terbaik yang maju ke babak final.', highlight: false },
+        { date: '18 Juli', title: 'Grand Final', desc: 'Live coding 48 jam dan presentasi di venue utama.', highlight: false }
       ]
     },
     'sdgs-visual-campaign': {
@@ -111,10 +111,10 @@ const compData = computed(() => {
         { title: 'Karya Orisinal', desc: 'Karya harus orisinal, bebas hak cipta pihak ketiga, dan tidak mengandung unsur SARA.', icon: 'Shield' }
       ],
       timeline: [
-        { date: '5 Juni - 8 Juli', title: 'Pendaftaran', desc: 'Pendaftaran online dan pengisian data karya kampanye.' },
-        { date: '8 Juni - 15 Juli', title: 'Pengumpulan Karya', desc: 'Batas akhir pengumpulan file visual campaign.' },
-        { date: '15 Juli - 20 Juli', title: 'Babak Kurasi', desc: 'Voting Juara Favorit.' },
-        { date: '21 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman Finalis.' }
+        { date: '5 Juni - 8 Juli', title: 'Pendaftaran', desc: 'Pendaftaran online dan pengisian data karya kampanye.', highlight: true },
+        { date: '8 Juni - 15 Juli', title: 'Pengumpulan Karya', desc: 'Batas akhir pengumpulan file visual campaign.', highlight: false },
+        { date: '15 Juli - 20 Juli', title: 'Babak Kurasi', desc: 'Voting Juara Favorit.', highlight: false },
+        { date: '21 Juli', title: 'Pengumuman Finalis', desc: 'Pengumuman Finalis.', highlight: false }
       ]
     }
   }
@@ -328,32 +328,87 @@ watch(() => route.params.id, (newId, oldId) => {
     </section>
 
     <!-- Timeline Kompetisi Section -->
-    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16">
-      <div class="inline-block border-b-4 border-brand-blue pb-1 mb-12">
-        <h2 class="font-rexlia text-xl md:text-2xl text-brand-navy tracking-wider uppercase font-bold">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="font-rexlia text-xl md:text-2xl text-brand-navy tracking-wide uppercase font-bold">
           Timeline Kompetisi
         </h2>
       </div>
 
-      <div class="timeline-grid grid grid-cols-1 md:grid-cols-4 gap-6 relative before:hidden md:before:block before:absolute before:top-1/2 before:left-8 before:right-8 before:h-0.5 before:bg-brand-blue/10 before:-translate-y-6">
+      <!-- Horizontal Timeline (Desktop) -->
+      <div class="relative hidden lg:block pt-16 pb-20">
+        <!-- Connecting Line (Centered with the dots and responsive to N items) -->
+        <div 
+          class="absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
+          :style="{ 
+            top: '114px', 
+            left: (50 / compData.timeline.length) + '%', 
+            right: (50 / compData.timeline.length) + '%' 
+          }"
+        ></div>
+        
+        <div 
+          class="grid gap-6"
+          :style="{ gridTemplateColumns: `repeat(${compData.timeline.length}, minmax(0, 1fr))` }"
+        >
+          <div 
+            v-for="(step, idx) in compData.timeline" 
+            :key="idx"
+            class="timeline-item flex flex-col items-center text-center relative group"
+          >
+            <!-- Date above the line -->
+            <span class="font-mono text-xs text-brand-blue-light font-bold tracking-wider mb-6 block">
+              {{ step.date }}
+            </span>
+
+            <!-- Dot on the line -->
+            <div 
+              class="relative w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-125 mb-6"
+              :class="step.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
+            >
+              <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+            </div>
+
+            <!-- Title & Description inside rounded card -->
+            <div 
+              class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs transition-all duration-300 group-hover:shadow-md"
+              :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-md': step.highlight }"
+            >
+              <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">
+                {{ step.title }}
+              </h4>
+              <p class="text-brand-grey text-xs leading-relaxed">
+                {{ step.desc }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Timeline (Mobile) -->
+      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full">
         <div 
           v-for="(step, idx) in compData.timeline" 
           :key="idx"
-          class="timeline-step flex flex-col items-center md:items-start text-center md:text-left gap-4 relative group"
+          class="timeline-item flex flex-col gap-2 relative"
         >
-          <!-- Date -->
-          <span class="font-mono text-xs sm:text-sm text-brand-blue-light font-semibold tracking-wider">
+          <!-- Dot -->
+          <div 
+            class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm flex items-center justify-center z-10"
+            :class="step.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
+          >
+            <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+          </div>
+          
+          <span class="font-mono text-xs text-brand-blue-light font-bold tracking-wider">
             {{ step.date }}
           </span>
-
-          <!-- Node bullet -->
-          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white z-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-125 md:ml-4 shadow-sm">
-            <div class="w-2.5 h-2.5 rounded-full bg-brand-blue"></div>
-          </div>
-
-          <!-- Description card -->
-          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm mt-2 transition-shadow duration-300 group-hover:shadow-md">
-            <h4 class="font-meiland font-bold italic text-brand-navy text-sm md:text-base mb-1.5">
+          
+          <div 
+            class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full"
+            :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-sm': step.highlight }"
+          >
+            <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">
               {{ step.title }}
             </h4>
             <p class="text-brand-grey text-xs leading-relaxed">
@@ -365,39 +420,92 @@ watch(() => route.params.id, (newId, oldId) => {
     </section>
 
     <!-- Skeleton for Timeline -->
-    <section v-else class="max-w-6xl mx-auto px-6 py-16">
-      <div class="inline-block border-b-4 border-brand-blue pb-1 mb-12">
+    <section v-else class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16">
+      <div class="text-center max-w-2xl mx-auto">
         <div class="skeleton h-8 w-56 rounded"></div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative before:hidden md:before:block before:absolute before:top-1/2 before:left-8 before:right-8 before:h-0.5 before:bg-brand-blue/10 before:-translate-y-6">
-        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+
+      <!-- Horizontal Timeline Skeleton (Desktop) -->
+      <div class="relative hidden lg:block pt-16 pb-20">
+        <!-- Connecting Line Skeleton -->
+        <div 
+          class="absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full skeleton"
+          :style="{ 
+            top: '114px', 
+            left: (50 / 4) + '%', 
+            right: (50 / 4) + '%' 
+          }"
+        ></div>
+        
+        <div class="grid gap-6" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+          <div class="flex flex-col items-center text-center relative">
+            <!-- Date skeleton -->
+            <div class="skeleton w-20 h-4 rounded mb-6"></div>
+            <!-- Dot skeleton -->
+            <div class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 mb-6 skeleton"></div>
+            <!-- Card skeleton -->
+            <div class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs">
+              <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+              <div class="skeleton h-4 w-full rounded"></div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center text-center relative">
+            <div class="skeleton w-20 h-4 rounded mb-6"></div>
+            <div class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 mb-6 skeleton"></div>
+            <div class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs">
+              <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+              <div class="skeleton h-4 w-full rounded"></div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center text-center relative">
+            <div class="skeleton w-20 h-4 rounded mb-6"></div>
+            <div class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 mb-6 skeleton"></div>
+            <div class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs">
+              <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+              <div class="skeleton h-4 w-full rounded"></div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center text-center relative">
+            <div class="skeleton w-20 h-4 rounded mb-6"></div>
+            <div class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 mb-6 skeleton"></div>
+            <div class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs">
+              <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
+              <div class="skeleton h-4 w-full rounded"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Timeline Skeleton (Mobile) -->
+      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full">
+        <div class="flex flex-col gap-2 relative">
+          <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
           <div class="skeleton w-20 h-4 rounded"></div>
-          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
-          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
             <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
             <div class="skeleton h-4 w-full rounded"></div>
           </div>
         </div>
-        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+        <div class="flex flex-col gap-2 relative">
+          <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
           <div class="skeleton w-20 h-4 rounded"></div>
-          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
-          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
             <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
             <div class="skeleton h-4 w-full rounded"></div>
           </div>
         </div>
-        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+        <div class="flex flex-col gap-2 relative">
+          <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
           <div class="skeleton w-20 h-4 rounded"></div>
-          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
-          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
             <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
             <div class="skeleton h-4 w-full rounded"></div>
           </div>
         </div>
-        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+        <div class="flex flex-col gap-2 relative">
+          <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
           <div class="skeleton w-20 h-4 rounded"></div>
-          <div class="w-5 h-5 rounded-full border-2 border-brand-blue bg-white"></div>
-          <div class="w-full p-5 rounded-2xl border border-brand-blue/10 bg-white">
+          <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
             <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
             <div class="skeleton h-4 w-full rounded"></div>
           </div>
