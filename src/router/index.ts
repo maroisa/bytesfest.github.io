@@ -55,8 +55,15 @@ router.beforeEach((to, from, next) => {
   if (redirect) {
     sessionStorage.removeItem('redirect')
     // Remove the base path from the redirect if present
-    const basePath = import.meta.env.BASE_URL
-    const cleanPath = redirect.startsWith(basePath) ? redirect.slice(basePath.length - 1) : redirect
+    const basePath = import.meta.env.BASE_URL.replace(/\/$/, '') // Remove trailing slash
+    let cleanPath = redirect
+    if (redirect.startsWith(basePath)) {
+      cleanPath = redirect.slice(basePath.length)
+    }
+    // Ensure cleanPath starts with /
+    if (!cleanPath.startsWith('/')) {
+      cleanPath = '/' + cleanPath
+    }
     if (cleanPath !== to.path) {
       next(cleanPath || '/')
       return
