@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
+import { Mail, Phone, Instagram } from 'lucide-vue-next'
+import logoUns from '@/assets/logo_uns.webp'
+import logoPtik from '@/assets/logo_ptik.webp'
 </script>
 
 <template>
@@ -23,7 +25,7 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
         </h4>
         <div class="flex items-center gap-3">
           <a 
-            href="https://instagram.com" 
+            href="https://instagram.com/bytesfest" 
             target="_blank" 
             rel="noopener noreferrer"
             class="w-11 h-11 rounded-full border border-brand-blue/20 bg-white flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white hover:border-brand-blue hover:-translate-y-1 transition-all duration-300 shadow-sm"
@@ -31,7 +33,7 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
             <Instagram class="w-5 h-5" />
           </a>
           <a 
-            href="https://tiktok.com" 
+            href="https://tiktok.com/@bytesfest" 
             target="_blank" 
             rel="noopener noreferrer"
             class="w-11 h-11 rounded-full border border-brand-blue/20 bg-white flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white hover:border-brand-blue hover:-translate-y-1 transition-all duration-300 shadow-sm"
@@ -39,14 +41,6 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
             </svg>
-          </a>
-          <a 
-            href="https://youtube.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="w-11 h-11 rounded-full border border-brand-blue/20 bg-white flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white hover:border-brand-blue hover:-translate-y-1 transition-all duration-300 shadow-sm"
-          >
-            <Youtube class="w-5 h-5" />
           </a>
         </div>
       </div>
@@ -62,15 +56,15 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
               <Mail class="w-4 h-4" />
             </div>
             <a href="mailto:info@bytesfest.id" class="hover:text-brand-blue transition-colors duration-300">
-              info@bytesfest.id
+              bytesfest@uns
             </a>
           </li>
           <li class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-lg bg-white border border-brand-blue/10 flex items-center justify-center text-brand-blue">
               <Phone class="w-4 h-4" />
             </div>
-            <a href="tel:+6281234567890" class="hover:text-brand-blue transition-colors duration-300">
-              +62 812-3456-7890
+            <a href="https://wa.me/6282223533028" class="hover:text-brand-blue transition-colors duration-300">
+              +62 822-2353-3028
             </a>
           </li>
         </ul>
@@ -80,6 +74,10 @@ import { Mail, Phone, Instagram, Youtube } from 'lucide-vue-next'
 
     <!-- Bottom Copyright -->
     <div class="max-w-6xl mx-auto mt-12 pt-6 border-t border-brand-blue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-grey/70">
+      <div class="flex items-center gap-4">
+        <img :src="logoUns" alt="UNS Logo" class="h-10 w-auto object-contain" />
+        <img :src="logoPtik" alt="PTIK Logo" class="h-10 w-auto object-contain" />
+      </div>
       <p>&copy; 2026 BYTESFEST. All rights reserved.</p>
     </div>
   </footer>
