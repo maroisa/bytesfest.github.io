@@ -193,7 +193,6 @@ watch(() => route.params.id, (newId, oldId) => {
   <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
     <!-- Ambient Blobs (Static Colors) -->
     <div class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
-    <div class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
 
     <!-- Hero / Header Section -->
     <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-12">
@@ -328,7 +327,11 @@ watch(() => route.params.id, (newId, oldId) => {
     </section>
 
     <!-- Timeline Kompetisi Section -->
-    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16">
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16 relative">
+      <!-- Timeline Blobs (Left side) -->
+      <div class="absolute -z-10 top-[20%] left-[-8%] w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full bg-brand-blue/25 blur-[90px] sm:blur-[110px] pointer-events-none"></div>
+      <div class="absolute -z-10 top-[50%] left-[-5%] w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] rounded-full bg-brand-teal/20 blur-[80px] sm:blur-[100px] pointer-events-none"></div>
+      
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="font-rexlia text-xl md:text-2xl text-brand-navy tracking-wide uppercase font-bold">
           Timeline Kompetisi
@@ -336,7 +339,7 @@ watch(() => route.params.id, (newId, oldId) => {
       </div>
 
       <!-- Horizontal Timeline (Desktop) -->
-      <div class="relative hidden lg:block pt-16 pb-20">
+      <div class="relative hidden lg:block pt-16 pb-20 mb-16">
         <!-- Connecting Line (Centered with the dots and responsive to N items) -->
         <div 
           class="absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
@@ -386,7 +389,7 @@ watch(() => route.params.id, (newId, oldId) => {
       </div>
 
       <!-- Vertical Timeline (Mobile) -->
-      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full">
+      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full mb-16">
         <div 
           v-for="(step, idx) in compData.timeline" 
           :key="idx"

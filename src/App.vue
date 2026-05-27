@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
-import { RouterView, useRouter } from 'vue-router'
+import { RouterView, useRouter, useRoute } from 'vue-router'
 import Lenis from 'lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -10,6 +10,7 @@ import Footer from '@/components/Footer.vue'
 gsap.registerPlugin(ScrollTrigger)
 
 const router = useRouter()
+const route = useRoute()
 let lenisInstance: Lenis | null = null
 let tickerHandler: ((time: number) => void) | null = null
 
@@ -69,7 +70,7 @@ onUnmounted(() => {
     </main>
 
     <!-- Footer -->
-    <Footer />
+    <Footer :noMargin="route.name === 'kompetisi-detail'" />
   </div>
 </template>
 
