@@ -7,9 +7,12 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
-    } else {
-      return { top: 0 }
     }
+    // Add this block ↓
+    if (from.path.startsWith('/kompetisi/') && to.path.startsWith('/kompetisi/')) {
+      return false
+    }
+    return { top: 0 }
   },
   routes: [
     {

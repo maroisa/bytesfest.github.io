@@ -32,8 +32,13 @@ onMounted(() => {
   gsap.ticker.lagSmoothing(0)
 
   // Listen to route changes to reset scroll position and refresh ScrollTrigger
-  router.afterEach(() => {
-    lenisInstance?.scrollTo(0, { immediate: true })
+  router.afterEach((to, from) => {
+    const isCompetitionNav = from.path.startsWith('/kompetisi/') && to.path.startsWith('/kompetisi')
+
+    if (!isCompetitionNav) {
+      lenisInstance?.scrollTo(0, { immediate: true })
+    }
+
     setTimeout(() => {
       ScrollTrigger.refresh()
     }, 100)

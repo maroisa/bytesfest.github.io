@@ -179,11 +179,12 @@ onMounted(() => {
 // Watch for route changes to reset loading state when navigating between competitions
 watch(() => route.params.id, (newId, oldId) => {
   if (newId !== oldId) {
-    isLoading.value = true
-    setTimeout(() => {
-      isLoading.value = false
-      initAnimations()
-    }, 600)
+    // isLoading.value = true
+    // setTimeout(() => {
+    //   isLoading.value = false
+    //   initAnimations()
+    // }, 600)
+    initAnimations()
   }
 })
 </script>
