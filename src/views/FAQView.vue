@@ -292,15 +292,17 @@ const isOpen = (globalIndex: number) => {
 
 // Animate FAQ items sliding from left
 const animateFAQItems = (delay = 0) => {
-  gsap.set('.faq-item', { opacity: 0.25, x: -40 })
-  gsap.to('.faq-item', {
-    opacity: 1,
-    x: 0,
-    duration: 0.5,
-    delay: delay,
-    stagger: 0.1,
-    ease: 'power3.out'
-  })
+  gsap.fromTo('.faq-item', 
+    { opacity: 0.25, x: -40 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 0.5,
+      delay: delay,
+      stagger: 0.1,
+      ease: 'power3.out'
+    }
+  )
 }
 
 onMounted(() => {
@@ -425,7 +427,7 @@ onMounted(() => {
         <div 
           v-for="faq in paginatedFaqs" 
           :key="faq.globalIndex"
-          class="faq-item faq-item-init border border-brand-blue/10 bg-white rounded-2xl hover:border-brand-blue/25 transition-all duration-300 shadow-sm"
+          class="faq-item border border-brand-blue/10 bg-white rounded-2xl hover:border-brand-blue/25 transition-all duration-300 shadow-sm"
         >
           <!-- Accordion Header -->
           <button 
@@ -550,12 +552,6 @@ onMounted(() => {
 /* Chips start at 25% opacity — GSAP will animate from here */
 .faq-chip-init {
   opacity: 0.25;
-}
-
-/* FAQ items start at 25% opacity — GSAP will animate from here */
-.faq-item-init {
-  opacity: 0.25;
-  transform: translateX(-40px);
 }
 
 .faq-slide-enter-from,

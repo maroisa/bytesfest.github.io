@@ -139,7 +139,7 @@ const initAnimations = () => {
     {
       scrollTrigger: {
         trigger: '.criteria-grid',
-        start: 'top 80%',
+        start: 'top 95%',
         toggleActions: 'play none none none'
       },
       opacity: 1,
