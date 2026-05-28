@@ -20,41 +20,97 @@ const foxelDetails = [
 ] as const
 
 function initAnimations() {
+  // Hero section - fade in when scrolled into view
   gsap.fromTo(
     '.tentang-fade',
     { opacity: 0, y: 35 },
-    { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
-  )
-
-  gsap.fromTo(
-    '.section-scroll-1',
-    { opacity: 0, y: 60 },
     {
       scrollTrigger: {
-        trigger: '.section-scroll-1',
-        start: 'top 95%',
+        trigger: '.hero-section',
+        start: 'top 85%',
         toggleActions: 'play none none none',
       },
       opacity: 1,
       y: 0,
-      duration: 1.6,
-      ease: 'power2.out',
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }
+  )
+
+  // Tema Utama section - text first, then logo (only when scrolled to)
+  const temaTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.section-scroll-1',
+      start: 'top 70%',
+      toggleActions: 'play none none none',
+    },
+  })
+
+  temaTimeline.fromTo(
+    '.tema-text',
+    { opacity: 0.25, y: 60 },
+    { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' }
+  )
+
+  temaTimeline.fromTo(
+    '.tema-logo',
+    { opacity: 0.25, scale: 0.8, y: 40 },
+    { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.5)' },
+    '-=0.2'
+  )
+
+  // Maskot section - mascot first, then philosophy
+  gsap.fromTo(
+    '.mascot-image',
+    { opacity: 0, scale: 0.8, x: -50 },
+    {
+      scrollTrigger: {
+        trigger: '.section-scroll-2',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      duration: 0.8,
+      ease: 'back.out(1.5)',
     }
   )
 
   gsap.fromTo(
-    '.section-scroll-2',
-    { opacity: 0, y: 60 },
+    '.mascot-philosophy',
+    { opacity: 0, y: 40 },
     {
       scrollTrigger: {
         trigger: '.section-scroll-2',
-        start: 'top 95%',
+        start: 'top 80%',
         toggleActions: 'play none none none',
       },
       opacity: 1,
       y: 0,
-      duration: 1.6,
+      duration: 1.0,
+      delay: 0.4,
       ease: 'power2.out',
+    }
+  )
+
+  // FOXEL details - sequential animation when scrolled into view
+  gsap.fromTo(
+    '.foxel-item',
+    { opacity: 0, x: -30, scale: 0.95 },
+    {
+      scrollTrigger: {
+        trigger: '.foxel-list',
+        start: 'top 75%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      duration: 0.5,
+      stagger: 0.15,
+      ease: 'power3.out'
     }
   )
 
@@ -160,7 +216,7 @@ onMounted(() => {
     <!-- ── REAL CONTENT ───────────────────────────────────────────── -->
     <template v-else>
       <!-- Hero Title -->
-      <section class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-4">
+      <section class="hero-section max-w-6xl mx-auto px-6 py-12 flex flex-col gap-4">
         <h1
           class="font-rexlia text-3xl sm:text-4xl md:text-5xl tracking-wide tentang-fade select-none"
         >
@@ -179,7 +235,7 @@ onMounted(() => {
       </section>
 
       <!-- Tentang BYTESFEST Block -->
-      <section class="max-w-6xl mx-auto px-6 py-6 tentang-fade">
+      <section class="hero-section max-w-6xl mx-auto px-6 py-6 tentang-fade">
         <div
           class="w-full bg-[#f2f3ff] border border-brand-blue/10 rounded-[32px] p-8 md:p-12 shadow-sm"
         >
@@ -207,7 +263,7 @@ onMounted(() => {
       <section class="max-w-6xl mx-auto px-6 py-16 section-scroll-1">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
           <!-- Text details -->
-          <div class="lg:col-span-7 flex flex-col gap-6">
+          <div class="tema-text lg:col-span-7 flex flex-col gap-6">
             <div class="inline-block">
               <span
                 class="px-4 py-2 bg-brand-pale-teal text-brand-blue font-rexlia text-[10px] tracking-wider uppercase rounded-full border border-brand-blue/15"
@@ -238,7 +294,7 @@ onMounted(() => {
           </div>
 
           <!-- Logo -->
-          <div class="lg:col-span-5 flex justify-center">
+          <div class="tema-logo lg:col-span-5 flex justify-center">
             <div
               class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300"
             >
@@ -264,7 +320,7 @@ onMounted(() => {
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
           <!-- Mascot Image -->
-          <div class="lg:col-span-5 flex justify-center">
+          <div class="mascot-image lg:col-span-5 flex justify-center">
             <div
               class="relative w-full max-w-md aspect-square rounded-[32px] border border-brand-blue/10 bg-brand-pale-teal/15 p-6 md:p-8 flex items-center justify-center overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300"
             >
@@ -277,7 +333,7 @@ onMounted(() => {
           </div>
 
           <!-- Mascot Narrative -->
-          <div class="lg:col-span-7 flex flex-col gap-6 text-brand-navy">
+          <div class="mascot-philosophy lg:col-span-7 flex flex-col gap-6 text-brand-navy">
             <h4 class="font-rexlia text-2xl text-brand-blue font-bold tracking-wide">FOXEL</h4>
 
             <div
@@ -300,11 +356,11 @@ onMounted(() => {
             </div>
 
             <!-- FOXEL Meaning List -->
-            <div class="mt-6 flex flex-col gap-4">
+            <div class="foxel-list mt-6 flex flex-col gap-4">
               <div
                 v-for="(f, idx) in foxelDetails"
                 :key="idx"
-                class="flex items-start gap-4 p-4 rounded-2xl border border-brand-blue/5 hover:border-brand-blue/20 bg-white hover:bg-brand-pale-teal/10 hover:shadow-sm transition-all duration-300"
+                class="foxel-item flex items-start gap-4 p-4 rounded-2xl border border-brand-blue/5 hover:border-brand-blue/20 bg-white hover:bg-brand-pale-teal/10 hover:shadow-sm transition-all duration-300"
               >
                 <div
                   class="w-10 h-10 rounded-xl bg-brand-blue flex items-center justify-center text-white shrink-0 font-rexlia text-lg font-bold shadow-md shadow-brand-blue/10"
