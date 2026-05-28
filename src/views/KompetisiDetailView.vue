@@ -318,6 +318,7 @@ watch(() => route.path, async (newPath, oldPath) => {
             </a>
             <a 
               :href="compData.guideBookLink"
+              target="_blank"
               class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-brand-blue text-brand-blue font-rexlia text-sm tracking-wider hover:bg-brand-blue/5 hover:-translate-y-0.5 transition-all duration-300"
             >
               <BookOpen class="w-4 h-4" />
