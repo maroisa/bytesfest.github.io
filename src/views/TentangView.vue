@@ -132,10 +132,10 @@ onMounted(() => {
   <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
     <!-- Ambient Blobs -->
     <div
-      class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"
+      class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/28 blur-[100px] sm:blur-[130px] pointer-events-none orb-color-cycle"
     ></div>
     <div
-      class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"
+      class="absolute -z-10 bottom-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/28 blur-[100px] sm:blur-[130px] pointer-events-none orb-color-cycle"
     ></div>
 
     <!-- ── SKELETON ───────────────────────────────────────────────── -->
@@ -395,6 +395,26 @@ onMounted(() => {
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+/* Color Cycle Animation for Orbs */
+.orb-color-cycle {
+  animation: colorCycle 8s ease-in-out infinite;
+}
+
+@keyframes colorCycle {
+  0%, 100% {
+    background-color: rgba(30, 136, 229, 0.28); /* Blue */
+  }
+  25% {
+    background-color: rgba(0, 150, 136, 0.28); /* Green */
+  }
+  50% {
+    background-color: rgba(0, 168, 204, 0.28); /* Bluish Green */
+  }
+  75% {
+    background-color: rgba(147, 51, 234, 0.28); /* Purple */
   }
 }
 </style>

@@ -359,8 +359,8 @@ onMounted(() => {
 <template>
   <div class="pt-28 font-sans min-h-screen relative overflow-hidden">
     <!-- Ambient Blobs -->
-    <div class="absolute -z-10 top-[10%] right-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
-    <div class="absolute -z-10 bottom-[15%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <div class="absolute -z-10 top-[10%] right-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/26 blur-[100px] sm:blur-[130px] pointer-events-none orb-color-cycle"></div>
+    <div class="absolute -z-10 bottom-[15%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/26 blur-[100px] sm:blur-[130px] pointer-events-none orb-color-cycle"></div>
 
     <!-- Header Section -->
     <section v-if="!isLoading" class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
@@ -576,6 +576,26 @@ onMounted(() => {
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+/* Color Cycle Animation for Orbs */
+.orb-color-cycle {
+  animation: colorCycle 8s ease-in-out infinite;
+}
+
+@keyframes colorCycle {
+  0%, 100% {
+    background-color: rgba(30, 136, 229, 0.26); /* Blue */
+  }
+  25% {
+    background-color: rgba(0, 150, 136, 0.26); /* Green */
+  }
+  50% {
+    background-color: rgba(0, 168, 204, 0.26); /* Bluish Green */
+  }
+  75% {
+    background-color: rgba(147, 51, 234, 0.26); /* Purple */
   }
 }
 </style>

@@ -276,7 +276,10 @@ watch(() => route.path, async (newPath, oldPath) => {
 <template>
   <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
     <!-- Ambient Blobs (Static Colors) -->
-    <div class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
+    <div 
+      class="absolute -z-10 top-[10%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/28 blur-[100px] sm:blur-[130px] pointer-events-none"
+      :class="compId === 'sdgs-visual-campaign' ? 'orb-purple-static' : 'orb-color-cycle'"
+    ></div>
 
     <!-- Hero / Header Section -->
     <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-12">
@@ -413,8 +416,14 @@ watch(() => route.path, async (newPath, oldPath) => {
     <!-- Timeline Kompetisi Section -->
     <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 py-16 sm:py-24 flex flex-col gap-12 sm:gap-16 relative">
       <!-- Timeline Blobs (Left side) -->
-      <div class="absolute -z-10 top-[20%] left-[-8%] w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full bg-brand-blue/25 blur-[90px] sm:blur-[110px] pointer-events-none"></div>
-      <div class="absolute -z-10 top-[50%] left-[-5%] w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] rounded-full bg-brand-teal/20 blur-[80px] sm:blur-[100px] pointer-events-none"></div>
+      <div 
+        class="absolute -z-10 top-[20%] left-[-8%] w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full bg-brand-blue/25 blur-[90px] sm:blur-[110px] pointer-events-none"
+        :class="compId === 'sdgs-visual-campaign' ? 'orb-purple-static' : 'orb-color-cycle'"
+      ></div>
+      <div 
+        class="absolute -z-10 top-[50%] left-[-5%] w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] rounded-full bg-brand-teal/20 blur-[80px] sm:blur-[100px] pointer-events-none"
+        :class="compId === 'sdgs-visual-campaign' ? 'orb-purple-static' : 'orb-color-cycle'"
+      ></div>
       
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="font-rexlia text-xl md:text-2xl text-brand-navy tracking-wide uppercase font-bold">
@@ -580,5 +589,30 @@ watch(() => route.path, async (newPath, oldPath) => {
   100% {
     background-position: -200% 0;
   }
+}
+
+/* Color Cycle Animation for Orbs */
+.orb-color-cycle {
+  animation: colorCycle 24s ease-in-out infinite;
+}
+
+@keyframes colorCycle {
+  0%, 100% {
+    background-color: rgba(30, 136, 229, 0.28); /* Blue */
+  }
+  25% {
+    background-color: rgba(0, 150, 136, 0.28); /* Green */
+  }
+  50% {
+    background-color: rgba(0, 168, 204, 0.28); /* Bluish Green */
+  }
+  75% {
+    background-color: rgba(147, 51, 234, 0.28); /* Purple */
+  }
+}
+
+/* Static Purple for SDG Visual Campaign */
+.orb-purple-static {
+  background-color: rgba(147, 51, 234, 0.28) !important;
 }
 </style>

@@ -309,20 +309,20 @@ const sponsors = [
     <div class="absolute inset-0 -z-10 overflow-hidden">
       <!-- Dynamic gradient orbs -->
       <div 
-        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate"
+        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate orb-color-cycle"
       ></div>
       <div 
-        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate"
+        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate orb-color-cycle"
       ></div>
       <div 
-        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate"
+        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate orb-color-cycle"
       ></div>
       <div 
-        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate"
+        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate orb-color-cycle"
       ></div>
       <!-- Third blob on left side between target peserta and kategori kompetisi -->
       <div 
-        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate"
+        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate orb-color-cycle"
       ></div>
     </div>
     <!-- Hero Section -->
@@ -682,8 +682,24 @@ const sponsors = [
 
 /* Pulse and Rotate Animation */
 .animate-pulse-rotate {
-  animation: pulseRotate 8s ease-in-out infinite;
-  will-change: transform;
+  animation: pulseRotate 8s ease-in-out infinite, colorCycle 8s ease-in-out infinite;
+  will-change: transform, background-color;
+}
+
+/* Color Cycle Animation for Orbs */
+@keyframes colorCycle {
+  0%, 100% {
+    background-color: rgba(30, 136, 229, 0.35); /* Blue */
+  }
+  25% {
+    background-color: rgba(0, 150, 136, 0.30); /* Green */
+  }
+  50% {
+    background-color: rgba(0, 168, 204, 0.28); /* Bluish Green */
+  }
+  75% {
+    background-color: rgba(147, 51, 234, 0.30); /* Purple */
+  }
 }
 
 @keyframes pulseRotate {
