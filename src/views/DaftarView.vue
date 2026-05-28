@@ -50,7 +50,6 @@ const competitions = [
   }
 ]
 
-// FIX Bug 5 (Inefficiency): removed unnecessary `async` from onMounted —
 // there is no top-level await here; the await lives inside the setTimeout callback
 onMounted(() => {
   // FIX Bug 1: GSAP moved inside setTimeout + after nextTick
@@ -76,8 +75,8 @@ onMounted(() => {
     gsap.to('.comp-card', {
       opacity: 1,
       y: 0,
-      duration: 0.6,
-      stagger: 0.18,
+      duration: 0.5,
+      stagger: 0.15,
       ease: 'power2.out',
       delay: 0.2
     })
@@ -88,14 +87,8 @@ onMounted(() => {
 <template>
   <div class="pt-28 font-meiland min-h-screen relative overflow-hidden">
     <!-- Ambient Blobs -->
-    <div class="absolute -z-10 top-[5%] left-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-lime-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
-    <div class="absolute -z-10 top-[20%] right-[-15%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-purple-400/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
-    <div class="absolute -z-10 bottom-[10%] left-[25%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-brand-blue-light/26 blur-[120px] sm:blur-[150px] pointer-events-none"></div>
+    <div class="absolute -z-10 bottom-[10%] left-[25%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-brand-blue-light/26 blur-[120px] sm:blur-[150px] pointer-events-none orb-color-cycle"></div>
 
-    <!--
-      FIX Bug 4 (Inconsistency): real content grouped under a single v-if
-      instead of two separate v-if="!isLoading" blocks
-    -->
     <template v-if="!isLoading">
       <!-- Header Section -->
       <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-5">
@@ -170,12 +163,6 @@ onMounted(() => {
       </section>
     </template>
 
-    <!--
-      FIX Bug 2 (Bug) + FIX Bug 3 (Redundancy):
-      skeleton is now guarded by v-else so it only shows while isLoading is true,
-      and the 4 hardcoded identical card blocks are replaced with a single v-for
-      over competitions.length
-    -->
     <template v-else>
       <!-- Skeleton Header -->
       <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-5">
@@ -227,6 +214,26 @@ onMounted(() => {
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+/* Color Cycle Animation for Orbs */
+.orb-color-cycle {
+  animation: colorCycle 8s ease-in-out infinite;
+}
+
+@keyframes colorCycle {
+  0%, 100% {
+    background-color: rgba(30, 136, 229, 0.26); /* Blue */
+  }
+  25% {
+    background-color: rgba(0, 150, 136, 0.26); /* Green */
+  }
+  50% {
+    background-color: rgba(0, 168, 204, 0.26); /* Bluish Green */
+  }
+  75% {
+    background-color: rgba(147, 51, 234, 0.26); /* Purple */
   }
 }
 </style>
