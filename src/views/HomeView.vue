@@ -12,41 +12,14 @@ gsap.registerPlugin(ScrollTrigger)
 // Loading state
 const isLoading = ref(true)
 
-// Mouse tracking for interactive orbs
-const mouseX = ref(0)
-const mouseY = ref(0)
-const orbPositions = ref([
-  { x: 0, y: 0 },
-  { x: 0, y: 0 },
-  { x: 0, y: 0 },
-  { x: 0, y: 0 }
-])
-
-const handleMouseMove = (e: MouseEvent) => {
-  mouseX.value = (e.clientX / window.innerWidth - 0.5) * 2
-  mouseY.value = (e.clientY / window.innerHeight - 0.5) * 2
-  
-  // Update orb positions based on mouse
-  orbPositions.value = [
-    { x: mouseX.value * 30, y: mouseY.value * 30 },
-    { x: mouseX.value * -25, y: mouseY.value * 25 },
-    { x: mouseX.value * 20, y: mouseY.value * -35 },
-    { x: mouseX.value * -35, y: mouseY.value * -20 }
-  ]
-}
-
 // Calculate a dynamic target date for the countdown so that it always shows around 45 days in the future for demo purposes, or a fixed date.
 const countdownTarget = '2026-06-30T16:34:00.000Z'
 
-const heroTitle = ref<HTMLElement | null>(null)
 const targetSection = ref<HTMLElement | null>(null)
 const categorySection = ref<HTMLElement | null>(null)
 const timelineSection = ref<HTMLElement | null>(null)
 
 onMounted(async () => {
-  // Add mouse move listener
-  window.addEventListener('mousemove', handleMouseMove)
-
   // Simulate loading
   setTimeout(async () => {
     isLoading.value = false
@@ -63,64 +36,150 @@ onMounted(async () => {
         ease: 'power3.out'
       }
     )
+
+    // Target Peserta Scroll Animations (using fromTo to resolve scroll-reset opacity bugs)
+    if (targetSection.value) {
+      gsap.fromTo('.target-card', 
+        { opacity: 0, x: 50 },
+        {
+          scrollTrigger: {
+            trigger: targetSection.value,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out'
+        }
+      )
+    }
+
+    // Kategori Kompetisi Scroll Animations (using fromTo to resolve hidden category cards bug)
+    if (categorySection.value) {
+      gsap.fromTo('.category-card', 
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: {
+            trigger: categorySection.value,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out'
+        }
+      )
+    }
+
+    // Timeline Scroll Animations
+    if (timelineSection.value) {
+      // Desktop: Animate connecting line first (slide in from left)
+      gsap.fromTo('.timeline-line',
+        { opacity: 0, scaleX: 0, transformOrigin: 'left center' },
+        {
+          scrollTrigger: {
+            trigger: timelineSection.value,
+            start: 'top 75%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          scaleX: 1,
+          duration: 0.8,
+          ease: 'power2.out'
+        }
+      )
+
+      // Desktop: Animate dots (scale up with slide)
+      gsap.fromTo('.timeline-dot',
+        { opacity: 0, scale: 0, y: -20 },
+        {
+          scrollTrigger: {
+            trigger: timelineSection.value,
+            start: 'top 70%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: 'back.out(1.5)'
+        }
+      )
+
+      // Desktop: Animate cards (slide up with fade)
+      gsap.fromTo('.timeline-card',
+        { opacity: 0, y: 40, scale: 0.95 },
+        {
+          scrollTrigger: {
+            trigger: timelineSection.value,
+            start: 'top 65%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power3.out'
+        }
+      )
+
+      // Mobile: Animate vertical line (slide down)
+      gsap.fromTo('.timeline-vertical',
+        { opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: timelineSection.value,
+            start: 'top 75%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out'
+        }
+      )
+
+      // Mobile: Animate dots (scale in)
+      gsap.fromTo('.timeline-dot-mobile',
+        { opacity: 0, scale: 0 },
+        {
+          scrollTrigger: {
+            trigger: timelineSection.value,
+            start: 'top 70%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          stagger: 0.1,
+          ease: 'back.out(1.5)'
+        }
+      )
+
+      // Mobile: Animate cards (slide in from left)
+      gsap.fromTo('.timeline-card-mobile',
+        { opacity: 0, x: -30, scale: 0.95 },
+        {
+          scrollTrigger: {
+            trigger: timelineSection.value,
+            start: 'top 65%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: 'power3.out'
+        }
+      )
+    }
   }, 800)
-
-  // Target Peserta Scroll Animations (using fromTo to resolve scroll-reset opacity bugs)
-  if (targetSection.value) {
-    gsap.fromTo('.target-card', 
-      { opacity: 0, x: 50 },
-      {
-        scrollTrigger: {
-          trigger: targetSection.value,
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        },
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power2.out'
-      }
-    )
-  }
-
-  // Kategori Kompetisi Scroll Animations (using fromTo to resolve hidden category cards bug)
-  if (categorySection.value) {
-    gsap.fromTo('.category-card', 
-      { opacity: 0, y: 50 },
-      {
-        scrollTrigger: {
-          trigger: categorySection.value,
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out'
-      }
-    )
-  }
-
-  // Timeline Scroll Animations
-  if (timelineSection.value) {
-    gsap.fromTo('.timeline-item', 
-      { opacity: 0, scale: 0.9 },
-      {
-        scrollTrigger: {
-          trigger: timelineSection.value,
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        },
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'back.out(1.7)'
-      }
-    )
-  }
 })
 
 const categories = [
@@ -211,35 +270,25 @@ const sponsors = [
 </script>
 
 <template>
-  <div class="pt-28 font-sans relative overflow-hidden" @mousemove="handleMouseMove">
+  <div class="pt-28 font-sans relative overflow-hidden">
     <!-- Dynamic Background -->
     <div class="absolute inset-0 -z-10 overflow-hidden">
-      <!-- Interactive gradient orbs -->
+      <!-- Dynamic gradient orbs -->
       <div 
-        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-blue/45 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[0]?.x ?? 0}px, ${orbPositions[0]?.y ?? 0}px)` }"
-        @click="orbPositions[0] = { x: 0, y: 0 }"
+        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate transition-all duration-500 hover:bg-brand-blue/45 hover:scale-150"
       ></div>
       <div 
-        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-teal/40 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[1]?.x ?? 0}px, ${orbPositions[1]?.y ?? 0}px)` }"
-        @click="orbPositions[1] = { x: 0, y: 0 }"
+        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate transition-all duration-500 hover:bg-brand-teal/40 hover:scale-150"
       ></div>
       <div 
-        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-blue-light/35 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[2]?.x ?? 0}px, ${orbPositions[2]?.y ?? 0}px)` }"
-        @click="orbPositions[2] = { x: 0, y: 0 }"
+        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate transition-all duration-500 hover:bg-brand-blue-light/35 hover:scale-150"
       ></div>
       <div 
-        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-brand-teal-light/38 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[3]?.x ?? 0}px, ${orbPositions[3]?.y ?? 0}px)` }"
-        @click="orbPositions[3] = { x: 0, y: 0 }"
+        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate transition-all duration-500 hover:bg-brand-teal-light/38 hover:scale-150"
       ></div>
       <!-- Third blob on left side between target peserta and kategori kompetisi -->
       <div 
-        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate cursor-pointer transition-all duration-500 hover:bg-purple-500/40 hover:scale-110"
-        :style="{ transform: `translate(${orbPositions[2]?.x ?? 0}px, ${orbPositions[2]?.y ?? 0}px)` }"
-        @click="orbPositions[2] = { x: 0, y: 0 }"
+        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate transition-all duration-500 hover:bg-purple-500/40 hover:scale-150"
       ></div>
       
       <!-- Grid pattern overlay -->
@@ -247,7 +296,7 @@ const sponsors = [
     </div>
     <!-- Hero Section -->
     <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
-      <div ref="heroTitle" class="flex flex-col gap-6 max-w-4xl">
+      <div class="flex flex-col gap-6 max-w-4xl">
         <h1 class="font-rexlia text-[11vw] sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none hero-fade">
           <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal-light bg-clip-text text-transparent">BYTESFEST</span>
           <br>
@@ -365,7 +414,7 @@ const sponsors = [
       <div class="relative hidden lg:block pt-16 pb-20">
         <!-- Connecting Line (Centered with the dots and responsive to N items) -->
         <div 
-          class="absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
+          class="timeline-line absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
           :style="{ 
             top: '114px', 
             left: (50 / timelineItems.length) + '%', 
@@ -389,7 +438,7 @@ const sponsors = [
 
             <!-- Dot on the line -->
             <div 
-              class="relative w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-125 mb-6"
+              class="timeline-dot relative w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-125 mb-6"
               :class="item.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
             >
               <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
@@ -397,7 +446,7 @@ const sponsors = [
 
             <!-- Title & Description inside rounded card -->
             <div 
-              class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs transition-all duration-300 group-hover:shadow-md"
+              class="timeline-card p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs transition-all duration-300 group-hover:shadow-md"
               :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-md': item.highlight }"
             >
               <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">
@@ -412,7 +461,7 @@ const sponsors = [
       </div>
 
       <!-- Vertical Timeline (Mobile) -->
-      <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full">
+      <div class="timeline-vertical lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full">
         <div 
           v-for="(item, idx) in timelineItems" 
           :key="idx"
@@ -420,7 +469,7 @@ const sponsors = [
         >
           <!-- Dot -->
           <div 
-            class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm flex items-center justify-center z-10"
+            class="timeline-dot-mobile absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm flex items-center justify-center z-10"
             :class="item.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
           >
             <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
@@ -431,7 +480,7 @@ const sponsors = [
           </span>
           
           <div 
-            class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full"
+            class="timeline-card-mobile p-4 rounded-xl border border-brand-blue/10 bg-white w-full"
             :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-sm': item.highlight }"
           >
             <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">
