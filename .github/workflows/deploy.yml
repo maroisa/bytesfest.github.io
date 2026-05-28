@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ admir4ljoni_develop ]
+    branches: [ bytestfest2026 ]
   workflow_dispatch:
 
 permissions:
