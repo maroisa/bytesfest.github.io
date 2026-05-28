@@ -296,9 +296,9 @@ const animateFAQItems = (delay = 0) => {
   gsap.to('.faq-item', {
     opacity: 1,
     x: 0,
-    duration: 0.8,
+    duration: 0.5,
     delay: delay,
-    stagger: 0.15,
+    stagger: 0.1,
     ease: 'power3.out'
   })
 }
@@ -312,59 +312,47 @@ onMounted(() => {
     gsap.from('.faq-header-badge', {
       opacity: 0,
       y: -20,
-      duration: 0.8,
+      duration: 0.5,
       ease: 'power3.out'
     })
     
     gsap.from('.faq-header-title', {
       opacity: 0,
       y: 30,
-      duration: 1.1,
-      delay: 0.25,
+      duration: 0.6,
+      delay: 0.15,
       ease: 'power3.out'
     })
     
     gsap.from('.faq-header-desc', {
       opacity: 0,
       y: 30,
-      duration: 1.1,
-      delay: 0.5,
+      duration: 0.6,
+      delay: 0.3,
       ease: 'power3.out'
     })
     
     gsap.from('.faq-header-search', {
       opacity: 0,
       y: 30,
-      duration: 1.1,
-      delay: 0.75,
+      duration: 0.6,
+      delay: 0.45,
       ease: 'power3.out'
     })
     
     gsap.to('.faq-category-chip', {
       opacity: 1,
       y: 20,
-      duration: 0.8,
-      delay: 0.2,
-      stagger: 0.2,
+      duration: 0.5,
+      delay: 0.1,
+      stagger: 0.1,
       ease: 'power3.out',
       clearProps: 'transform'
     })
     
-    // Animate FAQ items after categories (categories: 0.2s delay + 0.8s duration + 0.6s stagger = 1.6s total)
-    animateFAQItems(1.4)
+    // Animate FAQ items after categories (categories: 0.1s delay + 0.5s duration + 0.3s stagger = 0.9s total)
+    animateFAQItems(0.7)
   }, 600)
-})
-
-// Re-animate FAQ items when category changes
-watch(selectedCategory, async () => {
-  await nextTick()
-  animateFAQItems()
-})
-
-// Re-animate FAQ items when pagination changes
-watch(currentPage, async () => {
-  await nextTick()
-  animateFAQItems()
 })
 </script>
 
