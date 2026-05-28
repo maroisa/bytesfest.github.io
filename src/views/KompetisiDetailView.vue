@@ -139,7 +139,7 @@ const initAnimations = () => {
     {
       scrollTrigger: {
         trigger: '.criteria-grid',
-        start: 'top 95%',
+        start: 'top 80%',
         toggleActions: 'play none none none'
       },
       opacity: 1,
@@ -150,19 +150,105 @@ const initAnimations = () => {
     }
   )
 
-  gsap.fromTo('.timeline-step', 
-    { opacity: 0, scale: 0.95 },
+  // Desktop: Animate connecting line first (slide in from left)
+  gsap.fromTo('.timeline-line',
+    { opacity: 0, scaleX: 0, transformOrigin: 'left center' },
     {
       scrollTrigger: {
         trigger: '.timeline-grid',
-        start: 'top 95%',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      scaleX: 1,
+      duration: 0.8,
+      ease: 'power2.out'
+    }
+  )
+
+  // Desktop: Animate dots (scale up with slide)
+  gsap.fromTo('.timeline-dot',
+    { opacity: 0, scale: 0, y: -20 },
+    {
+      scrollTrigger: {
+        trigger: '.timeline-grid',
+        start: 'top 70%',
         toggleActions: 'play none none none'
       },
       opacity: 1,
       scale: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'back.out(1.5)'
+    }
+  )
+
+  // Desktop: Animate cards (slide up with fade)
+  gsap.fromTo('.timeline-card',
+    { opacity: 0, y: 40, scale: 0.95 },
+    {
+      scrollTrigger: {
+        trigger: '.timeline-grid',
+        start: 'top 65%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      y: 0,
+      scale: 1,
       duration: 0.6,
       stagger: 0.15,
+      ease: 'power3.out'
+    }
+  )
+
+  // Mobile: Animate vertical line (fade in)
+  gsap.fromTo('.timeline-vertical',
+    { opacity: 0 },
+    {
+      scrollTrigger: {
+        trigger: '.timeline-grid',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      duration: 0.6,
       ease: 'power2.out'
+    }
+  )
+
+  // Mobile: Animate dots (scale in)
+  gsap.fromTo('.timeline-dot-mobile',
+    { opacity: 0, scale: 0 },
+    {
+      scrollTrigger: {
+        trigger: '.timeline-grid',
+        start: 'top 70%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      scale: 1,
+      duration: 0.4,
+      stagger: 0.1,
+      ease: 'back.out(1.5)'
+    }
+  )
+
+  // Mobile: Animate cards (slide in from left)
+  gsap.fromTo('.timeline-card-mobile',
+    { opacity: 0, x: -30, scale: 0.95 },
+    {
+      scrollTrigger: {
+        trigger: '.timeline-grid',
+        start: 'top 65%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      duration: 0.5,
+      stagger: 0.12,
+      ease: 'power3.out'
     }
   )
 }
@@ -179,6 +265,8 @@ onMounted(async () => {
 // Watch for route changes to reset loading state when navigating between competitions
 watch(() => route.path, async (newPath, oldPath) => {
   if (newPath !== oldPath) {
+    // Cleanup existing ScrollTriggers before re-initializing
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     await nextTick()
     initAnimations()
   }
@@ -338,7 +426,7 @@ watch(() => route.path, async (newPath, oldPath) => {
       <div class="timeline-grid relative hidden lg:block pt-16 pb-20 mb-16">
         <!-- Connecting Line (Centered with the dots and responsive to N items) -->
         <div 
-          class="absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
+          class="timeline-line absolute h-[4px] bg-gradient-to-r from-brand-blue/30 via-brand-blue-light/70 to-brand-blue/30 rounded-full shadow-[0_0_8px_rgba(30,136,229,0.3)]"
           :style="{ 
             top: '114px', 
             left: (50 / compData.timeline.length) + '%', 
@@ -362,7 +450,7 @@ watch(() => route.path, async (newPath, oldPath) => {
 
             <!-- Dot on the line -->
             <div 
-              class="relative w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-125 mb-6"
+              class="timeline-dot relative w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-125 mb-6"
               :class="step.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
             >
               <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
@@ -370,7 +458,7 @@ watch(() => route.path, async (newPath, oldPath) => {
 
             <!-- Title & Description inside rounded card -->
             <div 
-              class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs transition-all duration-300 group-hover:shadow-md"
+              class="timeline-card p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs transition-all duration-300 group-hover:shadow-md"
               :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-md': step.highlight }"
             >
               <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">
@@ -385,7 +473,7 @@ watch(() => route.path, async (newPath, oldPath) => {
       </div>
 
       <!-- Vertical Timeline (Mobile) -->
-      <div class="timeline-grid lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full mb-16">
+      <div class="timeline-vertical lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full mb-16">
         <div 
           v-for="(step, idx) in compData.timeline" 
           :key="idx"
@@ -393,7 +481,7 @@ watch(() => route.path, async (newPath, oldPath) => {
         >
           <!-- Dot -->
           <div 
-            class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm flex items-center justify-center z-10"
+            class="timeline-dot-mobile absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm flex items-center justify-center z-10"
             :class="step.highlight ? 'bg-brand-teal-light border-brand-teal' : 'bg-brand-blue border-brand-blue-light'"
           >
             <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
@@ -404,7 +492,7 @@ watch(() => route.path, async (newPath, oldPath) => {
           </span>
           
           <div 
-            class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full"
+            class="timeline-card-mobile p-4 rounded-xl border border-brand-blue/10 bg-white w-full"
             :class="{ 'bg-brand-pale-teal/30 border-brand-teal-light shadow-sm': step.highlight }"
           >
             <h4 class="font-rexlia text-xs text-brand-navy font-bold tracking-wide mb-1 leading-normal">
@@ -436,8 +524,15 @@ watch(() => route.path, async (newPath, oldPath) => {
           }"
         ></div>
         
-        <div class="grid gap-6" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
-          <div class="flex flex-col items-center text-center relative">
+        <div 
+          class="grid gap-6"
+          :style="{ gridTemplateColumns: `repeat(${compData.timeline.length}, minmax(0, 1fr))` }"
+        >
+          <div 
+            v-for="i in compData.timeline.length" 
+            :key="i"
+            class="flex flex-col items-center text-center relative"
+          >
             <!-- Date skeleton -->
             <div class="skeleton w-20 h-4 rounded mb-6"></div>
             <!-- Dot skeleton -->
@@ -448,60 +543,16 @@ watch(() => route.path, async (newPath, oldPath) => {
               <div class="skeleton h-4 w-full rounded"></div>
             </div>
           </div>
-          <div class="flex flex-col items-center text-center relative">
-            <div class="skeleton w-20 h-4 rounded mb-6"></div>
-            <div class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 mb-6 skeleton"></div>
-            <div class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs">
-              <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
-              <div class="skeleton h-4 w-full rounded"></div>
-            </div>
-          </div>
-          <div class="flex flex-col items-center text-center relative">
-            <div class="skeleton w-20 h-4 rounded mb-6"></div>
-            <div class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 mb-6 skeleton"></div>
-            <div class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs">
-              <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
-              <div class="skeleton h-4 w-full rounded"></div>
-            </div>
-          </div>
-          <div class="flex flex-col items-center text-center relative">
-            <div class="skeleton w-20 h-4 rounded mb-6"></div>
-            <div class="w-5 h-5 rounded-full border-2 border-white bg-brand-blue-light/10 shadow-md z-10 mb-6 skeleton"></div>
-            <div class="p-5 rounded-2xl border border-brand-blue/10 bg-white shadow-sm w-full max-w-xs">
-              <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
-              <div class="skeleton h-4 w-full rounded"></div>
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- Vertical Timeline Skeleton (Mobile) -->
       <div class="lg:hidden flex flex-col gap-6 relative pl-8 before:absolute before:top-2 before:bottom-2 before:left-[13.5px] before:w-[3px] before:bg-brand-blue-light/30 before:rounded-full">
-        <div class="flex flex-col gap-2 relative">
-          <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
-          <div class="skeleton w-20 h-4 rounded"></div>
-          <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
-            <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
-            <div class="skeleton h-4 w-full rounded"></div>
-          </div>
-        </div>
-        <div class="flex flex-col gap-2 relative">
-          <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
-          <div class="skeleton w-20 h-4 rounded"></div>
-          <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
-            <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
-            <div class="skeleton h-4 w-full rounded"></div>
-          </div>
-        </div>
-        <div class="flex flex-col gap-2 relative">
-          <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
-          <div class="skeleton w-20 h-4 rounded"></div>
-          <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
-            <div class="skeleton h-5 w-3/4 rounded mb-2"></div>
-            <div class="skeleton h-4 w-full rounded"></div>
-          </div>
-        </div>
-        <div class="flex flex-col gap-2 relative">
+        <div 
+          v-for="i in compData.timeline.length" 
+          :key="i"
+          class="flex flex-col gap-2 relative"
+        >
           <div class="absolute top-1.5 left-[-26px] w-4.5 h-4.5 rounded-full border-2 border-white shadow-sm skeleton"></div>
           <div class="skeleton w-20 h-4 rounded"></div>
           <div class="p-4 rounded-xl border border-brand-blue/10 bg-white w-full">
