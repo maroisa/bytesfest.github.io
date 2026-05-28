@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { Search, ChevronDown, HelpCircle, MessageSquare } from 'lucide-vue-next'
 import { gsap } from 'gsap'
 
@@ -268,7 +268,7 @@ watch(searchQuery, () => {
 
 // Watch for page changes to smooth scroll
 watch(currentPage, () => {
-  const faqList = document.querySelector('.faq-fade')
+  const faqList = document.querySelector('.faq-list')
   if (faqList) {
     faqList.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -290,21 +290,81 @@ const isOpen = (globalIndex: number) => {
   return openIndices.value.includes(globalIndex)
 }
 
-// FIX Bug 1: GSAP animation is moved INSIDE the setTimeout + after nextTick
-// so .faq-fade elements actually exist in the DOM when GSAP targets them
+// Animate FAQ items sliding from left
+const animateFAQItems = (delay = 0) => {
+  gsap.set('.faq-item', { opacity: 0.25, x: -40 })
+  gsap.to('.faq-item', {
+    opacity: 1,
+    x: 0,
+    duration: 0.8,
+    delay: delay,
+    stagger: 0.15,
+    ease: 'power3.out'
+  })
+}
+
 onMounted(() => {
   setTimeout(async () => {
     isLoading.value = false
-    await nextTick() // wait for Vue to render real content before animating
-
-    gsap.from('.faq-fade', {
+    await nextTick()
+    
+    // Animate header elements sequentially
+    gsap.from('.faq-header-badge', {
       opacity: 0,
-      y: 30,
+      y: -20,
       duration: 0.8,
-      stagger: 0.15,
       ease: 'power3.out'
     })
+    
+    gsap.from('.faq-header-title', {
+      opacity: 0,
+      y: 30,
+      duration: 1.1,
+      delay: 0.25,
+      ease: 'power3.out'
+    })
+    
+    gsap.from('.faq-header-desc', {
+      opacity: 0,
+      y: 30,
+      duration: 1.1,
+      delay: 0.5,
+      ease: 'power3.out'
+    })
+    
+    gsap.from('.faq-header-search', {
+      opacity: 0,
+      y: 30,
+      duration: 1.1,
+      delay: 0.75,
+      ease: 'power3.out'
+    })
+    
+    gsap.to('.faq-category-chip', {
+      opacity: 1,
+      y: 20,
+      duration: 0.8,
+      delay: 0.2,
+      stagger: 0.2,
+      ease: 'power3.out',
+      clearProps: 'transform'
+    })
+    
+    // Animate FAQ items after categories (categories: 0.2s delay + 0.8s duration + 0.6s stagger = 1.6s total)
+    animateFAQItems(1.4)
   }, 600)
+})
+
+// Re-animate FAQ items when category changes
+watch(selectedCategory, async () => {
+  await nextTick()
+  animateFAQItems()
+})
+
+// Re-animate FAQ items when pagination changes
+watch(currentPage, async () => {
+  await nextTick()
+  animateFAQItems()
 })
 </script>
 
@@ -314,23 +374,23 @@ onMounted(() => {
     <div class="absolute -z-10 top-[10%] right-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-blue-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
     <div class="absolute -z-10 bottom-[15%] left-[-10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-brand-teal-light/26 blur-[100px] sm:blur-[130px] pointer-events-none"></div>
 
-    <!-- Header Section (real content) -->
+    <!-- Header Section -->
     <section v-if="!isLoading" class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-pale-teal/30 border border-brand-teal/20 rounded-full text-brand-teal text-xs font-bold tracking-wider uppercase faq-fade">
+      <div class="faq-header-badge inline-flex items-center gap-2 px-4 py-2 bg-brand-pale-teal/30 border border-brand-teal/20 rounded-full text-brand-teal text-xs font-bold tracking-wider uppercase">
         <MessageSquare class="w-3.5 h-3.5" />
         FAQ
       </div>
       
-      <h1 class="font-rexlia text-3xl sm:text-4xl md:text-5xl tracking-wider uppercase leading-tight faq-fade">
+      <h1 class="faq-header-title font-rexlia text-3xl sm:text-4xl md:text-5xl tracking-wider uppercase leading-tight">
         <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal bg-clip-text text-transparent">Ada Pertanyaan?</span>
       </h1>
       
-      <p class="text-brand-grey text-base md:text-lg max-w-xl leading-relaxed faq-fade">
+      <p class="faq-header-desc text-brand-grey text-base md:text-lg max-w-xl leading-relaxed">
         Temukan jawaban cepat atas pertanyaan umum seputar pelaksanaan pendaftaran, kriteria, dan detail kompetisi BYTESFEST 2026.
       </p>
 
       <!-- Search Input -->
-      <div class="w-full max-w-xl relative mt-4 faq-fade">
+      <div class="faq-header-search w-full max-w-xl relative mt-4">
         <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-brand-grey/60">
           <Search class="w-5 h-5" />
         </span>
@@ -343,16 +403,16 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Filters & Content (real content) -->
+    <!-- Filters & Content -->
     <section v-if="!isLoading" class="max-w-4xl mx-auto px-6 pb-24 flex flex-col gap-10">
       
       <!-- Category Chips -->
-      <div class="flex flex-wrap items-center justify-center gap-2.5 faq-fade">
+      <div class="flex flex-wrap items-center justify-center gap-2.5">
         <button 
           v-for="cat in categories" 
           :key="cat"
           @click="selectCategory(cat)"
-          class="px-5 py-2.5 rounded-full text-xs font-rexlia tracking-wider border transition-all duration-300 cursor-pointer"
+          class="faq-category-chip faq-chip-init px-5 py-2.5 rounded-full text-xs font-rexlia tracking-wider border transition-all duration-300 cursor-pointer"
           :class="selectedCategory === cat 
             ? 'bg-brand-blue text-white border-brand-blue shadow-lg shadow-brand-blue/20' 
             : 'bg-white text-brand-navy border-brand-blue/10 hover:border-brand-blue/30 hover:bg-brand-pale-teal/10'"
@@ -362,7 +422,7 @@ onMounted(() => {
       </div>
 
       <!-- FAQ List -->
-      <div class="flex flex-col gap-4 faq-fade">
+      <div class="flex flex-col gap-4">
         <div v-if="filteredFaqs.length === 0" class="text-center py-16 border border-dashed border-brand-blue/20 rounded-3xl bg-white p-8">
           <HelpCircle class="w-12 h-12 text-brand-blue/30 mx-auto mb-3" />
           <p class="font-rexlia text-base text-brand-navy font-bold tracking-wide">Pertanyaan tidak ditemukan</p>
@@ -377,7 +437,7 @@ onMounted(() => {
         <div 
           v-for="faq in paginatedFaqs" 
           :key="faq.globalIndex"
-          class="border border-brand-blue/10 bg-white rounded-2xl hover:border-brand-blue/25 transition-all duration-300 shadow-sm"
+          class="faq-item faq-item-init border border-brand-blue/10 bg-white rounded-2xl hover:border-brand-blue/25 transition-all duration-300 shadow-sm"
         >
           <!-- Accordion Header -->
           <button 
@@ -418,7 +478,7 @@ onMounted(() => {
       </div>
 
       <!-- Pagination -->
-      <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-8 faq-fade">
+      <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-8">
         <button 
           @click="currentPage--"
           :disabled="currentPage === 1"
@@ -447,11 +507,8 @@ onMounted(() => {
       </div>
     </section>
 
-    <!--
-      FIX Bug 2: skeleton sections now wrapped in v-else so they only
-      render while isLoading is true, and disappear once real content mounts.
-    -->
-    <template v-else>
+    <!-- Skeleton Loading -->
+    <template v-if="isLoading">
       <!-- Skeleton Header -->
       <section class="max-w-4xl mx-auto px-6 py-12 text-center flex flex-col items-center gap-6">
         <div class="skeleton h-10 w-32 rounded-full"></div>
@@ -479,14 +536,20 @@ onMounted(() => {
             <div class="skeleton h-4 w-5/6 rounded mt-2"></div>
           </div>
         </div>
+        <div class="flex items-center justify-center gap-2 mt-8">
+          <div class="skeleton h-10 w-16 rounded-full"></div>
+          <div class="skeleton h-10 w-10 rounded-full" v-for="i in 3" :key="i"></div>
+          <div class="skeleton h-10 w-16 rounded-full"></div>
+        </div>
       </section>
     </template>
+
   </div>
 </template>
 
 <style scoped>
 /* 
-  FIX Bug 4: faq-slide transition uses height-based JS hooks (in @before-enter etc.)
+  faq-slide transition uses height-based JS hooks (in @before-enter etc.)
   The CSS transition class just needs to declare the timing function.
   overflow:hidden is handled in the JS hooks to prevent content bleed.
 */
@@ -494,6 +557,17 @@ onMounted(() => {
 .faq-slide-leave-active {
   transition: height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
               opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Chips start at 25% opacity — GSAP will animate from here */
+.faq-chip-init {
+  opacity: 0.25;
+}
+
+/* FAQ items start at 25% opacity — GSAP will animate from here */
+.faq-item-init {
+  opacity: 0.25;
+  transform: translateX(-40px);
 }
 
 .faq-slide-enter-from,
