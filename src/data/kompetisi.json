@@ -128,8 +128,8 @@
         "icon": "GraduationCap"
       },
       {
-        "title": "Tim 2-3 Orang",
-        "desc": "Setiap tim terdiri dari 3 orang.",
+        "title": "Individu/Tim",
+        "desc": "Peserta dapat berpartisipasi secara individu atau dalam bentuk tim dengan maksimal 3 orang.",
         "icon": "Users"
       },
       {
@@ -146,21 +146,21 @@
         "highlight": true
       },
       {
-        "date": "8 Juli - 15 Juli",
-        "title": "Babak Penyisihan",
-        "desc": "Seleksi proposal ide dan penentuan finalis.",
-        "highlight": false
-      },
-      {
-        "date": "16 Juli",
-        "title": "Pengumuman Finalis",
-        "desc": "Pengumuman 10 tim terbaik yang maju ke babak final.",
+        "date": "8 Juli - 11 Juli",
+        "title": "Pengumpulan Karya",
+        "desc": "Pengumpulan karya dari peserta.",
         "highlight": false
       },
       {
         "date": "18 Juli",
-        "title": "Grand Final",
-        "desc": "Live coding 48 jam dan presentasi di venue utama.",
+        "title": "Tahap Wawancara",
+        "desc": "Tahap wawancara dengan juri oleh 10 tim terbaik.",
+        "highlight": false
+      },
+      {
+        "date": "21 Juli",
+        "title": "Pengumuman Pemenang",
+        "desc": "Pengumuman pemenang dan penyerahan hadiah.",
         "highlight": false
       }
     ]
