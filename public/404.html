@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Single Page Application workaround for GitHub Pages 404
+      // Stores the original path and redirects to index.html so Vue Router can handle the routing
+      const path = location.pathname + location.search + location.hash;
+      sessionStorage.setItem('redirect', path);
+      location.replace('/betfes2026/');
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
