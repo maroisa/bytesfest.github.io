@@ -290,13 +290,13 @@ const isOpen = (globalIndex: number) => {
   return openIndices.value.includes(globalIndex)
 }
 
-// Animate FAQ items sliding from left
+// Animate FAQ items sliding up
 const animateFAQItems = (delay = 0) => {
   gsap.fromTo('.faq-item', 
-    { opacity: 0.25, x: -40 },
+    { opacity: 0.25, y: 40 },
     {
       opacity: 1,
-      x: 0,
+      y: 0,
       duration: 0.5,
       delay: delay,
       stagger: 0.1,
@@ -310,7 +310,7 @@ onMounted(() => {
     isLoading.value = false
     await nextTick()
     
-    // Animate header elements sequentially
+    // Animate header elements simultaneously
     gsap.from('.faq-header-badge', {
       opacity: 0,
       y: -20,
@@ -322,7 +322,6 @@ onMounted(() => {
       opacity: 0,
       y: 30,
       duration: 0.6,
-      delay: 0.15,
       ease: 'power3.out'
     })
     
@@ -330,7 +329,6 @@ onMounted(() => {
       opacity: 0,
       y: 30,
       duration: 0.6,
-      delay: 0.3,
       ease: 'power3.out'
     })
     
@@ -338,7 +336,6 @@ onMounted(() => {
       opacity: 0,
       y: 30,
       duration: 0.6,
-      delay: 0.45,
       ease: 'power3.out'
     })
     
@@ -346,14 +343,13 @@ onMounted(() => {
       opacity: 1,
       y: 20,
       duration: 0.5,
-      delay: 0.1,
       stagger: 0.1,
       ease: 'power3.out',
       clearProps: 'transform'
     })
     
-    // Animate FAQ items after categories (categories: 0.1s delay + 0.5s duration + 0.3s stagger = 0.9s total)
-    animateFAQItems(0.7)
+    // Animate FAQ items simultaneously
+    animateFAQItems(0)
   }, 600)
 })
 </script>
