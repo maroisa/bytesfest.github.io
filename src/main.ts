@@ -14,7 +14,7 @@ const localJune5th = new Date('2026-06-04T17:00:00.000Z')
 let app: AppType
 
 // before 5 June 2026
-if (today < localJune5th) app = createApp(CountdownView)
+if (import.meta.env.MODE == 'production' && today < localJune5th) app = createApp(CountdownView)
 else {
   app = createApp(App)
   app.use(router)
