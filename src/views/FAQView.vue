@@ -17,7 +17,9 @@ const itemsPerPage = 7
 
 // Accordion open state (contains GLOBAL indices of open FAQs)
 // FIX Bug 3: Store global filteredFaqs indices, not paginated indices
-const openIndices = ref<number[]>([])
+//ubah dropdowm
+
+const openIndices = ref<number | null>(null)
 
 // FAQ categories (Exactly the 4 requested competition tracks)
 const categories = [
@@ -78,18 +80,21 @@ watch(currentPage, () => {
 
 // Toggle individual accordion by GLOBAL index
 // FIX Bug 3: uses globalIndex from paginatedFaqs, not local loop index
+//ubah dropdown
+
 const toggleFaq = (globalIndex: number) => {
-  const position = openIndices.value.indexOf(globalIndex)
-  if (position === -1) {
-    openIndices.value.push(globalIndex)
+  if (openIndices.value === globalIndex) {
+    openIndices.value = null 
   } else {
-    openIndices.value.splice(position, 1)
+    openIndices.value = globalIndex 
   }
 }
 
 // Check if a FAQ is open by GLOBAL index
+//ubah dropdown
+
 const isOpen = (globalIndex: number) => {
-  return openIndices.value.includes(globalIndex)
+  return openIndices.value === globalIndex
 }
 
 // Animate FAQ items sliding up
