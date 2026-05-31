@@ -9,6 +9,7 @@ lerna-debug.log*
 
 examples
 node_modules
+.vscode
 .DS_Store
 dist
 dist-ssr
@@ -38,3 +39,4 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+>>>>>>> admir4ljoni-admir4ljoni_develop
