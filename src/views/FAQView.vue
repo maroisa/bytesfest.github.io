@@ -17,7 +17,9 @@ const itemsPerPage = 7
 
 // Accordion open state (contains GLOBAL indices of open FAQs)
 // FIX Bug 3: Store global filteredFaqs indices, not paginated indices
-const openIndices = ref<number[]>([])
+//ubah dropdowm
+
+const openIndices = ref<number | null>(null)
 
 // FAQ categories (Exactly the 4 requested competition tracks)
 const categories = [
@@ -58,14 +60,14 @@ const totalPages = computed(() => Math.ceil(filteredFaqs.value.length / itemsPer
 // Set category filter
 const selectCategory = (category: string) => {
   selectedCategory.value = category
-  openIndices.value = [] // Reset all accordions on category switch
+  openIndices.value = null // Reset all accordions on category switch
   currentPage.value = 1 // Reset to page 1 on category switch
 }
 
 // Watch for search changes to reset pagination and close all accordions
 watch(searchQuery, () => {
   currentPage.value = 1
-  openIndices.value = []
+  openIndices.value = null
 })
 
 // Watch for page changes to smooth scroll
@@ -78,18 +80,21 @@ watch(currentPage, () => {
 
 // Toggle individual accordion by GLOBAL index
 // FIX Bug 3: uses globalIndex from paginatedFaqs, not local loop index
+//ubah dropdown
+
 const toggleFaq = (globalIndex: number) => {
-  const position = openIndices.value.indexOf(globalIndex)
-  if (position === -1) {
-    openIndices.value.push(globalIndex)
+  if (openIndices.value === globalIndex) {
+    openIndices.value = null 
   } else {
-    openIndices.value.splice(position, 1)
+    openIndices.value = globalIndex 
   }
 }
 
 // Check if a FAQ is open by GLOBAL index
+//ubah dropdown
+
 const isOpen = (globalIndex: number) => {
-  return openIndices.value.includes(globalIndex)
+  return openIndices.value === globalIndex
 }
 
 // Animate FAQ items sliding up
@@ -155,6 +160,40 @@ onMounted(() => {
     animateFAQItems(0)
   }, 600)
 })
+
+// Fungsi saat boks FAQ dibuka
+const onAccordionEnter = (el: Element, done: () => void) => {
+  const element = el as HTMLElement
+  // Set kondisi awal (tinggi 0 dan transparan)
+  gsap.set(element, { height: 0, opacity: 0, overflow: 'hidden' })
+  
+  // Animasikan secara dinamis ke tinggi asli kontennya
+  gsap.to(element, {
+    height: element.scrollHeight,
+    opacity: 1,
+    duration: 0.35,
+    ease: 'power2.out',
+    onComplete: () => {
+      element.style.height = 'auto' // Kembalikan ke auto agar responsif saat resize layar
+      done()
+    }
+  })
+}
+
+// Fungsi saat boks FAQ ditutup atau terjadi perpindahan halaman (Pagination)
+const onAccordionLeave = (el: Element, done: () => void) => {
+  const element = el as HTMLElement
+  gsap.set(element, { overflow: 'hidden' })
+  
+  // Tutup boks secara instan dan halus tanpa merusak tata letak halaman baru
+  gsap.to(element, {
+    height: 0,
+    opacity: 0,
+    duration: 0.25,
+    ease: 'power2.inOut',
+    onComplete: done
+  })
+}
 </script>
 
 <template>
@@ -227,7 +266,7 @@ onMounted(() => {
       </div>
 
       <!-- FAQ List -->
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4 min-h-[450px]">
         <div
           v-if="filteredFaqs.length === 0"
           class="text-center py-16 border border-dashed border-brand-blue/20 rounded-3xl bg-white p-8"
@@ -269,50 +308,16 @@ onMounted(() => {
             enter-from / leave-to opacity added for a smoother fade+slide feel.
           -->
           <transition
-            name="faq-slide"
-            @before-enter="
-              (el) => {
-                ;(el as HTMLElement).style.height = '0px'
-                ;(el as HTMLElement).style.overflow = 'hidden'
-              }
-            "
-            @enter="
-              (el) => {
-                ;(el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px'
-              }
-            "
-            @after-enter="
-              (el) => {
-                ;(el as HTMLElement).style.height = ''
-                ;(el as HTMLElement).style.overflow = ''
-              }
-            "
-            @before-leave="
-              (el) => {
-                ;(el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px'
-                ;(el as HTMLElement).style.overflow = 'hidden'
-              }
-            "
-            @leave="
-              (el) => {
-                ;(el as HTMLElement).style.height = '0px'
-              }
-            "
-            @after-leave="
-              (el) => {
-                ;(el as HTMLElement).style.height = ''
-                ;(el as HTMLElement).style.overflow = ''
-              }
-            "
-          >
-            <div v-show="isOpen(faq.globalIndex)" class="border-t border-brand-blue/5">
-              <div
-                class="px-6 py-5 text-brand-grey text-xs md:text-sm leading-relaxed text-justify bg-brand-pale-teal/5"
-              >
-                {{ faq.answer }}
-              </div>
-            </div>
-          </transition>
+  :css="false"
+  @enter="onAccordionEnter"
+  @leave="onAccordionLeave"
+>
+  <div v-show="isOpen(faq.globalIndex)" class="border-t border-brand-blue/5">
+    <div class="px-6 py-5 text-brand-grey text-xs md:text-sm leading-relaxed text-justify bg-brand-pale-teal/5">
+      {{ faq.answer }}
+    </div>
+  </div>
+</transition>
         </div>
       </div>
 
@@ -389,22 +394,13 @@ onMounted(() => {
   The CSS transition class just needs to declare the timing function.
   overflow:hidden is handled in the JS hooks to prevent content bleed.
 */
-.faq-slide-enter-active,
-.faq-slide-leave-active {
-  transition:
-    height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-    opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
+
 
 /* Chips start at 25% opacity — GSAP will animate from here */
 .faq-chip-init {
   opacity: 0.25;
 }
 
-.faq-slide-enter-from,
-.faq-slide-leave-to {
-  opacity: 0;
-}
 
 /* Skeleton Animation */
 .skeleton {
