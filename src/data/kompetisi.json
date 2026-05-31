@@ -97,7 +97,7 @@
       {
         "date": "15 Juli",
         "title": "Pengumuman Finalis",
-        "desc": "Pengumuman 10 besar esai terbaik yang masuk final.",
+        "desc": "Pengumuman 5 besar esai terbaik yang masuk final.",
         "highlight": false
       },
       {
@@ -194,7 +194,7 @@
       {
         "date": "5 Juni - 8 Juli",
         "title": "Pendaftaran",
-        "desc": "Pendaftaran online dan pengisian data karya kampanye.",
+        "desc": "Pengisian data pendaftaran dan pembayaran biaya administrasi.",
         "highlight": true
       },
       {
@@ -205,14 +205,14 @@
       },
       {
         "date": "15 Juli - 20 Juli",
-        "title": "Babak Kurasi",
-        "desc": "Voting Juara Favorit.",
+        "title": "Babak Kurasi Juara Favorit",
+        "desc": "Voting Juara Favorit di akun Instagram @bytesfest2026.",
         "highlight": false
       },
       {
         "date": "21 Juli",
-        "title": "Pengumuman Finalis",
-        "desc": "Pengumuman Finalis.",
+        "title": "Pengumuman Juara",
+        "desc": "Pengumuman Juara.",
         "highlight": false
       }
     ]
