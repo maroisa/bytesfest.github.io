@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, nextTick } from 'vue'
+import { onMounted, onUnmounted, ref, nextTick, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { GraduationCap, Calendar, History, Code, FileText, Globe, Megaphone, ArrowRight } from 'lucide-vue-next'
 import { gsap } from 'gsap'
@@ -14,8 +14,8 @@ gsap.registerPlugin(ScrollTrigger)
 // Loading state
 const isLoading = ref(true)
 
-// Calculate a dynamic target date for the countdown so that it always shows around 45 days in the future for demo purposes, or a fixed date.
-const countdownTarget = '2026-06-30T16:34:00.000Z'
+// Target date for countdown: June 30th, 2026 at 23:59:59 WIB
+const countdownTarget = '2026-06-30T16:59:59.000Z'
 
 const targetSection = ref<HTMLElement | null>(null)
 const categorySection = ref<HTMLElement | null>(null)
