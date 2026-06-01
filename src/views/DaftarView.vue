@@ -26,7 +26,7 @@ const competitions = [
     colorClass: 'text-brand-teal border-brand-teal/20 bg-brand-teal/5 hover:bg-brand-teal/10',
     btnClass: 'bg-brand-teal hover:bg-brand-teal-light text-white shadow-brand-teal/20',
     path: '/kompetisi/essay',
-    registrationLink: 'https://uns.id/BYTESFEST2026-Essay-PendaftaranBatch1'
+    registrationLink: 'https://uns.id/betfesessayregistrasi1'
   },
   {
     title: 'CREATIVE WEB',
@@ -46,7 +46,7 @@ const competitions = [
     colorClass: 'text-purple-600 border-purple-200 bg-purple-50 hover:bg-purple-100/70',
     btnClass: 'bg-purple-600 hover:bg-purple-500 text-white shadow-purple-600/20',
     path: '/kompetisi/sdgs-visual-campaign',
-    registrationLink: 'https://uns.id/Bytesfest2026-PendaftaranSDGSCampaign'
+    registrationLink: 'https://uns.id/bytesfest-registration-SDGsVCC'
   }
 ]
 
