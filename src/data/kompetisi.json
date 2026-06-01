@@ -6,7 +6,7 @@
     "color": "from-brand-blue to-brand-blue-light",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-06-30T16:34:00.000Z",
-    "guideBookLink": "#",
+    "guideBookLink": "/guidebooks/guidebook-hackathon.pdf",
     "criteria": [
       {
         "title": "Mahasiswa Aktif",
@@ -63,7 +63,7 @@
     "color": "from-brand-teal to-brand-teal-light",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-07-07T16:34:00.000Z",
-    "guideBookLink": "#",
+    "guideBookLink": "/guidebooks/guidebook-essay-competition.pdf",
     "criteria": [
       {
         "title": "Mahasiswa aktif",
@@ -97,7 +97,7 @@
       {
         "date": "15 Juli",
         "title": "Pengumuman Finalis",
-        "desc": "Pengumuman 10 besar esai terbaik yang masuk final.",
+        "desc": "Pengumuman 5 besar esai terbaik yang masuk final.",
         "highlight": false
       },
       {
@@ -115,7 +115,7 @@
     "color": "from-brand-blue via-[#00a8cc] to-brand-teal-light",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-07-07T16:34:00.000Z",
-    "guideBookLink": "#",
+    "guideBookLink": "/guidebooks/guidebook-creative-web.pdf",
     "criteria": [
       {
         "title": "Mahasiswa Aktif",
@@ -172,7 +172,7 @@
     "color": "from-purple-600 to-pink-500",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-07-08T16:34:00.000Z",
-    "guideBookLink": "#",
+    "guideBookLink": "/guidebooks/guidebook-sdgs-visual-campaign.pdf",
     "criteria": [
       {
         "title": "Mahasiswa Aktif",
@@ -194,25 +194,25 @@
       {
         "date": "5 Juni - 8 Juli",
         "title": "Pendaftaran",
-        "desc": "Pendaftaran online dan pengisian data karya kampanye.",
+        "desc": "Pengisian data pendaftaran dan pembayaran biaya administrasi.",
         "highlight": true
       },
       {
         "date": "8 Juni - 15 Juli",
         "title": "Pengumpulan Karya",
-        "desc": "Batas akhir pengumpulan file visual campaign.",
+        "desc": "Batas akhir pengumpulan berkas di tanggal 15 Juli di jam 12.00 WIB.",
         "highlight": false
       },
       {
         "date": "15 Juli - 20 Juli",
-        "title": "Babak Kurasi",
-        "desc": "Voting Juara Favorit.",
+        "title": "Babak Kurasi Juara Favorit",
+        "desc": "Voting Juara Favorit di akun Instagram @bytesfest2026.",
         "highlight": false
       },
       {
         "date": "21 Juli",
-        "title": "Pengumuman Finalis",
-        "desc": "Pengumuman Finalis.",
+        "title": "Pengumuman Juara",
+        "desc": "Pengumuman Juara.",
         "highlight": false
       }
     ]
