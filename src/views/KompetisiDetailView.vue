@@ -14,9 +14,6 @@ const isLoading = ref(true)
 
 const route = useRoute()
 
-// Hardcoded registration links
-const registrationLink = 'https://linktr.ee/daftarbytesfest2026'
-
 // Map string keys to Lucide component references to avoid Vue 3 computed proxy issues
 const iconMap: Record<string, any> = {
   GraduationCap,
@@ -219,7 +216,7 @@ watch(() => route.path, async (newPath, oldPath) => {
           <!-- Buttons -->
           <div class="flex flex-wrap items-center gap-4 detail-fade mt-2">
             <a 
-              :href="registrationLink" 
+              :href="compData.registrationLink" 
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-brand-blue text-white font-rexlia text-sm tracking-wider hover:bg-brand-blue-light hover:shadow-lg hover:shadow-brand-blue/20 hover:-translate-y-0.5 transition-all duration-300 shadow-sm"

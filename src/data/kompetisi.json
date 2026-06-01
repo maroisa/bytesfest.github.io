@@ -6,6 +6,7 @@
     "color": "from-brand-blue to-brand-blue-light",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-06-30T16:34:00.000Z",
+    "registrationLink": "https://uns.id/BYTESFEST2026-Hackathon-PendaftaranBatch1",
     "guideBookLink": "/guidebooks/guidebook-hackathon.pdf",
     "criteria": [
       {
@@ -63,6 +64,7 @@
     "color": "from-brand-teal to-brand-teal-light",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-07-07T16:34:00.000Z",
+    "registrationLink": "https://uns.id/Bytesfest2026-PendaftaranCWC",
     "guideBookLink": "/guidebooks/guidebook-essay-competition.pdf",
     "criteria": [
       {
@@ -115,6 +117,7 @@
     "color": "from-brand-blue via-[#00a8cc] to-brand-teal-light",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-07-07T16:34:00.000Z",
+    "registrationLink": "https://uns.id/Bytesfest2026-PendaftaranCWC",
     "guideBookLink": "/guidebooks/guidebook-creative-web.pdf",
     "criteria": [
       {
@@ -172,6 +175,7 @@
     "color": "from-purple-600 to-pink-500",
     "countdownTitle": "Pendaftaran Ditutup Dalam",
     "countdownTarget": "2026-07-08T16:34:00.000Z",
+    "registrationLink": "https://uns.id/Bytesfest2026-PendaftaranSDGSCampaign",
     "guideBookLink": "/guidebooks/guidebook-sdgs-visual-campaign.pdf",
     "criteria": [
       {
