@@ -316,97 +316,67 @@ const sponsors = [
 </script>
 
 <template>
-  <div class="font-sans relative overflow-hidden">
-    <!-- Countdown-only view before launch -->
-    <div v-if="isBeforeLaunch && !isLoading" class="min-h-screen flex items-center justify-center">
-      <div class="absolute inset-0 -z-10 overflow-hidden">
-        <!-- Interactive gradient orbs -->
-        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate"></div>
-        <div class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate"></div>
-        <div class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate"></div>
-        <div class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate"></div>
-        <!-- Grid pattern overlay -->
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMCAwTDQwIDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwNWVhNCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
-      </div>
-      <div class="max-w-6xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center gap-12 py-12">
-        <div class="flex flex-col gap-6 max-w-4xl">
-          <h1 class="font-rexlia text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none">
-            <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal-light bg-clip-text text-transparent">PREPARE</span>
-            <br>
-            <span class="text-brand-navy">YOURSELF</span>
-          </h1>
-          <p class="text-brand-grey text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            BYTESFEST 2026 akan segera dibuka. Siapkan diri Anda untuk kompetisi tahunan berskala nasional yang diselenggarakan oleh HMP MIKROPTIK FKIP UNS.
-          </p>
-        </div>
-        <div class="w-full">
-          <Countdown :targetDate="countdownTarget" />
-        </div>
-      </div>
+  <div class="pt-28 font-sans relative overflow-hidden">
+    <!-- Dynamic Background -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <!-- Dynamic gradient orbs -->
+      <div 
+        class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate orb-color-cycle"
+      ></div>
+      <div 
+        class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate orb-color-cycle"
+      ></div>
+      <div 
+        class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate orb-color-cycle"
+      ></div>
+      <div 
+        class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate orb-color-cycle"
+      ></div>
+      <!-- Third blob on left side between target peserta and kategori kompetisi -->
+      <div 
+        class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate orb-color-cycle"
+      ></div>
     </div>
-
-    <!-- Full website after launch -->
-    <div v-else class="pt-28">
-      <!-- Dynamic Background -->
-      <div class="absolute inset-0 -z-10 overflow-hidden">
-        <!-- Dynamic gradient orbs -->
-        <div 
-          class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-blue/35 blur-[130px] animate-float-1 animate-pulse-rotate orb-color-cycle"
-        ></div>
-        <div 
-          class="absolute top-[20%] right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-teal/30 blur-[110px] animate-float-2 animate-pulse-rotate orb-color-cycle"
-        ></div>
-        <div 
-          class="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-brand-blue-light/25 blur-[90px] animate-float-3 animate-pulse-rotate orb-color-cycle"
-        ></div>
-        <div 
-          class="absolute bottom-[-5%] right-[15%] w-[480px] h-[480px] rounded-full bg-brand-teal-light/28 blur-[120px] animate-float-4 animate-pulse-rotate orb-color-cycle"
-        ></div>
-        <!-- Third blob on left side between target peserta and kategori kompetisi -->
-        <div 
-          class="absolute top-[45%] left-[-8%] w-[350px] h-[350px] rounded-full bg-purple-500/30 blur-[100px] animate-float-3 animate-pulse-rotate orb-color-cycle"
-        ></div>
+    <!-- Hero Section -->
+    <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
+      <div class="flex flex-col gap-6 max-w-4xl">
+        <h1 class="font-rexlia text-[11vw] sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none hero-fade">
+          <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal-light bg-clip-text text-transparent">BYTESFEST</span>
+          <br>
+          <span class="text-brand-navy">2026</span>
+        </h1>
+        
+        <p class="text-brand-grey text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed hero-fade">
+          Program tahunan berskala nasional yang diselenggarakan oleh HMP MIKROPTIK FKIP UNS.
+        </p>
       </div>
-      <!-- Hero Section -->
-      <section v-if="!isLoading" class="max-w-6xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
-        <div class="flex flex-col gap-6 max-w-4xl">
-          <h1 class="font-rexlia text-[11vw] sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-none select-none hero-fade">
-            <span class="bg-gradient-to-r from-brand-blue via-brand-blue-light to-brand-teal-light bg-clip-text text-transparent">BYTESFEST</span>
-            <br>
-            <span class="text-brand-navy">2026</span>
-          </h1>
-          
-          <p class="text-brand-grey text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed hero-fade">
-            Program tahunan berskala nasional yang diselenggarakan oleh HMP MIKROPTIK FKIP UNS.
-          </p>
-        </div>
 
-        <!-- Countdown -->
-        <div class="w-full hero-fade">
-          <Countdown :targetDate="countdownTarget" />
-        </div>
+      <!-- Countdown -->
+      <div class="w-full hero-fade">
+        <Countdown :targetDate="countdownTarget" />
+      </div>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap items-center justify-center gap-4 hero-fade">
-          <RouterLink 
-            to="/daftar" 
-            class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-brand-blue text-white font-rexlia text-sm tracking-wider hover:bg-brand-blue-light hover:shadow-lg hover:shadow-brand-blue/20 hover:-translate-y-0.5 transition-all duration-300"
-          >
-            Daftar Sekarang
-          </RouterLink>
-          <RouterLink 
-            to="/tentang" 
-            class="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-brand-blue text-brand-blue font-rexlia text-sm tracking-wider hover:bg-brand-blue/5 hover:-translate-y-0.5 transition-all duration-300"
-          >
-            Tentang BYTESFEST
-          </RouterLink>
-        </div>
-      </section>
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 hero-fade">
+        <RouterLink 
+          to="/daftar" 
+          class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-brand-blue text-white font-rexlia text-sm tracking-wider hover:bg-brand-blue-light hover:shadow-lg hover:shadow-brand-blue/20 hover:-translate-y-0.5 transition-all duration-300"
+        >
+          Daftar Sekarang
+        </RouterLink>
+        <RouterLink 
+          to="/tentang" 
+          class="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-brand-blue text-brand-blue font-rexlia text-sm tracking-wider hover:bg-brand-blue/5 hover:-translate-y-0.5 transition-all duration-300"
+        >
+          Tentang BYTESFEST
+        </RouterLink>
+      </div>
+    </section>
 
-      <!-- Hero Skeleton -->
-      <section v-else class="max-w-6xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
-        <SkeletonLoader type="hero" />
-      </section>
+    <!-- Hero Skeleton -->
+    <section v-else class="max-w-6xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center min-h-[80vh] gap-10 py-12">
+      <SkeletonLoader type="hero" />
+    </section>
 
     <!-- Target Peserta Section -->
     <section v-if="!isLoading" ref="targetSection" class="max-w-6xl mx-auto px-6 py-16 sm:py-24">
@@ -611,7 +581,6 @@ const sponsors = [
       
       <SkeletonLoader type="timeline" :count="5" />
     </section>
-    </div>
   </div>
 </template>
 
