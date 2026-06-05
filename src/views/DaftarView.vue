@@ -16,7 +16,7 @@ const competitions = [
     colorClass: 'text-brand-blue border-brand-blue/20 bg-brand-blue/5 hover:bg-brand-blue/10',
     btnClass: 'bg-brand-blue hover:bg-brand-blue-light text-white shadow-brand-blue/20',
     path: '/kompetisi/hackathon',
-    registrationLink: 'https://uns.id/BYTESFEST2026-Hackathon-PendaftaranBatch1'
+    registrationLink: 'https://uns.id/REG_HACKATHON_BYTESFEST2026'
   },
   {
     title: 'LOMBA ESAI',
@@ -26,7 +26,7 @@ const competitions = [
     colorClass: 'text-brand-teal border-brand-teal/20 bg-brand-teal/5 hover:bg-brand-teal/10',
     btnClass: 'bg-brand-teal hover:bg-brand-teal-light text-white shadow-brand-teal/20',
     path: '/kompetisi/essay',
-    registrationLink: 'https://uns.id/betfesessayregistrasi1'
+    registrationLink: 'https://uns.id/REG_ESSAY_BYTESFEST26'
   },
   {
     title: 'CREATIVE WEB',
@@ -36,7 +36,7 @@ const competitions = [
     colorClass: 'text-brand-lime border-brand-lime/20 bg-brand-lime/5 hover:bg-brand-lime/10',
     btnClass: 'bg-brand-lime hover:bg-brand-lime-light text-white shadow-brand-lime/20',
     path: '/kompetisi/creative-web',
-    registrationLink: 'https://uns.id/Bytesfest2026-PendaftaranCWC'
+    registrationLink: 'https://uns.id/REG_CWC_BYTESFEST26'
   },
   {
     title: 'SDGs CAMPAIGN',
@@ -46,7 +46,7 @@ const competitions = [
     colorClass: 'text-purple-600 border-purple-200 bg-purple-50 hover:bg-purple-100/70',
     btnClass: 'bg-purple-600 hover:bg-purple-500 text-white shadow-purple-600/20',
     path: '/kompetisi/sdgs-visual-campaign',
-    registrationLink: 'https://uns.id/bytesfest-registration-SDGsVCC'
+    registrationLink: 'https://uns.id/REG_VCC_BYTESFEST26'
   }
 ]
 
