@@ -15,6 +15,10 @@ const iconMap = {
   Megaphone: Megaphone,
 }
 
+function getIconMap(icon: string) {
+  return iconMap[icon as keyof typeof iconMap]
+}
+
 // there is no top-level await here; the await lives inside the setTimeout callback
 onMounted(() => {
   // FIX Bug 1: GSAP moved inside setTimeout + after nextTick
@@ -85,7 +89,7 @@ onMounted(() => {
                 <div
                   :class="`w-14 h-14 rounded-2xl flex items-center justify-center border shadow-sm transition-transform duration-300 group-hover:scale-105 ${comp[1].colorClass}`"
                 >
-                  <component :is="iconMap[comp[1].icon]" class="w-7 h-7" />
+                  <component :is="getIconMap(comp[1].icon)" class="w-7 h-7" />
                 </div>
 
                 <RouterLink
